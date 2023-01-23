@@ -1,0 +1,48 @@
+$link: rgb(41, 41, 164);
+
+.login {
+  margin-top: 30vh;
+  //   margin: 30vh auto 0;
+  //   width: 250px;
+  //   height: 250px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  transition: 0.25s all ease-in-out;
+
+  .register {
+    margin-top: 5px;
+    font-size: 16.15px;
+
+    cursor: pointer;
+    color: $link;
+
+    transition: 0.15s all ease-in-out;
+    border-bottom: 1px solid transparent;
+
+    &:hover {
+      border-bottom: 1px solid $link;
+    }
+  }
+
+  input {
+    height: 30px;
+    margin-bottom: 7px;
+
+    text-align: center;
+    font-size: 17px;
+
+    border-radius: 5px;
+    border: 1px solid black;
+  }
+
+  button {
+    padding: 3px 5px;
+    font-size: 17px;
+
+    border-radius: 5px;
+    border: 1px solid black;
+  }
+}

@@ -1,0 +1,40 @@
+@import url(https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@200;300;400;500;600;700&display=swap);
+
+// Font Variables
+$roboto-slab: 'Saira Condensed', sans-serif;
+$fontColor: rgb(232, 232, 232);
+
+@mixin flex() {
+  display: flex;
+}
+
+.about {
+  margin: 5vh auto 10px;
+  width: 70%;
+  max-width: 900px;
+  @include flex();
+  justify-content: space-between;
+
+  & > *:not(:last-child) {
+    margin-right: 10px;
+  }
+
+  .aboutHeader {
+    width: 35%;
+    font-size: 65px;
+    line-height: 105%;
+
+    text-decoration: underline;
+    text-decoration-thickness: 3.5px;
+
+    text-align: center;
+    font-family: $roboto-slab;
+  }
+
+  .aboutText {
+    width: 65%;
+    font-size: 21px;
+    font-weight: 250;
+    font-family: $roboto-slab;
+  }
+}

@@ -1,0 +1,22 @@
+.account {
+  width: fit-content;
+  margin: 5vh auto;
+  // Убрать
+  padding: 100px 0 150px;
+
+  display: flex;
+  align-items: center;
+
+  .accountInfo {
+    display: grid;
+    grid-template-columns: 235px 350px;
+    // расстоянгие между колонками
+    column-gap: 25px;
+    // между строками
+    row-gap: 25px;
+  }
+}
+
+//gap:100px;
+// grid-template-rows: 250px;
+//grid-auto-rows: 100px;

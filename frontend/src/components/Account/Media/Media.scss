@@ -1,0 +1,21 @@
+@mixin shadow() {
+  -webkit-box-shadow: -1px 2px 11px 3px rgba(34, 60, 80, 0.2);
+  -moz-box-shadow: -1px 2px 11px 3px rgba(34, 60, 80, 0.2);
+  box-shadow: -1px 2px 11px 3px rgba(34, 60, 80, 0.2);
+}
+
+.accountMedia {
+  padding: 4px 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  & > svg:not(:last-child) {
+    margin-right: 10px;
+  }
+
+  @include shadow();
+
+  border-radius: 8px;
+}

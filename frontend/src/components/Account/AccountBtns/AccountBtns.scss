@@ -1,0 +1,35 @@
+.accountBtns {
+  display: flex;
+  justify-content: flex-end;
+
+  button {
+    width: 90px;
+    height: 40px;
+
+    font-size: 20px;
+    font-weight: 500;
+
+    cursor: pointer;
+
+    transition: 0.15s all ease-in-out;
+    color: white;
+    background-color: #307cd2;
+    border-radius: 7px;
+    border: none;
+  }
+  button:hover {
+    background-color: #3683db;
+  }
+
+  .logout {
+    margin-left: 10px;
+    margin-right: 9px;
+
+    color: white;
+    background-color: black;
+  }
+
+  .logout:hover {
+    background-color: rgb(28, 28, 28);
+  }
+}

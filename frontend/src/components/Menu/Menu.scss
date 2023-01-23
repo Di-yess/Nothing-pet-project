@@ -1,0 +1,95 @@
+// Google Fonts
+@import url(https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@200;300;400;500;600;700&display=swap);
+
+// Font Variables
+$roboto-slab: 'Saira Condensed', sans-serif;
+$fontColor: rgb(255, 255, 255);
+
+@mixin flex() {
+  display: flex;
+}
+
+.menu {
+  margin: 0px auto;
+  height: 700px;
+  width: 100%;
+
+  position: relative;
+
+  .topMenu {
+    height: 100%;
+
+    background-image: url(../../../public/imgs/topmenu.jpg);
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat;
+    @include flex();
+
+    justify-content: space-around;
+  }
+
+  .iconMenu {
+    font-family: $roboto-slab;
+    font-weight: 700;
+    font-size: 70px;
+
+    color: $fontColor;
+  }
+
+  .rightMenu {
+    margin-top: 5.1vh;
+    @include flex();
+    // align-items: center;
+  }
+
+  .liRightMenu {
+    margin-right: 25px;
+    height: 35px;
+
+    font-family: $roboto-slab;
+    font-weight: 400;
+    font-size: 23px;
+    color: $fontColor;
+
+    cursor: pointer;
+    transition: 0.15s all ease-in-out;
+    border-bottom: 2px solid transparent;
+
+    &:hover {
+      border-bottom: 2px solid $fontColor;
+    }
+    a {
+      font-size: 23px;
+      color: $fontColor;
+      text-decoration: none;
+    }
+  }
+
+  .explore {
+    font-family: $roboto-slab;
+    font-weight: 500;
+    font-size: 30px;
+    color: white;
+
+    position: absolute;
+    bottom: 10px;
+
+    @include flex();
+    align-items: center;
+  }
+
+  .exploreText {
+    margin-right: 10px;
+  }
+
+  .content {
+    width: 80%;
+    margin: 10px auto;
+    padding: 10px 0;
+
+    @include flex();
+    justify-content: center;
+
+    border-radius: 10px;
+    border: 1px solid black;
+  }
+}

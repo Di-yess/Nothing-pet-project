@@ -1,0 +1,94 @@
+@import url(https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@200;300;400;500;600;700&display=swap);
+
+// Font Variables
+$roboto-slab: 'Saira Condensed', sans-serif;
+$fontColor: rgb(232, 232, 232);
+
+@mixin font() {
+  font-family: $roboto-slab;
+}
+
+@mixin flex() {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.footer {
+  margin: 0 auto;
+  height: 200px;
+  max-width: 2000px;
+
+  position: relative;
+
+  color: white;
+  background-color: black;
+  @include flex();
+
+  li {
+    list-style-type: none;
+  }
+  .logo {
+    @include font();
+  }
+
+  .media ul {
+    @include flex();
+
+    & > *:not(:last-child) {
+      margin-right: 11px;
+    }
+    li {
+      cursor: pointer;
+    }
+  }
+
+  .logo {
+    margin-top: -15px;
+    font-size: 65px;
+    font-weight: 700;
+
+    @include flex();
+
+    .nothingTodo {
+      margin: auto;
+      position: absolute;
+      bottom: 10px;
+      font-size: 17px;
+      font-weight: 300;
+      // top: 0; left: 0; bottom: 0; right: 0;
+
+      @include font();
+      color: rgba(255, 255, 255, 0.517);
+      a {
+        color: rgba(255, 255, 255, 0.517);
+      }
+    }
+  }
+
+  .footerMenu {
+    @include font();
+    li {
+      cursor: pointer;
+      padding: 0;
+      width: fit-content;
+      font-size: 17.9px;
+      color: rgba(255, 255, 255, 0.917);
+
+      transition: 0.15s all ease-in-out;
+      border-bottom: 1px solid transparent;
+    }
+
+    li:hover {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.736);
+    }
+  }
+
+  svg {
+    // height: 35px;
+    // width: 35px;
+    path {
+      fill: currentcolor;
+    }
+  }
+}

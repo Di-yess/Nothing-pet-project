@@ -1,0 +1,52 @@
+@import url(https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@200;300;400;500;600;700&display=swap);
+
+// Font Variables
+$roboto-slab: 'Saira Condensed', sans-serif;
+$fontColor: rgb(232, 232, 232);
+
+@mixin flex() {
+  display: flex;
+  align-items: center;
+}
+
+.feed {
+  margin-left: 5vh;
+  width: 900px;
+  // height: 475px;
+
+  position: relative;
+
+  // border: 1px solid black;
+
+  @include flex();
+
+  .feedImg {
+    width: 360px;
+    height: 475px;
+  }
+
+  .feedAbout {
+    margin-top: -175px;
+    width: 70%;
+    height: 100%;
+
+    @include flex();
+    flex-direction: column;
+
+    .feedText {
+      margin-top: 20%;
+
+      font-size: 75px;
+      font-weight: 700;
+      font-family: $roboto-slab;
+    }
+
+    .feedName {
+      margin-left: 12vh;
+
+      font-size: 30px;
+      font-weight: 400;
+      font-family: $roboto-slab;
+    }
+  }
+}

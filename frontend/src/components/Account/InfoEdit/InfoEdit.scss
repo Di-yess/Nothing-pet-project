@@ -1,0 +1,56 @@
+@mixin shadow() {
+  -webkit-box-shadow: -1px 2px 11px 3px rgba(34, 60, 80, 0.2);
+  -moz-box-shadow: -1px 2px 11px 3px rgba(34, 60, 80, 0.2);
+  box-shadow: -1px 2px 11px 3px rgba(34, 60, 80, 0.2);
+}
+
+.infoEdit {
+  padding: 0 25px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  @include shadow();
+  border-radius: 5px;
+
+  & > .info:not(:last-child) {
+    border-bottom: 1px solid #919191;
+    margin-bottom: 7px;
+  }
+
+  .info {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    font-size: 17.9px;
+
+    input:disabled {
+      padding-left: 5px;
+      height: 29px;
+      width: 70%;
+
+      font-size: 17px;
+      font-weight: 100;
+
+      background-color: transparent;
+      border: none;
+      outline: none;
+    }
+
+    input {
+      height: 29px;
+      width: 70%;
+      padding-left: 5px;
+
+      font-size: 17px;
+      font-weight: 100;
+
+      background-color: rgba(0, 0, 0, 0.077);
+      outline: none;
+      border-radius: 5px;
+      border: none;
+    }
+  }
+}

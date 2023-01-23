@@ -1,0 +1,38 @@
+@import url(https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@200;300;400;500;600;700&display=swap);
+
+// Font Variables
+$roboto-slab: 'Saira Condensed', sans-serif;
+$fontColor: rgb(232, 232, 232);
+
+@mixin flex() {
+  display: flex;
+  align-items: center;
+}
+
+.feedBackForms {
+  margin-top: 10px;
+  position: relative;
+
+  .slider {
+    margin: 10px auto;
+    width: 900px;
+    @include flex();
+    position: relative;
+    justify-content: center;
+  }
+  .arrowLeft {
+    top: 47%;
+    left: -13px;
+    position: absolute;
+    cursor: pointer;
+    z-index: 1;
+  }
+
+  .arrowRight {
+    right: 0px;
+    top:43%;
+    position: absolute;
+    cursor: pointer;
+    z-index: 1;
+  }
+}
