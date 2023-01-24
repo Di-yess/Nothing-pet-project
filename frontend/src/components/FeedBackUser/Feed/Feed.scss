@@ -1,0 +1,64 @@
+@mixin shadow() {
+  -webkit-box-shadow: -1px 2px 11px 3px rgba(34, 60, 80, 0.2);
+  -moz-box-shadow: -1px 2px 11px 3px rgba(34, 60, 80, 0.2);
+  box-shadow: -1px 2px 11px 3px rgba(34, 60, 80, 0.2);
+}
+
+@mixin flex() {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+$mt: 85px;
+
+.feedUser {
+  margin-top: $mt + 15px;
+  margin-right: 10px;
+  width: 262px;
+  height: 175px;
+
+  position: relative;
+
+  border-radius: 10px;
+  @include shadow();
+  @include flex();
+  justify-content: center;
+
+  .feedImg {
+    top: -$mt;
+    width: 129.9px;
+    height: 129.9px;
+
+    overflow: hidden;
+    position: absolute;
+    cursor: pointer;
+
+    border-radius: 50%;
+    @include shadow();
+
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: contain;
+    }
+  }
+
+  .feedUserName {
+    bottom: 7.9px;
+    right: 30px;
+
+    color: #444444;
+    font-size: 20px;
+    font-weight: 500;
+
+    position: absolute;
+  }
+  .feedUserText {
+    padding: 0 15px;
+    color: #969696;
+
+    font-size: 16px;
+    text-align: center;
+  }
+}

@@ -2,6 +2,7 @@ import { motion as m } from 'framer-motion';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useAppSelector } from '../../types/Apphooks';
+import Footer from '../LayoutMenu/Footer/Footer';
 import Arrow from './const/Arrow';
 import { variants } from './const/variants';
 import './Menu.scss';
@@ -22,8 +23,12 @@ export default function Menu({ children }: { children: React.ReactNode }) {
           <Link to="/">Nothing</Link>
         </div>
         <div className="rightMenu">
-          <div className="liRightMenu">About us</div>
-          <div className="liRightMenu">Contacts</div>
+          <div className="liRightMenu">
+            <Link to="/">About us</Link>
+          </div>
+          <div className="liRightMenu">
+            <Link to="/feedback">Tell us</Link>
+          </div>
           {login ? (
             <div className="liRightMenu">
               <Link to="/account">Account</Link>
@@ -41,6 +46,7 @@ export default function Menu({ children }: { children: React.ReactNode }) {
         </div>
       </div>
       {children}
+      <Footer />
     </m.div>
   );
 }

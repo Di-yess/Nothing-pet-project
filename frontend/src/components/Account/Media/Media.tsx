@@ -6,9 +6,9 @@ import './Media.scss';
 export default function Media() {
   return (
     <div className="accountMedia">
-      <LinkedIn />
       <TelegramColor />
       <GitBlack />
+      <LinkedIn />
     </div>
   );
 }

@@ -1,5 +1,3 @@
-import { NoInfer } from 'react-redux';
-
 export type initState = {
   login: boolean | undefined;
   fullName: string | null;

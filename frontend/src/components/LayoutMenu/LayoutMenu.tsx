@@ -11,7 +11,6 @@ export default function LayoutMenu() {
       <About />
       <FeedBack />
       <PreFooter />
-      <Footer />
     </AnimationPage>
   );
 }

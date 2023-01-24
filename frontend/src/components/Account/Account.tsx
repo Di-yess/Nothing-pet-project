@@ -6,6 +6,7 @@ import Media from './Media/Media';
 import './Account.scss';
 import Footer from '../LayoutMenu/Footer/Footer';
 import { useEffect } from 'react';
+import DeleteAccount from './DeleteAccount/DeleteAccount';
 
 export default function Account() {
   const user = useAppSelector((state) => state.user);
@@ -19,17 +20,15 @@ export default function Account() {
   }, []);
 
   return (
-    <>
-      <div className="account" id="account-view">
-        <div className="accountInfo">
-          <InfoImg user={user} />
-          <InfoEdit user={user} />
-          <Media />
-          <AccountBtns />
-        </div>
-        <div className="feedBacks"></div>
+    <div className="account" id="account-view">
+      <div className="accountInfo">
+        <InfoImg user={user} />
+        <InfoEdit user={user} />
+        <Media />
+        <AccountBtns />
       </div>
-      <Footer />
-    </>
+      {/* <div className="feedBacks"></div> личный фидбеки */}
+      <DeleteAccount />
+    </div>
   );
 }

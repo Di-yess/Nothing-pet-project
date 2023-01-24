@@ -8,19 +8,20 @@ datasource db {
 }
 
 model User {
-  id          Int       @id @default(autoincrement())
+  id          Int        @id @default(autoincrement())
   fullName    String
-  email       String    @unique
+  email       String     @unique
   password    String
   phone       String?
   profession  String?
   adress      String?
-  isAdmin     Boolean   @default(false)
-  updatedAt   DateTime  @default(now()) @updatedAt
-  createdAt   DateTime  @default(now())
-  sendBy      Message[] @relation("sender")
-  receiveFrom Message[] @relation("receiver")
+  isAdmin     Boolean    @default(false)
+  updatedAt   DateTime   @default(now()) @updatedAt
+  createdAt   DateTime   @default(now())
+  sendBy      Message[]  @relation("sender")
+  receiveFrom Message[]  @relation("receiver")
   avatar      Avatar?
+  feedback    FeedBack[]
 }
 
 model Message {
@@ -28,8 +29,8 @@ model Message {
   senderId   Int
   receiverId Int
   createdAt  DateTime @default(now())
-  sender     User     @relation("sender", fields: [senderId], references: [id])
-  receiver   User     @relation("receiver", fields: [receiverId], references: [id])
+  sender     User?    @relation("sender", fields: [senderId], references: [id], onDelete: Cascade)
+  receiver   User?    @relation("receiver", fields: [receiverId], references: [id], onDelete: Cascade)
 
   @@id([senderId, receiverId])
 }
@@ -40,11 +41,12 @@ model FeedBack {
   userId    Int
   answer    String?
   createdAt DateTime @default(now())
+  user      User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Avatar {
-  id     Int    @id @default(autoincrement())
+  id     Int     @id @default(autoincrement())
   link   String?
-  userId Int    @unique
-  user   User   @relation(fields: [userId], references: [id])
+  userId Int     @unique
+  user   User?   @relation(fields: [userId], references: [id], onDelete: Cascade)
 }

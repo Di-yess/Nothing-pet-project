@@ -26,7 +26,6 @@ const getUser = async (req, res) => {
       user.img = user.avatar.link;
       delete user.password;
       delete user.avatar;
-      console.log(user);
       res.json(user);
     } else {
       res.sendStatus(401);
@@ -66,4 +65,20 @@ const logoutUser = async (req, res) => {
   });
 };
 
-export { getUser, updateUser, logoutUser };
+const deleteUser = async (req, res) => {
+  const id = req.session.userId;
+
+  try {
+    await prisma.user.delete({
+      where: {
+        id,
+      },
+    });
+    res.sendStatus(200);
+  } catch (err) {
+    console.log(err);
+    res.sendStatus(500);
+  }
+};
+
+export { getUser, updateUser, logoutUser, deleteUser };
