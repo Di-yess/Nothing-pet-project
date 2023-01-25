@@ -3,6 +3,7 @@ import { getUser } from './asyncThunk/getUser';
 import { infoUser, initState } from '../types/userInit';
 
 const initialState: initState = {
+  id: null,
   login: false,
   fullName: null,
   img: null,
@@ -25,9 +26,10 @@ const userSlice = createSlice({
     },
     // setInfo
     setInfo(state, action: PayloadAction<infoUser>) {
-      const { fullName, img, phone, profession, email, adress } =
+      const { id, fullName, img, phone, profession, email, adress } =
         action.payload;
       //state = { ...state, ...action.payload };
+      state.id = id;
       state.adress = adress;
       state.img = img;
       state.fullName = fullName;

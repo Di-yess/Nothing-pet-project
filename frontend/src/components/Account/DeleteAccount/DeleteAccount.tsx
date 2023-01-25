@@ -12,7 +12,7 @@ export default function DeleteAccount() {
       className="deleteAccount"
       onClick={() => deleteAccount(dispatch, navigate)}
     >
-      Delete an account
+      Delete the account
     </div>
   );
 }

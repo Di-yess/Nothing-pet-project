@@ -1,0 +1,97 @@
+@import '../../../mix.scss';
+
+.feedForm {
+  width: 430px;
+  height: 243px;
+  top: -250px;
+  left: -40px;
+  text-align: center;
+
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transform: translate(-50%, 0);
+
+  @include shadow();
+  border-radius: 10px;
+  @include flex();
+
+  textarea {
+    margin-top: 10px;
+    padding: 15px 25px;
+
+    border-radius: 5px;
+    border: none;
+
+    font-size: 19px;
+    font-weight: 200;
+    color: #434343;
+
+    //@include shadow();
+    &:focus {
+      outline: none;
+      //   border: 0.1px solid rgb(136, 136, 136);
+    }
+
+    resize: none;
+  }
+
+  .qouteFeed {
+    position: absolute;
+    right: 75px;
+    top: -50px;
+    svg {
+      opacity: 0.9;
+      width: 40px;
+      fill: #000000;
+    }
+  }
+
+  .feedFormImg {
+    width: 129.9px;
+    height: 129.9px;
+    top: -90px;
+    left: 50px;
+
+    overflow: hidden;
+    position: absolute;
+    cursor: pointer;
+
+    border-radius: 50%;
+    @include shadow();
+
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: contain;
+    }
+  }
+
+  .feedFormName {
+    position: absolute;
+
+    font-size: 23px;
+    color: $textMain;
+
+    right: 40px;
+    bottom: 10px;
+  }
+
+  .feedFormDelete {
+    top: 0px;
+    right: 20px;
+
+    cursor: pointer;
+    position: absolute;
+    
+    svg {
+      color: rgba(143, 143, 143, 0.458);
+      width: 25px;
+    }
+  }
+
+  background-color: white;
+  border-radius: 5px;
+}

@@ -14,7 +14,10 @@ const feedSlice = createSlice({
 
   reducers: {
     putFeeds(state, action: PayloadAction<feedType[]>) {
-      state.feeds.push(...action.payload);
+      if (state.feeds.length === 9) {
+        state.feeds.pop();
+      }
+      state.feeds.unshift(...action.payload);
     },
   },
 

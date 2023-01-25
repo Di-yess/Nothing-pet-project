@@ -1,4 +1,5 @@
 export type initState = {
+  id:number | null;
   login: boolean | undefined;
   fullName: string | null;
   img: string | null;

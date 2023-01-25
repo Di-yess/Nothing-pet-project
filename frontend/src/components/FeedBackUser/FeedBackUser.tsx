@@ -1,25 +1,53 @@
-import { useEffect } from 'react';
+import { AnimatePresence, motion as m } from 'framer-motion';
+import { useEffect, useState } from 'react';
 import { getFeeds } from '../../store/asyncThunk/getFeeds';
 import { useAppDispatch, useAppSelector } from '../../types/Apphooks';
 import Feed from './Feed/Feed';
 import './FeedBackUser.scss';
+import FeedForm from './FeedForm/FeedForm';
+import FeedBacks from './Feeds/FeedBacks';
+import { actFeedForm } from './functions/feedBtn';
+import Quote from './functions/Quote';
 
 export default function FeedBack() {
   const feeds = useAppSelector((state) => state.feeds.feeds);
+  const user = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
+  const [tellBtn, setTellBtn] = useState(false);
+  const [feedText, setFeedText] = useState('');
 
   useEffect(() => {
     if (!feeds.length) dispatch(getFeeds());
   }, [dispatch]);
 
   return (
-    <>
-      <div className="feedBacks">
-        {feeds.map((feed) => (
-          <Feed feed={feed} />
-        ))}
+    <div className="feedMain">
+      <Quote />
+      <FeedBacks feeds={feeds}/>
+      <div className="btnTellUs">
+        <AnimatePresence>
+          {' '}
+          {tellBtn && (
+            <FeedForm feedText={feedText} setFeedText={setFeedText} />
+          )}{' '}
+        </AnimatePresence>
+        <m.button
+          whileTap={{ scale: 1.15 }}
+          onClick={(e) =>
+            actFeedForm({
+              e,
+              feedText,
+              tellBtn,
+              setTellBtn,
+              setFeedText,
+              user,
+              dispatch,
+            })
+          }
+        >
+          {!tellBtn ? 'Tell us' : 'Send'}
+        </m.button>
       </div>
-      <button>Tell us</button>
-    </>
+    </div>
   );
 }

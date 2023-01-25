@@ -4,6 +4,10 @@ const prisma = new PrismaClient();
 const getFeeds = async (req, res) => {
   try {
     const feeds = await prisma.feedBack.findMany({
+      take: 9,
+      orderBy: {
+        createdAt: 'desc',
+      },
       select: {
         id: true,
         text: true,
@@ -20,7 +24,6 @@ const getFeeds = async (req, res) => {
         },
       },
     });
-    console.log(feeds);
     res.json(feeds);
   } catch (err) {
     console.log(err);
@@ -28,4 +31,37 @@ const getFeeds = async (req, res) => {
   }
 };
 
-export { getFeeds };
+const addFeed = async (req, res) => {
+  const { userId, text } = req.body;
+  if (req.session.userId === userId) {
+    try {
+      const response = await prisma.feedBack.create({
+        data: {
+          userId: 1,
+          text,
+        },
+        select: {
+          id: true,
+          text: true,
+          user: {
+            select: {
+              id: true,
+              fullName: true,
+              avatar: {
+                select: {
+                  link: true,
+                },
+              },
+            },
+          },
+        },
+      });
+      res.json(response);
+    } catch (err) {
+      console.log(err);
+      res.sendStatus(500);
+    }
+  }
+};
+
+export { getFeeds, addFeed };
