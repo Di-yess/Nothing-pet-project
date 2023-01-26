@@ -32,9 +32,7 @@ const userLogin = async (req, res) => {
         if (check) {
           req.session.userId = user.id;
           req.session.save(() => {
-            user.img = user.avatar.link;
             delete user.password;
-            delete user.avatar;
             res.json(user);
             //res.sendStatus(201);
           });
@@ -97,8 +95,6 @@ const userRegister = async (req, res) => {
         req.session.userId = user.id;
         req.session.save(() => {
           // дописать аватар
-          user.img = user.avatar.link;
-          delete user.avatar;
           res.json(user);
         });
       }

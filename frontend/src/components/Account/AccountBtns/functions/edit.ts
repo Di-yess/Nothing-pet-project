@@ -5,6 +5,8 @@ import { clearInfo } from '../../../../store/userSlice';
 import { initState } from '../../../../types/userInit';
 
 export async function edit(e: any, user: initState) {
+  const imgFile = document.querySelector<HTMLInputElement>('#inputImg');
+
   if (e.target.innerText === 'Edit') {
     // enable
     document
@@ -12,10 +14,15 @@ export async function edit(e: any, user: initState) {
       .forEach((infoInput) => {
         infoInput.disabled = false;
       });
+    if (imgFile) {
+      imgFile.disabled = false;
+      imgFile.classList.toggle('cursor');
+    }
     e.target.innerText = 'Accept';
   } else {
     const { fullName, email, phone, profession, adress } = user;
     try {
+      //добавить сюда файл
       await axios.put('/user', {
         fullName,
         email,
@@ -29,6 +36,10 @@ export async function edit(e: any, user: initState) {
         .forEach((infoInput) => {
           infoInput.disabled = true;
         });
+      if (imgFile) {
+        imgFile.disabled = true;
+        imgFile.classList.toggle('cursor');
+      }
       e.target.innerText = 'Edit';
     } catch (err) {
       console.log(err);

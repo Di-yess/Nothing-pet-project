@@ -1,27 +1,18 @@
 import { motion as m } from 'framer-motion';
 import { feedType } from '../../../types/feedType';
+import { variants } from './functional';
 import './Feed.scss';
-
-const variants = {
-  initial: { opacity: 0, x: -100 },
-  animate: { opacity: 1, x: 0 },
-  exit: { opacity: 0, x: 100 },
-};
+import { useNavigate } from 'react-router-dom';
 
 export default function Feed({ feed, i }: { feed: feedType; i: number }) {
+  const navigate = useNavigate();
   return (
-    <m.div
-      initial="initial"
-      animate="animate"
-      exit="exit"
-      variants={variants}
-      transition={{ delay: 0.15 * i }}
-      className="feedUser"
-    >
+    <m.div {...variants(i)} className="feedUser">
       <div className="feedImg">
         <img
-          src={feed.user.avatar.link ? feed.user.avatar.link : 'imgs/user.png'}
+          src={feed.user.avatar.link || 'imgs/user.png'}
           alt="feedImg"
+          onClick={() => navigate(`/account/${feed.user.id}`)}
         />
       </div>
       <div className="feedUserText">{feed.text}</div>

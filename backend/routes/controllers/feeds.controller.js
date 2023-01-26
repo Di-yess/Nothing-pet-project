@@ -37,7 +37,7 @@ const addFeed = async (req, res) => {
     try {
       const response = await prisma.feedBack.create({
         data: {
-          userId: 1,
+          userId: userId,
           text,
         },
         select: {

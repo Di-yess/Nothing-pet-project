@@ -23,19 +23,21 @@ export default function FeedBack() {
   return (
     <div className="feedMain">
       <Quote />
-      <FeedBacks feeds={feeds}/>
+      <FeedBacks feeds={feeds} />
       <div className="btnTellUs">
         <AnimatePresence>
-          {' '}
           {tellBtn && (
-            <FeedForm feedText={feedText} setFeedText={setFeedText} />
-          )}{' '}
+            <FeedForm
+              feedText={feedText}
+              setFeedText={setFeedText}
+              setTellBtn={setTellBtn}
+            />
+          )}
         </AnimatePresence>
         <m.button
           whileTap={{ scale: 1.15 }}
           onClick={(e) =>
             actFeedForm({
-              e,
               feedText,
               tellBtn,
               setTellBtn,

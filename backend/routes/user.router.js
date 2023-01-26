@@ -5,13 +5,15 @@ import {
   updateUser,
   logoutUser,
   deleteUser,
+  getUserById,
 } from './controllers/user.controller.js';
 const router = express.Router();
 
 // /user
 router.get('/', getUser);
-router.get('/logout', logoutUser);
-router.put('/', updateUser);
+router.get('/:id', getUserById);
+router.get('/logout', checkUser, logoutUser);
+router.put('/', checkUser, updateUser);
 router.delete('/', checkUser, deleteUser);
 
 export default router;

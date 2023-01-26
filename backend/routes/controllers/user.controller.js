@@ -15,7 +15,6 @@ const getUser = async (req, res) => {
           phone: true,
           profession: true,
           adress: true,
-          password: true,
           avatar: {
             select: {
               link: true,
@@ -23,9 +22,6 @@ const getUser = async (req, res) => {
           },
         },
       });
-      user.img = user.avatar.link;
-      delete user.password;
-      delete user.avatar;
       res.json(user);
     } else {
       res.sendStatus(401);
@@ -81,4 +77,32 @@ const deleteUser = async (req, res) => {
   }
 };
 
-export { getUser, updateUser, logoutUser, deleteUser };
+const getUserById = async (req, res) => {
+  const userId = req.params.id;
+  console.log('userId', userId, 'type: ', typeof userId);
+  try {
+    const user = await prisma.user.findUnique({
+      where: {
+        id: Number(userId),
+      },
+      select: {
+        id: true,
+        fullName: true,
+        email: true,
+        phone: true,
+        profession: true,
+        adress: true,
+        avatar: {
+          select: {
+            link: true,
+          },
+        },
+      },
+    });
+    res.json(user);
+  } catch (err) {
+    console.log(err);
+    res.sendStatus(500);
+  }
+};
+export { getUser, updateUser, logoutUser, deleteUser, getUserById };

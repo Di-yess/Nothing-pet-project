@@ -29,8 +29,9 @@ function App() {
           <Route path="feedback" element={<FeedBack />} />
           <Route
             path="account"
-            element={user ? <Account /> : <Navigate to="/login" />}
-          ></Route>
+            element={user ? <Account /> : <Navigate to="/" />}
+          />
+          <Route path="account/:id" element={<Account />} />
         </Route>
         <Route path="*" element={<div>Error</div>} />
       </Routes>

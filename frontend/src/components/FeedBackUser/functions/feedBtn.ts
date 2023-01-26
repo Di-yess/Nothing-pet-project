@@ -4,17 +4,9 @@ import { putFeeds } from '../../../store/feedSlice';
 import { feedFormType } from './types';
 import { feedType } from '../../../types/feedType';
 
-export async function actFeedForm({
-  e,
-  setTellBtn,
-  tellBtn,
-  feedText,
-  setFeedText,
-  user,
-  dispatch,
-}: feedFormType) {
+export async function actFeedForm(props: feedFormType) {
   const main = document.querySelector('.feedBacks');
-
+  const { setTellBtn, tellBtn, feedText, setFeedText, user, dispatch } = props;
   if (tellBtn && feedText.trim().length >= 5) {
     setFeedText('');
     try {
@@ -24,6 +16,8 @@ export async function actFeedForm({
         text: feedText,
       });
       const newFeed: feedType = response.data;
+
+      // Добавление ?
       dispatch(putFeeds([newFeed]));
       // blur
       main?.classList.toggle('blur');

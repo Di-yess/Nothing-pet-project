@@ -6,7 +6,7 @@ const initialState: initState = {
   id: null,
   login: false,
   fullName: null,
-  img: null,
+  avatar: { link: null },
   phone: null,
   profession: null,
   email: null,
@@ -26,12 +26,12 @@ const userSlice = createSlice({
     },
     // setInfo
     setInfo(state, action: PayloadAction<infoUser>) {
-      const { id, fullName, img, phone, profession, email, adress } =
+      const { id, fullName, avatar, phone, profession, email, adress } =
         action.payload;
       //state = { ...state, ...action.payload };
       state.id = id;
       state.adress = adress;
-      state.img = img;
+      state.avatar = avatar;
       state.fullName = fullName;
       state.phone = phone;
       state.profession = profession;
@@ -41,7 +41,7 @@ const userSlice = createSlice({
     clearInfo(state) {
       state.login = false;
       state.fullName = null;
-      state.img = null;
+      state.avatar = { link: null };
       state.phone = null;
       state.profession = null;
       state.email = null;

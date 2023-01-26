@@ -1,8 +1,8 @@
 export type initState = {
-  id:number | null;
+  id: number | null;
   login: boolean | undefined;
   fullName: string | null;
-  img: string | null;
+  avatar: { link: string | null };
   phone: string | null;
   profession: string | null;
   email: string | null;
@@ -14,7 +14,7 @@ export type initState = {
 export type infoUser = {
   id: number;
   fullName: string;
-  img: string | null;
+  avatar: { link: string | null };
   phone: string | null;
   profession: string | null;
   email: string;

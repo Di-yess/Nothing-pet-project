@@ -72,7 +72,7 @@
       background-color: #2866ae;
     }
     &:focus {
-      border: none;
+      outline: none;
     }
   }
 }
@@ -80,4 +80,3 @@
 .blur {
   filter: blur(2px);
 }
-
