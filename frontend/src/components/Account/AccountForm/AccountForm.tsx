@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { memo, useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { getUserById } from '.';
 import { initState } from '../../../types/userInit';
@@ -10,19 +10,16 @@ import InfoEdit from '../InfoEdit/InfoEdit';
 import InfoImg from '../InfoImg/InfoImg';
 import Media from '../Media/Media';
 
-export default function AccountForm({ user, accountId }: accountFormType) {
+export default memo(function AccountForm({ user, accountId }: accountFormType) {
   const [userById, setUserById] = useState<initState>(user);
+  console.log('Account form rerender');
 
   useEffect(() => {
+    console.log('use effect getUserById');
     if (accountId) {
       getUserById(accountId, setUserById);
     }
-  }, [accountId]);
-
-  console.log('AccountForm');
-  console.log('new user', userById.id);
-  console.log('old user', user.id);
-  console.log('accountId', accountId);
+  }, []);
 
   // Если логин и автор совпадают личный кабинет
   if ((user.id === accountId && user.login) || (!accountId && user.login)) {
@@ -52,6 +49,6 @@ export default function AccountForm({ user, accountId }: accountFormType) {
   } else {
     return <Navigate to="/" />;
   }
-}
+});
 
 /* <div className="feedBacks"></div> личный фидбеки */

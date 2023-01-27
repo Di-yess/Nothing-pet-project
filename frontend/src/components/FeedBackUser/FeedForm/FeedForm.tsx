@@ -13,7 +13,14 @@ export default function FeedForm(props: feedFormProps) {
   return (
     <m.div {...variants} className="feedForm">
       <div className="feedFormImg">
-        <img src={user.avatar.link || 'imgs/user.png'} alt="feedImg" />
+        <img
+          src={
+            user.avatar.link
+              ? `http://localhost:5005/avatars/${user.avatar.link}.jpg`
+              : 'imgs/user.png'
+          }
+          alt="feedImg"
+        />
       </div>
       <div className="qouteFeed">
         <Quote />

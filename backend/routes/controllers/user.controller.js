@@ -1,5 +1,11 @@
 import { PrismaClient } from '@prisma/client';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+import * as fs from 'fs/promises';
+
 const prisma = new PrismaClient();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 // Если сессия - найти юзера, взять нужные поля и отправить
 const getUser = async (req, res) => {
@@ -33,9 +39,35 @@ const getUser = async (req, res) => {
 };
 
 const updateUser = async (req, res) => {
+  console.log(req.file);
   const id = req.session.userId;
-  const { fullName, email, phone, profession, adress } = req.body;
+  const { fullName, email, phone, profession, adress } = JSON.parse(
+    req.body.data
+  );
+  const newAvatar = req.file;
+
   try {
+    if (newAvatar) {
+      const newName = Date.now() + newAvatar.originalname;
+      console.log(newName);
+      const path = `${__dirname}/../../public/avatars/${newName}.jpg`;
+      await fs.writeFile(path, newAvatar.buffer);
+      await prisma.user.update({
+        where: { id },
+        data: {
+          email,
+          fullName,
+          phone,
+          profession,
+          adress,
+          avatar: {
+            update: {
+              link: newName || null,
+            },
+          },
+        },
+      });
+    }
     await prisma.user.update({
       where: { id },
       data: {
@@ -79,7 +111,7 @@ const deleteUser = async (req, res) => {
 
 const getUserById = async (req, res) => {
   const userId = req.params.id;
-  console.log('userId', userId, 'type: ', typeof userId);
+  console.log('getUserById ----->', userId);
   try {
     const user = await prisma.user.findUnique({
       where: {

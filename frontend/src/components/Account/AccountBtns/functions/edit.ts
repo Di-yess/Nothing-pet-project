@@ -22,14 +22,25 @@ export async function edit(e: any, user: initState) {
   } else {
     const { fullName, email, phone, profession, adress } = user;
     try {
-      //добавить сюда файл
-      await axios.put('/user', {
-        fullName,
-        email,
-        phone,
-        profession,
-        adress,
-      });
+      const formData = new FormData();
+      formData.append(
+        'data',
+        JSON.stringify({ fullName, email, phone, adress, profession })
+      );
+      if (imgFile?.files) {
+        if (imgFile.files[0]) {
+          formData.append('avatar', imgFile.files[0], imgFile.name);
+        }
+      }
+      await axios.put('/user', formData);
+
+      // await axios.put('/user', {
+      //   fullName,
+      //   email,
+      //   phone,
+      //   profession,
+      //   adress,
+      // });
       // disable
       document
         .querySelectorAll<HTMLInputElement>('.infoInput')
@@ -52,12 +63,13 @@ export async function logout(
   navigate: NavigateFunction
 ) {
   try {
-    await axios.get('/user/logout');
+    await axios.get('/logout');
     setTimeout(() => {
       dispatch(clearInfo());
     }, 300);
     navigate('/');
   } catch (err) {
+    console.log('Logout error');
     console.log(err);
   }
 }

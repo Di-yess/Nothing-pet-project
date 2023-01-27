@@ -10,7 +10,11 @@ export default function Feed({ feed, i }: { feed: feedType; i: number }) {
     <m.div {...variants(i)} className="feedUser">
       <div className="feedImg">
         <img
-          src={feed.user.avatar.link || 'imgs/user.png'}
+          src={
+            feed.user.avatar.link
+              ? `http://localhost:5005/avatars/${feed.user.avatar.link}.jpg`
+              : 'imgs/user.png'
+          }
           alt="feedImg"
           onClick={() => navigate(`/account/${feed.user.id}`)}
         />

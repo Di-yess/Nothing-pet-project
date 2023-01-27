@@ -7,13 +7,15 @@ import {
   deleteUser,
   getUserById,
 } from './controllers/user.controller.js';
+import multer from 'multer';
+const storage = multer.memoryStorage();
+const upload = multer({ storage });
 const router = express.Router();
 
 // /user
 router.get('/', getUser);
 router.get('/:id', getUserById);
-router.get('/logout', checkUser, logoutUser);
-router.put('/', checkUser, updateUser);
+router.put('/', checkUser, upload.single('avatar'), updateUser);
 router.delete('/', checkUser, deleteUser);
 
 export default router;

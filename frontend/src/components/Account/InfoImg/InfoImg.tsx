@@ -6,18 +6,22 @@ import './InfoImg.scss';
 export default function InfoImg({ user }: { user: initState }) {
   const accountId = useParams().id;
   const [newImg, setNewImg] = useState<File>();
-
+  //http://localhost:5005/avatars/
   return (
     <div className="infoImg">
       <div className="userImg">
         <img
           src={
-            user.avatar.link || accountId ? '../imgs/user.png' : 'imgs/user.png'
+            user.avatar.link
+              ? `http://localhost:5005/avatars/${user.avatar.link}.jpg`
+              : '../imgs/user.png'
           }
           alt="userIcon"
         />
       </div>
-      {newImg && <img src={URL.createObjectURL(newImg)} id="newImg" alt="not found" />}
+      {newImg && (
+        <img src={URL.createObjectURL(newImg)} id="newImg" alt="not found" />
+      )}
       <input
         type="file"
         id="inputImg"
