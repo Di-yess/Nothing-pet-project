@@ -8,12 +8,14 @@ import {
   changePhone,
   changeProfession,
 } from '../../../store/userSlice';
+import InfoMenu from './infoMenu/InfoMenu';
 
 export default function InfoEdit({ user }: { user: initState }) {
   const dispatch = useAppDispatch();
 
   return (
     <div className="infoEdit">
+      <InfoMenu />
       <div className="info">
         <div className="infotype">Full Name</div>
         <input

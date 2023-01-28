@@ -11,9 +11,10 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  position: relative;
 
   @include shadow();
-  border-radius: 5px;
+  border-radius: 0 5px 5px;
 
   & > .info:not(:last-child) {
     border-bottom: 1px solid #919191;
@@ -53,4 +54,38 @@
       border: none;
     }
   }
+
+  .infoMenu {
+    top: -40.2px;
+    left: 0;
+    position: absolute;
+
+    display: flex;
+    align-items: center;
+  }
+}
+
+.infoBtn,
+.chatsBtn {
+  width: 100px;
+  padding: 3px 0;
+
+  text-align: center;
+  font-size: 20px;
+  font-weight: 600;
+  cursor: pointer;
+
+  color: #307cd2;
+  transition: 0.1s all ease-in-out;
+  border-radius: 0 10px 0 0;
+  border: 2.2px solid #307cd2;
+}
+
+.infoBtn {
+  border-radius: 10px 0 0 0;
+}
+
+.infoBtnClicked {
+  color: rgb(255, 255, 255);
+  background-color: #307cd2;
 }

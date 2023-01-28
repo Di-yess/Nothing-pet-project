@@ -33,15 +33,6 @@ export async function edit(e: any, user: initState) {
         }
       }
       await axios.put('/user', formData);
-
-      // await axios.put('/user', {
-      //   fullName,
-      //   email,
-      //   phone,
-      //   profession,
-      //   adress,
-      // });
-      // disable
       document
         .querySelectorAll<HTMLInputElement>('.infoInput')
         .forEach((infoInput) => {
@@ -67,7 +58,8 @@ export async function logout(
     setTimeout(() => {
       dispatch(clearInfo());
     }, 300);
-    navigate('/');
+    console.log('logout here');
+    navigate('/feedback');
   } catch (err) {
     console.log('Logout error');
     console.log(err);
