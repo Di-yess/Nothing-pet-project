@@ -1,6 +1,8 @@
 import { memo, useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { getUserById } from '.';
+import { showChat } from '../../../store/chatSlice';
+import { useAppDispatch, useAppSelector } from '../../../types/Apphooks';
 import { initState } from '../../../types/userInit';
 import AccountBtns from '../AccountBtns/AccountBtns';
 import SendBtn from '../AccountBtns/SendBtn';
@@ -12,6 +14,9 @@ import Media from '../Media/Media';
 
 export default memo(function AccountForm({ user, accountId }: accountFormType) {
   const [userById, setUserById] = useState<initState>(user);
+  const chat = useAppSelector((state) => state.chat.chat);
+  const dispatch = useAppDispatch();
+
   console.log('Account form rerender');
 
   useEffect(() => {
@@ -28,14 +33,15 @@ export default memo(function AccountForm({ user, accountId }: accountFormType) {
         <div className="accountInfo">
           <InfoImg user={user} />
           <InfoEdit user={user} />
-          <Media />
-          <AccountBtns />
+          {!chat && <Media />}
+          {!chat && <AccountBtns />}
         </div>
         <DeleteAccount />
       </div>
     );
     // Если нашелся и тот, и тот
   } else if (accountId && userById.id) {
+    dispatch(showChat(false));
     return (
       <div className="account" id="account-view">
         <div className="accountInfo">

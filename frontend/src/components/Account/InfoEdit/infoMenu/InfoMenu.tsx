@@ -1,9 +1,12 @@
 import { memo, useState } from 'react';
-import { changeColor } from './functional';
+import { useAppDispatch, useAppSelector } from '../../../../types/Apphooks';
+import { showChats, showInfo } from './functional';
 
 export default memo(function InfoMenu() {
-  const [infoBtn, setInfoBtn] = useState(true);
-  const [chatsBtn, setChatsBtn] = useState(false);
+    const chat = useAppSelector((state) => state.chat.chat);
+  const [infoBtn, setInfoBtn] = useState(!chat);
+  const [chatsBtn, setChatsBtn] = useState(chat);
+  const dispatch = useAppDispatch();
 
   return (
     <div className="infoMenu">
@@ -12,8 +15,7 @@ export default memo(function InfoMenu() {
           infoBtn ? 'chatsBtn infoBtn infoBtnClicked' : 'chatsBtn infoBtn'
         }
         onClick={() => {
-          setInfoBtn(() => true);
-          setChatsBtn(() => false);
+          showInfo({ setInfoBtn, setChatsBtn, chat, dispatch });
         }}
       >
         Info
@@ -21,8 +23,7 @@ export default memo(function InfoMenu() {
       <div
         className={chatsBtn ? 'chatsBtn infoBtnClicked' : 'chatsBtn'}
         onClick={() => {
-          setInfoBtn(() => false);
-          setChatsBtn(() => true);
+          showChats({ setInfoBtn, setChatsBtn, chat, dispatch });
         }}
       >
         Chats
@@ -30,5 +31,3 @@ export default memo(function InfoMenu() {
     </div>
   );
 });
-
-// создать state отрисовки и навешивания классов выше и в аккаунте

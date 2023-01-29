@@ -18,21 +18,38 @@ model User {
   isAdmin     Boolean    @default(false)
   updatedAt   DateTime   @default(now()) @updatedAt
   createdAt   DateTime   @default(now())
-  sendBy      Message[]  @relation("sender")
-  receiveFrom Message[]  @relation("receiver")
+  sendBy      Chat[]     @relation("sender")
+  receiveFrom Chat[]     @relation("receiver")
   avatar      Avatar?
   feedback    FeedBack[]
+  message     Message[]
+}
+
+model Chat {
+  id         Int              @id @default(autoincrement())
+  senderId   Int
+  receiverId Int
+  sender     User?            @relation("sender", fields: [senderId], references: [id], onDelete: Cascade)
+  receiver   User?            @relation("receiver", fields: [receiverId], references: [id], onDelete: Cascade)
+  messages   ChatAndMessage[]
 }
 
 model Message {
-  text       String
-  senderId   Int
-  receiverId Int
-  createdAt  DateTime @default(now())
-  sender     User?    @relation("sender", fields: [senderId], references: [id], onDelete: Cascade)
-  receiver   User?    @relation("receiver", fields: [receiverId], references: [id], onDelete: Cascade)
+  id        Int              @id @default(autoincrement())
+  text      String
+  userId    Int
+  createdAt DateTime         @default(now())
+  User      User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  chats     ChatAndMessage[]
+}
 
-  @@id([senderId, receiverId])
+model ChatAndMessage {
+  chatId    Int
+  messageId Int
+  chat      Chat    @relation(fields: [chatId], references: [id])
+  message   Message @relation(fields: [messageId], references: [id])
+
+  @@id([chatId, messageId])
 }
 
 model FeedBack {
@@ -50,3 +67,14 @@ model Avatar {
   userId Int     @unique
   user   User?   @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
+
+// model Message {
+//   text       String
+//   senderId   Int
+//   receiverId Int
+//   createdAt  DateTime @default(now())
+//   sender     User?    @relation("sender", fields: [senderId], references: [id], onDelete: Cascade)
+//   receiver   User?    @relation("receiver", fields: [receiverId], references: [id], onDelete: Cascade)
+
+//   @@id([senderId, receiverId])
+// }

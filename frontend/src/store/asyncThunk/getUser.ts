@@ -15,3 +15,15 @@ export const getUser = createAsyncThunk(
     }
   }
 );
+
+export const getUsers = createAsyncThunk(
+  'allUsers/getUsers',
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await axios.get('/user/all');
+      return response.data;
+    } catch (err: any) {
+      return rejectWithValue(err.message);
+    }
+  }
+);

@@ -1,43 +1,11 @@
-import { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useAppSelector } from '../../../types/Apphooks';
 import { initState } from '../../../types/userInit';
+import ImgCard from './imgCard/ImgCard';
+import ImgChat from './imgChat/ImgChat';
 import './InfoImg.scss';
 
 export default function InfoImg({ user }: { user: initState }) {
-  const accountId = useParams().id;
-  const [newImg, setNewImg] = useState<File>();
-  //http://localhost:5005/avatars/
-  return (
-    <div className="infoImg">
-      <div className="userImg">
-        <img
-          src={
-            user.avatar.link
-              ? `http://localhost:5005/avatars/${user.avatar.link}.jpg`
-              : '../imgs/user.png'
-          }
-          alt="userIcon"
-        />
-      </div>
-      {newImg && (
-        <img src={URL.createObjectURL(newImg)} id="newImg" alt="not found" />
-      )}
-      <input
-        type="file"
-        id="inputImg"
-        name="img"
-        accept="image/jpeg, image/png, image/jpg"
-        onChange={(e) => {
-          if (e.target.files) {
-            console.log(e.target.files[0]);
-            setNewImg(e.target.files[0]);
-          }
-        }}
-        disabled
-      />
-      <div className="userName">{user.fullName}</div>
-      <div className="userProfession">{user.profession}</div>
-      <div className="userLocation">{user.adress}</div>
-    </div>
-  );
+  
+  const chat = useAppSelector((state) => state.chat.chat);
+  return <>{!chat ? <ImgCard user={user} /> : <ImgChat />}</>;
 }

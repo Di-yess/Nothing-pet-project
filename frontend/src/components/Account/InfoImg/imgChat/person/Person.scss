@@ -1,0 +1,78 @@
+@mixin shadow() {
+  -webkit-box-shadow: 0px 3px 6px 3px rgba(34, 60, 80, 0.14);
+  -moz-box-shadow: 0px 3px 6px 3px rgba(34, 60, 80, 0.14);
+  box-shadow: 0px 3px 6px 3px rgba(34, 60, 80, 0.14);
+}
+
+.person {
+  width: 88.5%;
+  margin: 10px auto 10px;
+  height: 85px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  position: relative;
+  cursor: pointer;
+
+  border-radius: 5px;
+  @include shadow();
+
+  .message-counter {
+    width: 20px;
+    height: 20px;
+    right: 10px;
+    top: 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: absolute;
+    color: white;
+    font-weight: 500;
+
+    background-color: #4f99ec;
+    border-radius: 50%;
+  }
+
+  .message-time {
+    position: absolute;
+    right: 11px;
+    bottom: 3px;
+    font-size: 12px;
+    color: #919191;
+  }
+  .personInfo {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+
+    .personImg {
+      padding: 30px;
+      margin-left: 19px;
+      // удалить
+      border-radius: 50%;
+      background-color: rgba(102, 195, 192, 0.433);
+    }
+
+    .person-name-message {
+      margin-left: 10px;
+      display: flex;
+      flex-direction: column;
+      color: #747474;
+
+      .person-name {
+        height: 23px;
+        font-weight: 500;
+        font-size: 18.5px;
+        color: #2b2b2b;
+      }
+      .person-message {
+        font-size: 14px;
+      }
+    }
+  }
+}

@@ -7,7 +7,7 @@ export async function getUserById(
   setUserById: React.Dispatch<React.SetStateAction<initState>>
 ) {
   try {
-    const response = await axios.get(`/user/${id}`);
+    const response = await axios.get(`/user/all/${id}`);
     console.log('user in account form', response.data);
     setUserById(() => response.data);
   } catch (err) {

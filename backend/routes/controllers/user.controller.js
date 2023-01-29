@@ -111,7 +111,6 @@ const deleteUser = async (req, res) => {
 
 const getUserById = async (req, res) => {
   const userId = req.params.id;
-  console.log('getUserById ----->', userId);
   try {
     const user = await prisma.user.findUnique({
       where: {
@@ -137,4 +136,33 @@ const getUserById = async (req, res) => {
     res.sendStatus(500);
   }
 };
-export { getUser, updateUser, logoutUser, deleteUser, getUserById };
+
+const getAllUsers = async (req, res) => {
+  try {
+    const allUsers = await prisma.user.findMany({
+      select: {
+        id: true,
+        fullName: true,
+        avatar: {
+          select: {
+            link: true,
+          },
+        },
+      },
+    });
+    console.log(allUsers);
+    res.json(allUsers);
+  } catch (err) {
+    console.log(err);
+    res.sendStatus(500);
+  }
+};
+
+export {
+  getUser,
+  updateUser,
+  logoutUser,
+  deleteUser,
+  getUserById,
+  getAllUsers,
+};

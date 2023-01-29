@@ -20,3 +20,15 @@ export type infoUser = {
   email: string;
   adress: string | null;
 };
+
+export type allUsersType = {
+  id: number;
+  fullName: string;
+  avatar: { link: string | null };
+};
+
+export type allUsers = {
+  allUsers: allUsersType[];
+  status: null | string;
+  error: null | string;
+};
