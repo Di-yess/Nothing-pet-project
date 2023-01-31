@@ -29,3 +29,8 @@ $textMain: #444444;
     border: 3px solid transparent; /* creates padding around scroll thumb */
   }
 }
+
+@mixin border() {
+  border-radius: 10px;
+  border: 1px solid black;
+}

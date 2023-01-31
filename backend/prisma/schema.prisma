@@ -67,14 +67,3 @@ model Avatar {
   userId Int     @unique
   user   User?   @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
-
-// model Message {
-//   text       String
-//   senderId   Int
-//   receiverId Int
-//   createdAt  DateTime @default(now())
-//   sender     User?    @relation("sender", fields: [senderId], references: [id], onDelete: Cascade)
-//   receiver   User?    @relation("receiver", fields: [receiverId], references: [id], onDelete: Cascade)
-
-//   @@id([senderId, receiverId])
-// }

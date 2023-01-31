@@ -1,7 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { chatChecker } from '../types/chatsType';
 
-const initialState = {
+const initialState: chatChecker = {
   chat: false,
+  chosenChat: null,
 };
 
 const chatSlice = createSlice({
@@ -11,8 +13,11 @@ const chatSlice = createSlice({
     showChat(state, action: PayloadAction<boolean>) {
       state.chat = action.payload;
     },
+    chooseChat(state, action: PayloadAction<number>) {
+      state.chosenChat = action.payload;
+    },
   },
 });
 
 export default chatSlice.reducer;
-export const { showChat } = chatSlice.actions;
+export const { showChat, chooseChat } = chatSlice.actions;

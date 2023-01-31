@@ -51,11 +51,19 @@
     align-items: center;
 
     .personImg {
-      padding: 30px;
       margin-left: 19px;
+      width: 60px;
+      height: 60px;
       // удалить
-      border-radius: 50%;
-      background-color: rgba(102, 195, 192, 0.433);
+
+      // background-color: rgba(102, 195, 192, 0.433);
+
+      img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+      }
     }
 
     .person-name-message {

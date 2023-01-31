@@ -1,4 +1,6 @@
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { getChats } from '../../../store/asyncThunk/getChats';
 import { useAppDispatch, useAppSelector } from '../../../types/Apphooks';
 import { initState } from '../../../types/userInit';
 import './InfoEdit.scss';
@@ -7,12 +9,18 @@ import InfoEditChat from './infoEditChat/InfoEditChat';
 import InfoMenu from './infoMenu/InfoMenu';
 
 export default function InfoEdit({ user }: { user: initState }) {
-  const dispatch = useAppDispatch();
   const chat = useAppSelector((state) => state.chat.chat);
+  const { chats } = useAppSelector((state) => state.chats);
   const checkUserId = useAppSelector((state) => state.user.id);
   const accountId = useParams();
-  console.log('your id', checkUserId);
-  console.log('infoEdit', accountId);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (chats.length === 0) {
+      console.log('dispatch(getchats)');
+      dispatch(getChats());
+    }
+  }, [dispatch, chats.length]);
 
   return (
     <div className="infoEdit">
