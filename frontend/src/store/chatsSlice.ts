@@ -1,6 +1,7 @@
-import { chatsType, chatType } from '../types/chatsType';
+import { chatsType, chatType, newMessage } from '../types/chatsType';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { getChats } from './asyncThunk/getChats';
+import { postMessage } from './asyncThunk/postMessage';
 
 const initialState: chatsType = {
   chats: [],
@@ -30,6 +31,17 @@ const chatsSlice = createSlice({
       (state, action: PayloadAction<string | any>) => {
         state.status = 'rejected';
         state.error = action.payload;
+      }
+    );
+    builder.addCase(
+      postMessage.fulfilled,
+      (state, action: PayloadAction<newMessage | undefined>) => {
+        console.log(action.payload);
+
+        if (action.payload) {
+          const { chatId, data } = action.payload;
+          state.chats.find((chat) => chat.id === chatId)?.messages.push(data);
+        }
       }
     );
   },

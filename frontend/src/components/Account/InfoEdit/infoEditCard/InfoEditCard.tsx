@@ -7,7 +7,6 @@ import {
 } from '../../../../store/userSlice';
 import { useAppDispatch } from '../../../../types/Apphooks';
 import { initState } from '../../../../types/userInit';
-
 export default function InfoEditCard({ user }: { user: initState }) {
   const dispatch = useAppDispatch();
   return (

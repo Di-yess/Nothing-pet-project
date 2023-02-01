@@ -13,6 +13,12 @@ $textMain: #444444;
   align-items: center;
 }
 
+@mixin flex-center() {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 @mixin scroll() {
   &::-webkit-scrollbar {
     width: 7px;

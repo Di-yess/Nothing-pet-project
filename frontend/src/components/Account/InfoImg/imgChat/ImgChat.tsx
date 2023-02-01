@@ -7,12 +7,13 @@ import Search from './Search/Search';
 
 export default function ImgChat() {
   const chats = useAppSelector((state) => state.chats.chats);
-  
+  console.log(chats);
+
   return (
     <m.div {...variants} className="infoImg" style={{ height: '500px' }}>
       <div className="person-wrapper">
         <Search />
-        {chats && chats.map((chat) => <Person chat={chat}/>)}
+        {chats && chats.map((chat) => <Person chat={chat} key={chat.id} />)}
       </div>
     </m.div>
   );

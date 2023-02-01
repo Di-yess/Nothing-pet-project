@@ -6,7 +6,6 @@ export const getChats = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const response = await axios.get('/chats');
-      console.log(response.data);
       return response.data;
     } catch (err: any) {
       return rejectWithValue(err.message);

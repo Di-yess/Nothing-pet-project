@@ -2,12 +2,99 @@
 
 .check {
   width: 360px;
+  height: 500px;
 }
 
 .infoEditChat {
+  padding-top: 7px;
+  margin: auto;
   width: 100%;
   height: 91%;
 
-  margin: auto;
+  position: relative;
+
   @include border();
+
+  .chatMessages {
+    max-height: 90%;
+    overflow: overlay;
+    @include scroll;
+  }
+
+  .chatMessageContainer {
+    display: flex;
+    justify-content: flex-start;
+    position: relative;
+    & > div {
+      background-color: #ececec;
+    }
+    .chatMessage {
+      width: fit-content;
+      max-width: 51%;
+      margin: 5px 10px;
+      padding: 0 15px 0 15px;
+      //padding: 0 30px 0 15px;
+      //text-align: end;
+      @include border();
+    }
+
+    // .chatMessage::after {
+    //   content: '';
+    //   bottom: -3px;
+    //   left: 17px;
+    //   width: 9px;
+    //   height: 8px;
+    //   background-color: #c5c5c5;
+    //   position: absolute;
+    //   border-radius: 0 0 100% 0;
+    // }
+    .messageTime {
+      position: absolute;
+      bottom: -7px;
+      left: 0;
+      font-size: 11px;
+      background-color: transparent;
+    }
+  }
+
+  .sender {
+    justify-content: flex-end;
+    & > div {
+      text-align: end;
+      background-color: #c0deff;
+    }
+
+    .messageTime {
+      right: 0;
+    }
+  }
+
+  .sendMessageInput {
+    height: 10%;
+    width: 100%;
+    margin: 0 auto;
+    bottom: 0;
+
+    position: absolute;
+
+    @include flex-center();
+
+    input {
+      padding-left: 5px;
+      width: 86%;
+      font-size: 15px;
+    }
+    button {
+      position: absolute;
+      right: 8.5%;
+
+      @include flex-center();
+      border: none;
+      background-color: transparent;
+    }
+
+    svg {
+      width: 19px;
+    }
+  }
 }

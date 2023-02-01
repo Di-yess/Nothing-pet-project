@@ -10,7 +10,7 @@ type chatType = {
   receiverId: number;
   sender: user;
   receiver: user;
-  messages: message[];
+  messages: Message[];
 };
 
 type user = {
@@ -19,7 +19,7 @@ type user = {
   avatar: { link: string };
 };
 
-type message = {
+type Message = {
   message: { id: number; text: string; userId: number; createdAt: Date };
 };
 
@@ -28,4 +28,9 @@ type chatChecker = {
   chosenChat: null | number;
 };
 
-export type { chatsType, chatType, chatChecker };
+type newMessage = {
+  chatId: number;
+  data: Message ;
+};
+
+export type { chatsType, chatType, chatChecker, Message, newMessage };

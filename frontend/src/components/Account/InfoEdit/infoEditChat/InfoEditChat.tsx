@@ -1,34 +1,26 @@
 import { useAppSelector } from '../../../../types/Apphooks';
+import ChatMessages from './ChatMessages/ChatMessages';
 import './InfoEditChat.scss';
+import MessageInput from './MessageInput/MessageInput';
 
 export default function InfoEditChat() {
-  const chatId = useAppSelector((state) => state.chat.chosenChat);
   const userId = useAppSelector((state) => state.user.id);
+  const chatId = useAppSelector((state) => state.chat.chosenChat);
   const chat = useAppSelector((state) =>
     state.chats.chats.find((chat) => chat.id === chatId)
   );
   const messages = chat?.messages || null;
 
+  console.log('InfoEditChat');
+
   return (
     <>
       {chatId && (
         <div className="infoEditChat">
-          {messages &&
-            messages.map(({ message }) => (
-              <div
-                className={
-                  userId === message.userId
-                    ? 'chatMessage sender'
-                    : 'chatMessage receiver'
-                }
-              >
-                {message.text}
-              </div>
-            ))}
+          <ChatMessages messages={messages} userId={userId} />
+          <MessageInput />
         </div>
       )}
     </>
   );
 }
-
-

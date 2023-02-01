@@ -5,23 +5,29 @@ import './Person.scss';
 
 export default function Person({ chat }: { chat: chatType }) {
   const user = useAppSelector((state) => state.user);
+  const chosenChat = useAppSelector((state) => state.chat.chosenChat);
   const personChat = user.id === chat.sender.id ? chat.receiver : chat.sender;
-  const lastMessage = chat.messages[chat.messages.length - 1].message.text;
+  const messageAmount = chat.messages.length;
+  const lastMessage = messageAmount
+    ? chat.messages[chat.messages.length - 1].message.text
+    : 'write me';
   const dispatch = useAppDispatch();
 
   return (
     <div
-      className="person"
-      onClick={() => personChatHandler(chat, dispatch )}
+      className={chosenChat === chat.id ? 'person chosenChat' : 'person'}
+      onClick={() => personChatHandler(chat, dispatch)}
     >
       <div className="message-counter">
         <div className="message-counter-number">5</div>
       </div>
       <div className="message-time">
-        {chat.messages[chat.messages.length - 1].message.createdAt
-          .toLocaleString()
-          .slice(0, -8)
-          .replace('T', ' ')}
+        {messageAmount &&
+          chat.messages[chat.messages.length - 1].message.createdAt
+            .toLocaleString()
+            .slice(0, -8)
+            .replace('T', ' ')}
+        time
       </div>
       <div className="personInfo">
         <div className="personImg">
