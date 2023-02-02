@@ -1,6 +1,6 @@
 import * as dotenv from 'dotenv';
 dotenv.config();
-
+import cors from 'cors';
 //config
 import express from 'express';
 import config from './appconfig.js';
@@ -14,6 +14,7 @@ const PORT = process.env.PORT || 5000;
 
 //middleware + confign
 config(app);
+app.use(cors());
 
 //use Route
 app.use('/', indexRouter);
