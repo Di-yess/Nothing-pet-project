@@ -1,4 +1,11 @@
-import { chatsType, chatType, newMessage } from '../types/chatsType';
+import { updateChat } from './asyncThunk/updateChat';
+import {
+  chatsType,
+  chatType,
+  Message,
+  newMessage,
+  newMessages,
+} from '../types/chatsType';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { getChats } from './asyncThunk/getChats';
 import { postMessage } from './asyncThunk/postMessage';
@@ -19,6 +26,8 @@ const chatsSlice = createSlice({
     builder.addCase(getChats.pending, (state) => {
       state.status = 'loading';
     });
+
+    // get chats
     builder.addCase(
       getChats.fulfilled,
       (state, action: PayloadAction<chatType[]>) => {
@@ -41,6 +50,20 @@ const chatsSlice = createSlice({
         if (action.payload) {
           const { chatId, data } = action.payload;
           state.chats.find((chat) => chat.id === chatId)?.messages.push(data);
+        }
+      }
+    );
+
+    // update chat
+    builder.addCase(
+      updateChat.fulfilled,
+      (state, action: PayloadAction<newMessages | undefined>) => {
+        if (action.payload) {
+          const { chatId, data } = action.payload;
+          const chat = state.chats.find((chat) => chat.id === chatId);
+          if (chat) {
+            chat.messages = data;
+          }
         }
       }
     );

@@ -30,7 +30,20 @@ type chatChecker = {
 
 type newMessage = {
   chatId: number;
-  data: Message ;
+  data: Message;
 };
 
-export type { chatsType, chatType, chatChecker, Message, newMessage };
+type newMessages = {
+  chatId: number;
+  data: Message[];
+};
+
+export type {
+  chatsType,
+  chatType,
+  chatChecker,
+  Message,
+  newMessage,
+  newMessages,
+  user,
+};

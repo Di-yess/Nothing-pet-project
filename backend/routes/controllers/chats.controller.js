@@ -97,4 +97,43 @@ const postMessage = async (req, res) => {
   }
 };
 
-export { getChats, newChat, postMessage };
+const getMessages = async (req, res) => {
+  const chatId = req.params.id ? Number(req.params.id) : null;
+  const userId = req.session.userId;
+  console.log('chatId', chatId);
+
+  if (!chatId) res.sendStatus(400);
+  // у юзера есть данный чат
+
+  try {
+    const chatCheck = await prisma.chat.findUnique({
+      where: {
+        id: chatId,
+      },
+    });
+    if (!chatCheck) {
+      res.sendStatus(400);
+    }
+    console.log('chatCheck', chatCheck);
+    if (chatCheck.senderId === userId || chatCheck.receiverId === userId) {
+      const messages = await prisma.chatAndMessage.findMany({
+        where: {
+          chatId,
+        },
+        select: {
+          message: true,
+        },
+      });
+      console.log('all messages', messages);
+      res.json(messages);
+    } else {
+      console.log('cant find messages');
+      res.sendStatus(400);
+    }
+  } catch (err) {
+    console.log(err);
+    res.sendStatus(500);
+  }
+};
+
+export { getChats, newChat, postMessage, getMessages };
