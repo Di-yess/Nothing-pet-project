@@ -1,15 +1,15 @@
-import { updateChat } from './asyncThunk/updateChat';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import {
   chatsType,
   chatType,
-  Message,
   newMessage,
   newMessages,
 } from '../types/chatsType';
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createChat } from './asyncThunk/createChat';
 import { getChats } from './asyncThunk/getChats';
 import { postMessage } from './asyncThunk/postMessage';
-import { createChat } from './asyncThunk/createChat';
+import { readMessages } from './asyncThunk/readMessages';
+import { updateChat } from './asyncThunk/updateChat';
 
 const initialState: chatsType = {
   chats: [],
@@ -32,7 +32,7 @@ const chatsSlice = createSlice({
     builder.addCase(
       getChats.fulfilled,
       (state, action: PayloadAction<chatType[]>) => {
-        state.chats.push(...action.payload);
+        state.chats = action.payload;
         state.status = 'fulfilled';
       }
     );
@@ -76,8 +76,23 @@ const chatsSlice = createSlice({
         state.chats.push(action.payload);
       }
     );
-    builder.addCase(createChat.rejected, (state, action:PayloadAction<string | any>) => {
-      console.log(action.payload);
+    builder.addCase(
+      createChat.rejected,
+      (state, action: PayloadAction<string | any>) => {
+        console.log(action.payload);
+      }
+    );
+
+    //update messages
+    builder.addCase(readMessages.fulfilled, (state, action: any) => {
+      const { chatId, userId } = action.payload;
+      state.chats
+        .find((chat) => chat.id === chatId)
+        ?.messages.forEach(({ message }) => {
+          if (message.id !== userId) {
+            message.read = true;
+          }
+        });
     });
   },
 });

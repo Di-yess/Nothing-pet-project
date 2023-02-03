@@ -4,7 +4,7 @@ import { AppDispatch } from '../../../../store';
 import { clearInfo } from '../../../../store/userSlice';
 import { initState } from '../../../../types/userInit';
 
-export async function edit(e: any, user: initState) {
+export async function edit(e: any, user: initState, dispatch:AppDispatch) {
   const imgFile = document.querySelector<HTMLInputElement>('#inputImg');
 
   if (e.target.innerText === 'Edit') {
@@ -32,7 +32,10 @@ export async function edit(e: any, user: initState) {
           formData.append('avatar', imgFile.files[0], imgFile.name);
         }
       }
-      await axios.put('/user', formData);
+      const newData = await axios.put('/user', formData);
+      // dispatch new data
+      console.log(newData);
+
       document
         .querySelectorAll<HTMLInputElement>('.infoInput')
         .forEach((infoInput) => {

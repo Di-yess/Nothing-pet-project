@@ -1,4 +1,4 @@
-import { memo, useState } from 'react';
+import { useState } from 'react';
 import { postMessage } from '../../../../../store/asyncThunk/postMessage';
 import { useAppDispatch, useAppSelector } from '../../../../../types/Apphooks';
 import Send from '../icons/Send';

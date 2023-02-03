@@ -38,6 +38,7 @@ model Message {
   id        Int              @id @default(autoincrement())
   text      String
   userId    Int
+  read      Boolean          @default(false)
   createdAt DateTime         @default(now())
   User      User             @relation(fields: [userId], references: [id], onDelete: Cascade)
   chats     ChatAndMessage[]

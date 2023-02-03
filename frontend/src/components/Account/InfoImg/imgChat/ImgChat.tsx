@@ -10,7 +10,11 @@ export default function ImgChat() {
   console.log(chats);
 
   return (
-    <m.div {...variants} className="infoImg" style={{ height: '500px' }}>
+    <m.div
+      //{...variants}
+      className="infoImg"
+      style={{ height: '500px' }}
+    >
       <div className="person-wrapper">
         <Search />
         {chats && chats.map((chat) => <Person chat={chat} key={chat.id} />)}

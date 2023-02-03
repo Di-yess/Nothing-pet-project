@@ -9,7 +9,7 @@ type Vars = {
 
 export const postMessage = createAsyncThunk(
   'chats/postMessage',
-  async (vars: Vars, {}) => {
+  async (vars: Vars) => {
     const { newMessage, setNewMessage, chatId } = vars;
     try {
       const response = await axios.post('/chats/message', {

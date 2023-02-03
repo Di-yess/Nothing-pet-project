@@ -14,9 +14,9 @@ $mt: 85px;
 
 .feedUser {
   margin-top: $mt + 15px;
-  margin-right: 10px;
-  width: 262px;
-  height: 175px;
+  margin-right: 11px;
+  width: 256px;
+  height: 167px;
 
   position: relative;
 
@@ -27,8 +27,8 @@ $mt: 85px;
 
   .feedImg {
     top: -$mt;
-    width: 129.9px;
-    height: 129.9px;
+    width: 125.9px;
+    height: 125.9px;
 
     overflow: hidden;
     position: absolute;
@@ -49,7 +49,7 @@ $mt: 85px;
     right: 30px;
 
     color: #444444;
-    font-size: 20px;
+    font-size: 19.5px;
     font-weight: 500;
 
     position: absolute;

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Message } from '../../../../../../types/chatsType';
 
 export default function useScrollLast(
@@ -11,7 +11,7 @@ export default function useScrollLast(
     setScrollPos(window.scrollY);
   };
 
-  const scrollToBottom = () => {
+  const scrollToBottom = useCallback(() => {
     if (lastMessageRef.current) {
       lastMessageRef.current.scrollIntoView({
         behavior: 'smooth',
@@ -19,7 +19,7 @@ export default function useScrollLast(
         inline: 'start',
       });
     }
-  };
+  },[lastMessageRef]);
 
   useEffect(() => {
     document.addEventListener('scroll', scrollHandler);
@@ -29,5 +29,5 @@ export default function useScrollLast(
     return () => {
       document.removeEventListener('scroll', scrollHandler);
     };
-  }, [messages, lastMessageRef]);
+  }, [messages, lastMessageRef, scrollPos, scrollToBottom]);
 }

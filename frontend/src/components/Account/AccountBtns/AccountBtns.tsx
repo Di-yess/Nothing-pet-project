@@ -10,7 +10,7 @@ export default function AccountBtns() {
 
   return (
     <div className="accountBtns">
-      <button onClick={(e) => edit(e, user)}>Edit</button>
+      <button onClick={(e) => edit(e, user, dispatch)}>Edit</button>
       <button className="logout" onClick={() => logout(dispatch, navigate)}>
         Logout
       </button>

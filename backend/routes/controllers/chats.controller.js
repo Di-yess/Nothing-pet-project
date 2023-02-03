@@ -40,14 +40,7 @@ const getChats = async (req, res) => {
         },
         messages: {
           select: {
-            message: {
-              select: {
-                id: true,
-                text: true,
-                userId: true,
-                createdAt: true,
-              },
-            },
+            message: true,
           },
         },
       },
@@ -108,14 +101,7 @@ const newChat = async (req, res) => {
           },
           messages: {
             select: {
-              message: {
-                select: {
-                  id: true,
-                  text: true,
-                  userId: true,
-                  createdAt: true,
-                },
-              },
+              message: true,
             },
           },
         },
@@ -181,7 +167,6 @@ const getMessages = async (req, res) => {
       });
       res.json(messages);
     } else {
-      console.log('cant find messages');
       res.sendStatus(400);
     }
   } catch (err) {
@@ -190,4 +175,36 @@ const getMessages = async (req, res) => {
   }
 };
 
-export { getChats, newChat, postMessage, getMessages };
+const readMessages = async (req, res) => {
+  const userId = req.session.userId;
+  const { chatId } = req.body;
+
+  try {
+    const messages = await prisma.chatAndMessage.findMany({
+      where: {
+        chatId,
+        message: { NOT: { userId } },
+      },
+      include: {
+        message: true,
+      },
+    });
+
+    messages.forEach(async ({ message }) => {
+      await prisma.message.update({
+        where: {
+          id: message.id,
+        },
+        data: {
+          read: true,
+        },
+      });
+    });
+
+    res.sendStatus(200);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export { getChats, newChat, postMessage, getMessages, readMessages };

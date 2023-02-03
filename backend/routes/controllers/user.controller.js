@@ -39,7 +39,6 @@ const getUser = async (req, res) => {
 };
 
 const updateUser = async (req, res) => {
-  console.log(req.file);
   const id = req.session.userId;
   const { fullName, email, phone, profession, adress } = JSON.parse(
     req.body.data
@@ -49,7 +48,6 @@ const updateUser = async (req, res) => {
   try {
     if (newAvatar) {
       const newName = Date.now() + newAvatar.originalname;
-      console.log(newName);
       const path = `${__dirname}/../../public/avatars/${newName}.jpg`;
       await fs.writeFile(path, newAvatar.buffer);
       await prisma.user.update({
@@ -68,7 +66,7 @@ const updateUser = async (req, res) => {
         },
       });
     }
-    await prisma.user.update({
+    const newData = await prisma.user.update({
       where: { id },
       data: {
         email,
@@ -77,8 +75,16 @@ const updateUser = async (req, res) => {
         profession,
         adress,
       },
+      select: {
+        email: true,
+        fullName: true,
+        phone: true,
+        profession: true,
+        adress: true,
+        avatar: true,
+      },
     });
-    res.sendStatus(200);
+    res.json(newData);
   } catch (err) {
     console.log(err);
     res.sendStatus(500);

@@ -17,7 +17,6 @@ export default function InfoEdit({ user }: { user: initState }) {
 
   useEffect(() => {
     if (chats.length === 0) {
-      console.log('dispatch(getchats)');
       dispatch(getChats());
     }
   }, [dispatch, chats.length]);

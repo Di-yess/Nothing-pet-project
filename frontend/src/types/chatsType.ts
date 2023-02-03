@@ -20,7 +20,13 @@ type user = {
 };
 
 type Message = {
-  message: { id: number; text: string; userId: number; createdAt: Date };
+  message: {
+    id: number;
+    text: string;
+    read: boolean;
+    userId: number;
+    createdAt: Date;
+  };
 };
 
 type chatChecker = {
@@ -38,6 +44,11 @@ type newMessages = {
   data: Message[];
 };
 
+type updateMessages = {
+  chatId: number;
+  userId: number;
+};
+
 export type {
   chatsType,
   chatType,
@@ -45,5 +56,6 @@ export type {
   Message,
   newMessage,
   newMessages,
+  updateMessages,
   user,
 };

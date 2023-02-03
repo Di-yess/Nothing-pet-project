@@ -1,7 +1,7 @@
 @import '../../../../mix.scss';
 
 .check {
-  width: 360px;
+  width: 390px;
   height: 500px;
 }
 
@@ -9,7 +9,7 @@
   padding: 10px 0;
   margin: auto;
   width: 100%;
-  height: 91%;
+  height: 92.5%;
 
   position: relative;
 
@@ -18,6 +18,7 @@
 
   .chatMessages {
     max-height: 90%;
+    min-height: 90%;
     overflow: overlay;
     position: relative;
     @include scroll;
@@ -48,7 +49,7 @@
     .chatMessage {
       width: fit-content;
       max-width: 51%;
-      margin: 5px 10px;
+      margin: 9px 10px;
       padding: 2px 15px;
 
       //padding: 0 30px 0 15px;
@@ -69,8 +70,8 @@
     // }
     .messageTime {
       position: absolute;
-      bottom: -7px;
-      font-size: 11px;
+      bottom: -9px;
+      font-size: 11.5px;
       color: rgb(168, 168, 168);
       background-color: transparent;
     }
@@ -84,14 +85,20 @@
     }
 
     .messageTime {
-      right: 0;
+      right: 14px;
+    }
+  }
+
+  .receiver {
+    .messageTime {
+      left: 14px;
     }
   }
 
   .sendMessageInput {
     width: 100%;
     margin: 0 auto;
-    bottom: 3px;
+    bottom: 5px;
 
     position: absolute;
 
@@ -111,6 +118,7 @@
     }
     button {
       position: absolute;
+      top: 4px;
       right: 7.4%;
 
       cursor: pointer;
