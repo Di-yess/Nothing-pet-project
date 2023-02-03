@@ -9,6 +9,7 @@ import {
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { getChats } from './asyncThunk/getChats';
 import { postMessage } from './asyncThunk/postMessage';
+import { createChat } from './asyncThunk/createChat';
 
 const initialState: chatsType = {
   chats: [],
@@ -67,6 +68,17 @@ const chatsSlice = createSlice({
         }
       }
     );
+
+    // create chat
+    builder.addCase(
+      createChat.fulfilled,
+      (state, action: PayloadAction<chatType>) => {
+        state.chats.push(action.payload);
+      }
+    );
+    builder.addCase(createChat.rejected, (state, action:PayloadAction<string | any>) => {
+      console.log(action.payload);
+    });
   },
 });
 

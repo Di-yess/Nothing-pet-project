@@ -6,7 +6,7 @@
 }
 
 .infoEditChat {
-  padding-top: 7px;
+  padding: 10px 0;
   margin: auto;
   width: 100%;
   height: 91%;
@@ -14,11 +14,22 @@
   position: relative;
 
   @include border();
+  border: none;
 
   .chatMessages {
     max-height: 90%;
     overflow: overlay;
+    position: relative;
     @include scroll;
+
+    .writeFirst {
+      //position: absolute;
+      margin: 55% auto 0;
+      width: fit-content;
+
+      z-index: 111;
+      color: black;
+    }
   }
 
   .chatMessageContainer {
@@ -28,14 +39,22 @@
     & > div {
       background-color: #ececec;
     }
+
+    &:has(.sender) {
+      .messageTime {
+        right: 10px;
+      }
+    }
     .chatMessage {
       width: fit-content;
       max-width: 51%;
       margin: 5px 10px;
-      padding: 0 15px 0 15px;
+      padding: 2px 15px;
+
       //padding: 0 30px 0 15px;
       //text-align: end;
-      @include border();
+      border-radius: 6px;
+      //@include border();
     }
 
     // .chatMessage::after {
@@ -51,8 +70,8 @@
     .messageTime {
       position: absolute;
       bottom: -7px;
-      left: 0;
       font-size: 11px;
+      color: rgb(168, 168, 168);
       background-color: transparent;
     }
   }
@@ -60,7 +79,7 @@
   .sender {
     justify-content: flex-end;
     & > div {
-      text-align: end;
+      text-align: start;
       background-color: #c0deff;
     }
 
@@ -70,23 +89,31 @@
   }
 
   .sendMessageInput {
-    height: 10%;
     width: 100%;
     margin: 0 auto;
-    bottom: 0;
+    bottom: 3px;
 
     position: absolute;
 
     @include flex-center();
 
     input {
-      padding-left: 5px;
+      padding: 2px 7px;
       width: 86%;
       font-size: 15px;
+      border-radius: 5px;
+      border: 1.5px solid rgb(200, 200, 200);
+
+      &:focus {
+        outline: none;
+        border: 1.5px solid #307cd2;
+      }
     }
     button {
       position: absolute;
-      right: 8.5%;
+      right: 7.4%;
+
+      cursor: pointer;
 
       @include flex-center();
       border: none;

@@ -52,7 +52,6 @@ const getChats = async (req, res) => {
         },
       },
     });
-    console.log(chats);
     res.json(chats);
   } catch (err) {
     console.log(err);
@@ -60,16 +59,74 @@ const getChats = async (req, res) => {
 };
 
 const newChat = async (req, res) => {
-  const { receiverId } = req.body;
+  const { newPersonId } = req.body;
   const userId = req.session.userId;
 
-  console.log('newChat ', receiverId, ' ', userId);
-
-  res.sendStatus(200);
-
   try {
+    const checkChat = await prisma.chat.findFirst({
+      where: {
+        OR: [
+          {
+            senderId: userId,
+            receiverId: newPersonId,
+          },
+          {
+            senderId: newPersonId,
+            receiverId: userId,
+          },
+        ],
+      },
+    });
+    if (!checkChat) {
+      const newChat = await prisma.chat.create({
+        data: {
+          senderId: userId,
+          receiverId: newPersonId,
+        },
+        include: {
+          sender: {
+            select: {
+              id: true,
+              fullName: true,
+              avatar: {
+                select: {
+                  link: true,
+                },
+              },
+            },
+          },
+          receiver: {
+            select: {
+              id: true,
+              fullName: true,
+              avatar: {
+                select: {
+                  link: true,
+                },
+              },
+            },
+          },
+          messages: {
+            select: {
+              message: {
+                select: {
+                  id: true,
+                  text: true,
+                  userId: true,
+                  createdAt: true,
+                },
+              },
+            },
+          },
+        },
+      });
+      res.json(newChat);
+    } else {
+      res.sendStatus(400);
+    }
   } catch (err) {
     console.log(err);
+    res.sendStatus(500);
   }
 };
 
@@ -100,7 +157,6 @@ const postMessage = async (req, res) => {
 const getMessages = async (req, res) => {
   const chatId = req.params.id ? Number(req.params.id) : null;
   const userId = req.session.userId;
-  console.log('chatId', chatId);
 
   if (!chatId) res.sendStatus(400);
   // у юзера есть данный чат
@@ -114,7 +170,6 @@ const getMessages = async (req, res) => {
     if (!chatCheck) {
       res.sendStatus(400);
     }
-    console.log('chatCheck', chatCheck);
     if (chatCheck.senderId === userId || chatCheck.receiverId === userId) {
       const messages = await prisma.chatAndMessage.findMany({
         where: {
@@ -124,7 +179,6 @@ const getMessages = async (req, res) => {
           message: true,
         },
       });
-      console.log('all messages', messages);
       res.json(messages);
     } else {
       console.log('cant find messages');

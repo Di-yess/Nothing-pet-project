@@ -16,8 +16,6 @@ export const postMessage = createAsyncThunk(
         newMessage,
         chatId,
       });
-      console.log(response.data);
-      // {id , text, userId, createdAt}
       setNewMessage(() => '');
       return { chatId, data: { message: response.data } };
     } catch (err) {

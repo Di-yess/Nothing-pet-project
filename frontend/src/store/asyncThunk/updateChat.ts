@@ -12,17 +12,3 @@ export const updateChat = createAsyncThunk(
     }
   }
 );
-
-// export const updateChat = async (
-//   chatId: number,
-//   setPollingMessages: React.Dispatch<React.SetStateAction<Message[] | null>>
-// ) => {
-//   try {
-//     console.log('chatId', chatId);
-//     const response = await axios.get(`/chats/chatmessages/${chatId}`);
-//     console.log('messages', response.data);
-//     setPollingMessages(response.data);
-//   } catch (err) {
-//     console.log(err);
-//   }
-// };

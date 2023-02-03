@@ -6,7 +6,10 @@ import './Search.scss';
 import ShowPeople from './showPeople/ShowPeople';
 
 export default function Search() {
-  const allUsers = useAppSelector((state) => state.allUsers.allUsers);
+  const loggedUserId = useAppSelector((state) => state.user.id);
+  const allUsers = useAppSelector((state) => state.allUsers.allUsers).filter(
+    (user) => user.id !== loggedUserId
+  );
   const [showPeople, setShowPeople] = useState(false);
   const [showUsers, setShowUsers] = useState(allUsers);
 

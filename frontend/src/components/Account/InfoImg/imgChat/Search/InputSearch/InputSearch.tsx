@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { useAppSelector } from '../../../../../../types/Apphooks';
 import { allUsersType } from '../../../../../../types/userInit';
 type inputSearchType = {
@@ -5,17 +6,25 @@ type inputSearchType = {
   setShowUsers: React.Dispatch<React.SetStateAction<allUsersType[]>>;
 };
 
-export default function InputSearch({
+export default memo(function InputSearch({
   setShowPeople,
   setShowUsers,
 }: inputSearchType) {
-  const allUsers = useAppSelector((state) => state.allUsers.allUsers);
+  const loggedUserId = useAppSelector((state) => state.user.id);
+  const allUsers = useAppSelector((state) => state.allUsers.allUsers).filter(
+    (user) => user.id !== loggedUserId
+  );
+  console.log('allUsers', allUsers);
   return (
     <input
       type="text"
       placeholder="Find a person"
       onFocus={() => setShowPeople(() => true)}
-      onBlur={() => setShowPeople(() => false)}
+      onBlur={() => {
+        setTimeout(() => {
+          setShowPeople(() => false);
+        }, 100);
+      }}
       onChange={(e) => {
         setShowUsers(() => [
           ...allUsers
@@ -27,4 +36,4 @@ export default function InputSearch({
       }}
     />
   );
-}
+});

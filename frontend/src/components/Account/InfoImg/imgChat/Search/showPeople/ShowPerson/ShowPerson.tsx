@@ -1,11 +1,26 @@
+import { createChat } from '../../../../../../../store/asyncThunk/createChat';
+import {
+  useAppDispatch,
+  useAppSelector,
+} from '../../../../../../../types/Apphooks';
 import { allUsersType } from '../../../../../../../types/userInit';
+import { checkChat } from './functional';
 
 export default function ShowPerson({ user }: { user: allUsersType }) {
-  async function createChat(user: allUsersType) {
-    
-  }
+  const chats = useAppSelector((state) => state.chats.chats);
+  const loggedUserId = useAppSelector((state) => state.user.id);
+  const dispatch = useAppDispatch();
+
   return (
-    <div className="showPerson" key={user.id} onClick={() => createChat(user)}>
+    <div
+      className="showPerson"
+      key={user.id}
+      onClick={() =>
+        checkChat(chats, dispatch, loggedUserId, user)
+          ? dispatch(createChat({ newPersonId: user.id }))
+          : null
+      }
+    >
       <div className="showPersonImg">
         <img
           src={

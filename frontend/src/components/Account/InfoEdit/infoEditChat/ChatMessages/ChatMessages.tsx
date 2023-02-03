@@ -1,9 +1,8 @@
-import { memo, useEffect } from 'react';
-import { setInterval } from 'timers/promises';
-import { updateChat } from '../../../../../store/asyncThunk/updateChat';
+import { memo, useRef } from 'react';
 
-import { useAppDispatch, useAppSelector } from '../../../../../types/Apphooks';
 import { Message } from '../../../../../types/chatsType';
+import usePolling from './Hooks/usePolling';
+import useScrollLast from './Hooks/useScrollLast';
 
 type Props = {
   messages: Message[] | null;
@@ -11,27 +10,14 @@ type Props = {
 };
 
 export default memo(function ChatMessages({ messages, userId }: Props) {
-  const chatId = useAppSelector((state) => state.chat.chosenChat);
-  const dispatch = useAppDispatch();
+  const lastMessageRef = useRef<null | HTMLDivElement>(null);
 
-  useEffect(() => {
-    if (chatId) {
-      const interval = window.setInterval(() => {
-        console.log('interval');
-        dispatch(updateChat(chatId));
-        return () => clearInterval(interval);
-      },1500);
-      // console.log('useEffect chatId', chatId);
-
-      // setInterval( 1500);
-    }
-  }, [chatId]);
-  // chat Id, all messages
-  // санка для подтягивания невых сообщений
+  //usePolling();
+  useScrollLast(lastMessageRef, messages);
 
   return (
     <div className="chatMessages">
-      {messages &&
+      {messages?.length ? (
         messages.map(({ message }) => (
           <div
             className={
@@ -42,14 +28,18 @@ export default memo(function ChatMessages({ messages, userId }: Props) {
             key={message.id}
           >
             <div className="chatMessage">{message.text}</div>
-            {/* <div className="messageTime">
+            <div className="messageTime">
               {message.createdAt
                 .toLocaleString()
-                .slice(0, -8)
+                .slice(10, -8)
                 .replace('T', ' ')}
-            </div> */}
+            </div>
           </div>
-        ))}
+        ))
+      ) : (
+        <div className="writeFirst">Be the first to write.</div>
+      )}
+      <div ref={lastMessageRef}></div>
     </div>
   );
 });
