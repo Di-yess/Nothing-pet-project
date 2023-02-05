@@ -11,9 +11,10 @@ export const postMessage = createAsyncThunk(
   'chats/postMessage',
   async (vars: Vars) => {
     const { newMessage, setNewMessage, chatId } = vars;
+    if (!newMessage.trim()) return;
     try {
       const response = await axios.post('/chats/message', {
-        newMessage,
+        newMessage: newMessage.trim(),
         chatId,
       });
       setNewMessage(() => '');

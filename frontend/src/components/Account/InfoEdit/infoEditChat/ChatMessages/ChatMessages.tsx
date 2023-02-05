@@ -12,9 +12,10 @@ type Props = {
 
 export default memo(function ChatMessages({ messages, userId }: Props) {
   const lastMessageRef = useRef<null | HTMLDivElement>(null);
+  const countMessageRef = useRef(messages?.length || null);
 
-  usePolling();
-  useScrollLast(lastMessageRef, messages);
+  usePolling(countMessageRef, messages?.length);
+  useScrollLast(lastMessageRef, messages, countMessageRef);
 
   return (
     <div className="chatMessages">
@@ -25,7 +26,7 @@ export default memo(function ChatMessages({ messages, userId }: Props) {
       ) : (
         <div className="writeFirst">Be the first to write.</div>
       )}
-      <div ref={lastMessageRef}></div>
+      <div className="lastMessage" ref={lastMessageRef}></div>
     </div>
   );
 });

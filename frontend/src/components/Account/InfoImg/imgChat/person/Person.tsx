@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { readMessages } from '../../../../../store/asyncThunk/readMessages';
 import { chooseChat } from '../../../../../store/chatSlice';
 import { useAppDispatch, useAppSelector } from '../../../../../types/Apphooks';
@@ -7,7 +8,7 @@ import MessageTime from './MessageTime/MessageTime';
 import './Person.scss';
 import PersonImg from './PersonImg/PersonImg';
 
-export default function Person({ chat }: { chat: chatType }) {
+export default memo(function Person({ chat }: { chat: chatType }) {
   const user = useAppSelector((state) => state.user);
   const chosenChat = useAppSelector((state) => state.chat.chosenChat);
   const dispatch = useAppDispatch();
@@ -25,8 +26,7 @@ export default function Person({ chat }: { chat: chatType }) {
     }
     dispatch(chooseChat(chat.id));
   }
-
-  console.log(unreadMessagesCount);
+  // console.log('Person.tsx');
 
   return (
     <div
@@ -45,4 +45,4 @@ export default function Person({ chat }: { chat: chatType }) {
       </div>
     </div>
   );
-}
+});

@@ -13,10 +13,10 @@ $textMain: #444444;
   align-items: center;
 }
 
-@mixin flex-center() {
+@mixin flex-center($jc: center) {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: $jc;
 }
 
 @mixin scroll() {

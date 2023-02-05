@@ -1,13 +1,19 @@
-import { useState } from 'react';
+import { memo, useState } from 'react';
 import { postMessage } from '../../../../../store/asyncThunk/postMessage';
 import { useAppDispatch, useAppSelector } from '../../../../../types/Apphooks';
 import Send from '../icons/Send';
+import EmojiList from './EmojiList/EmojiList';
+import './EmojiList/EmojiList.scss';
+import MemoInput from './MemoInput/MemoInput';
 
-export default function MessageInput() {
+export default memo(function MessageInput() {
   const dispatch = useAppDispatch();
   const chatId = useAppSelector((state) => state.chat.chosenChat);
-
+  const [showEmojie, setShowEmojie] = useState(false);
   const [newMessage, setNewMessage] = useState('');
+
+  // console.log('messageInput');
+
   return (
     <form
       className="sendMessageInput"
@@ -25,15 +31,21 @@ export default function MessageInput() {
       }}
     >
       {' '}
-      <input
-        type="text"
-        placeholder="Type message"
-        value={newMessage}
-        onChange={(e) => setNewMessage(() => e.target.value)}
-      />
+      <MemoInput newMessage={newMessage} setNewMessage={setNewMessage} />
       <button type="submit">
         <Send />
       </button>
+      <div className="emoji">
+        <div className="chooseEmoji" onClick={() => setShowEmojie(!showEmojie)}>
+          😄
+        </div>
+        {showEmojie && (
+          <EmojiList
+            setShowEmojie={setShowEmojie}
+            setNewMessage={setNewMessage}
+          />
+        )}
+      </div>
     </form>
   );
-}
+});

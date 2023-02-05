@@ -5,7 +5,10 @@ import {
 } from '../../../../../../types/Apphooks';
 import { getChats } from '../../../../../../store/asyncThunk/getChats';
 
-export default function usePolling() {
+export default function usePolling(
+  countMessageRef: React.MutableRefObject<number | null>,
+  messageAmount: number | undefined
+) {
   const chatId = useAppSelector((state) => state.chat.chosenChat);
   const dispatch = useAppDispatch();
 

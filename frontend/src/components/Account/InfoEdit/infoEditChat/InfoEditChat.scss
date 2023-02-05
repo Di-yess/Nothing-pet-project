@@ -97,29 +97,36 @@
 
   .sendMessageInput {
     width: 100%;
-    margin: 0 auto;
+    margin: 25px auto 0;
+    padding: 2px 8px 2px 10.5px;
     bottom: 5px;
 
-    position: absolute;
+    position: relative;
 
-    @include flex-center();
+    @include flex-center(flex-start);
+    width: 86%;
+    border-radius: 5px;
+    border: 1.5px solid rgb(200, 200, 200);
+
+    &:has(input:focus) {
+      border: 1.5px solid #307cd2;
+    }
 
     input {
-      padding: 2px 7px;
-      width: 86%;
-      font-size: 15px;
-      border-radius: 5px;
-      border: 1.5px solid rgb(200, 200, 200);
+      width: 85%;
+      border: none;
+      font-size: 16px;
 
       &:focus {
         outline: none;
-        border: 1.5px solid #307cd2;
+        // border: 1.5px solid #307cd2;
+        // border: none;
       }
     }
     button {
       position: absolute;
-      top: 4px;
-      right: 7.4%;
+      top: 3.8px;
+      right: 3%;
 
       cursor: pointer;
 
@@ -133,3 +140,48 @@
     }
   }
 }
+
+.lastMessage {
+  padding-top: 7px;
+}
+
+
+
+
+// .sendMessageInput {
+//   width: 100%;
+//   margin: 0 auto;
+//   bottom: 5px;
+
+//   position: absolute;
+
+//   @include flex-center();
+
+//   input {
+//     padding: 2px 7px;
+//     width: 86%;
+//     font-size: 15px;
+//     border-radius: 5px;
+//     border: 1.5px solid rgb(200, 200, 200);
+
+//     &:focus {
+//       outline: none;
+//       border: 1.5px solid #307cd2;
+//     }
+//   }
+//   button {
+//     position: absolute;
+//     top: 4px;
+//     right: 7.4%;
+
+//     cursor: pointer;
+
+//     @include flex-center();
+//     border: none;
+//     background-color: transparent;
+//   }
+
+//   svg {
+//     width: 19px;
+//   }
+// }

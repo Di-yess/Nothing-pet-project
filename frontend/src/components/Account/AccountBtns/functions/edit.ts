@@ -4,7 +4,7 @@ import { AppDispatch } from '../../../../store';
 import { clearInfo } from '../../../../store/userSlice';
 import { initState } from '../../../../types/userInit';
 
-export async function edit(e: any, user: initState, dispatch:AppDispatch) {
+export async function edit(e: any, user: initState, dispatch: AppDispatch) {
   const imgFile = document.querySelector<HTMLInputElement>('#inputImg');
 
   if (e.target.innerText === 'Edit') {
@@ -58,11 +58,9 @@ export async function logout(
 ) {
   try {
     await axios.get('/logout');
-    setTimeout(() => {
-      dispatch(clearInfo());
-    }, 300);
+    dispatch(clearInfo());
     console.log('logout here');
-    navigate('/feedback');
+    //navigate('/feedback');
   } catch (err) {
     console.log('Logout error');
     console.log(err);

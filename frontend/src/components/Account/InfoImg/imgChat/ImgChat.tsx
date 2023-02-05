@@ -7,7 +7,7 @@ import Search from './Search/Search';
 
 export default function ImgChat() {
   const chats = useAppSelector((state) => state.chats.chats);
-  console.log(chats);
+  // console.log('ImgChat.tsx');
 
   return (
     <m.div

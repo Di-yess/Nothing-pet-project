@@ -11,7 +11,7 @@ export default function InfoEditChat() {
   );
   const messages = chat?.messages || null;
 
-  console.log('InfoEditChat');
+  // console.log('InfoEditChat');
 
   return (
     <>

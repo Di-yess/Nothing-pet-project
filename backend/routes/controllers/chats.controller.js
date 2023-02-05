@@ -119,6 +119,8 @@ const newChat = async (req, res) => {
 const postMessage = async (req, res) => {
   const { newMessage, chatId } = req.body;
   const userId = req.session.userId;
+  
+  if (!newMessage) res.sendStatus(400);
 
   try {
     const message = await prisma.message.create({
