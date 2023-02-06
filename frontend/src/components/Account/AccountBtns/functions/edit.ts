@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { NavigateFunction } from 'react-router-dom';
 import { AppDispatch } from '../../../../store';
-import { clearInfo } from '../../../../store/userSlice';
+import { changeAvatar, clearInfo } from '../../../../store/userSlice';
 import { initState } from '../../../../types/userInit';
 
 export async function edit(e: any, user: initState, dispatch: AppDispatch) {
@@ -32,9 +32,10 @@ export async function edit(e: any, user: initState, dispatch: AppDispatch) {
           formData.append('avatar', imgFile.files[0], imgFile.name);
         }
       }
-      const newData = await axios.put('/user', formData);
+      const { data } = await axios.put('/user', formData);
       // dispatch new data
-      console.log(newData);
+      console.log(data.avatar.link);
+      dispatch(changeAvatar(data.avatar.link));
 
       document
         .querySelectorAll<HTMLInputElement>('.infoInput')

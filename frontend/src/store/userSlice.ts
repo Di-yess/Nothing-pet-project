@@ -65,6 +65,9 @@ const userSlice = createSlice({
     changeAdress(state, action: PayloadAction<string>) {
       state.adress = action.payload;
     },
+    changeAvatar(state, action: PayloadAction<string>) {
+      state.avatar.link = action.payload;
+    },
   },
 
   extraReducers: (builder) => {
@@ -94,5 +97,6 @@ export const {
   changePhone,
   changeProfession,
   changeAdress,
+  changeAvatar,
   clearInfo,
 } = userSlice.actions;
