@@ -41,7 +41,7 @@ export default memo(function EmojiList({
             key={emoji.id}
             className="emojiIcon"
             onClick={() => {
-              setNewMessage((prev) => prev + emoji);
+              setNewMessage((prev) => prev + emoji.emoji);
               setShowEmojie((prev) => !prev);
             }}
           >

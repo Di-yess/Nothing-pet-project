@@ -6,6 +6,7 @@ import {
   postMessage,
   getMessages,
   readMessages,
+  findOrCreateChat,
 } from './controllers/chats.controller.js';
 
 const router = express.Router();
@@ -14,6 +15,7 @@ const router = express.Router();
 router.get('/', checkUser, getChats);
 router.get('/chatmessages/:id', checkUser, getMessages);
 router.post('/', checkUser, newChat);
+router.post('/newChat', checkUser, findOrCreateChat);
 router.post('/message', checkUser, postMessage);
 router.put('/message', checkUser, readMessages);
 

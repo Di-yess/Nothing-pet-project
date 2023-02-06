@@ -29,6 +29,7 @@ export default function useScrollLast(
     if (!firstScroll.current) {
       scrollToBottom();
       firstScroll.current = true;
+      console.log('firstScroll.current', firstScroll.current);
     }
 
     // Скролл только тогда, когда прилетело новое сообщение
@@ -47,9 +48,11 @@ export default function useScrollLast(
     }
 
     return () => {
-      document.removeEventListener('scroll', () =>
-        setScrollPos(window.scrollY)
-      );
+      document.removeEventListener('scroll', () => {
+        // setScrollPos(window.scrollY);
+        // firstScroll.current = false;
+        //console.log('firstScroll.current', firstScroll.current);
+      });
     };
   }, [messages, countMessageRef, lastMessageRef, scrollPos, scrollToBottom]);
 }

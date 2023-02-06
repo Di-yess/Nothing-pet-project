@@ -24,7 +24,7 @@ export default memo(function AccountForm({ user, accountId }: accountFormType) {
     if (accountId) {
       getUserById(accountId, setUserById);
     }
-  }, []);
+  }, [accountId]);
 
   // Если логин и автор совпадают личный кабинет
   if ((user.id === accountId && user.login) || (!accountId && user.login)) {
@@ -48,7 +48,7 @@ export default memo(function AccountForm({ user, accountId }: accountFormType) {
           <InfoImg user={userById} />
           <InfoEdit user={userById} />
           <Media />
-          <SendBtn />
+          <SendBtn user={userById} />
         </div>
       </div>
     );

@@ -3,7 +3,7 @@ import {
   chatsType,
   chatType,
   newMessage,
-  newMessages,
+  newMessages
 } from '../types/chatsType';
 import { createChat } from './asyncThunk/createChat';
 import { getChats } from './asyncThunk/getChats';
@@ -21,7 +21,13 @@ const chatsSlice = createSlice({
   name: 'chats',
   initialState,
 
-  reducers: {},
+  reducers: {
+    clearChats(state) {
+      state.chats = [];
+      state.status = null;
+      state.error = null;
+    },
+  },
 
   extraReducers: (builder) => {
     builder.addCase(getChats.pending, (state) => {
@@ -98,4 +104,4 @@ const chatsSlice = createSlice({
 });
 
 export default chatsSlice.reducer;
-export const {} = chatsSlice.actions;
+export const { clearChats } = chatsSlice.actions;

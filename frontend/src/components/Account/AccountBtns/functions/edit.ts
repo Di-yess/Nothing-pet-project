@@ -1,6 +1,7 @@
 import axios from 'axios';
-import { NavigateFunction } from 'react-router-dom';
 import { AppDispatch } from '../../../../store';
+import { clearChosenChat } from '../../../../store/chatSlice';
+import { clearChats } from '../../../../store/chatsSlice';
 import { changeAvatar, clearInfo } from '../../../../store/userSlice';
 import { initState } from '../../../../types/userInit';
 
@@ -53,15 +54,13 @@ export async function edit(e: any, user: initState, dispatch: AppDispatch) {
   }
 }
 
-export async function logout(
-  dispatch: AppDispatch,
-  navigate: NavigateFunction
-) {
+export async function logout(dispatch: AppDispatch) {
   try {
-    await axios.get('/logout');
     dispatch(clearInfo());
-    console.log('logout here');
-    //navigate('/feedback');
+    dispatch(clearChats());
+    dispatch(clearChosenChat());
+    
+    await axios.get('/logout');
   } catch (err) {
     console.log('Logout error');
     console.log(err);

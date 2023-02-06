@@ -3,7 +3,7 @@ import axios from 'axios';
 
 export const logout = createAsyncThunk(
   'chats/getChats',
-  async (_, { rejectWithValue }) => {
+  async (_, { rejectWithValue, dispatch }) => {
     try {
       const response = await axios.get('/logout');
       return true;

@@ -1,48 +1,96 @@
 $link: rgb(41, 41, 164);
-
+@import '../../mix.scss';
 .login {
-  margin-top: 30vh;
-  //   margin: 30vh auto 0;
-  //   width: 250px;
-  //   height: 250px;
+  margin: 20vh auto;
+  height: 30vh;
+  width: 255px;
+  height: 255px * 1.37;
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
+  @include flex();
+  border-radius: 15px;
+  //justify-content: center;
+  background-image: linear-gradient(#355debc7, #bcf3ffd3);
   transition: 0.25s all ease-in-out;
 
+  .loginName {
+    margin: 27px 0 5px;
+    font-size: 55px;
+    font-weight: 600;
+
+    color: white;
+  }
+
   .register {
-    margin-top: 5px;
-    font-size: 16.15px;
+    margin-top: 0;
+    font-size: 15.5px;
 
     cursor: pointer;
-    color: $link;
+    color: white;
 
     transition: 0.15s all ease-in-out;
-    border-bottom: 1px solid transparent;
+    border-bottom: 1px solid white;
 
-    &:hover {
-      border-bottom: 1px solid $link;
+    // &:hover {
+    //   border-bottom: 1px solid white;
+    // }
+  }
+  .loginDiv {
+    position: relative;
+    overflow: hidden;
+
+    &:has(input:focus) {
+      .loginText {
+        left: -35px;
+      }
+    }
+    
+    &:has(input:valid) {
+      .loginText {
+        left: -35px;
+      }
+    }
+
+    .loginText {
+      position: absolute;
+      top: 2px;
+      left: 9px;
+      font-size: 16px;
+      color: rgb(131, 131, 131);
+
+      transition: 0.15s all ease-in-out;
     }
   }
 
   input {
     height: 30px;
-    margin-bottom: 7px;
+    width: 235px * 0.8;
+    margin-bottom: 11px;
+    padding-left: 10px;
 
-    text-align: center;
-    font-size: 17px;
+    // text-align: center;
+    font-size: 16px;
+    color: #000000;
 
     border-radius: 5px;
-    border: 1px solid black;
+    border: none;
+
+    &:focus {
+      outline: 1px solid #2aabee;
+    }
+    &:not(:placeholder-shown) {
+      outline: 1px solid #2aabee;
+    }
   }
 
   button {
-    padding: 3px 5px;
+    margin-top: 10px;
+    padding: 3px 10px;
     font-size: 17px;
+    font-weight: 500;
 
     border-radius: 5px;
-    border: 1px solid black;
+    color: #4a6bc6;
+    background-color: white;
+    border: none;
   }
 }

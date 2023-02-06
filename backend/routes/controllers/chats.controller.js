@@ -119,7 +119,7 @@ const newChat = async (req, res) => {
 const postMessage = async (req, res) => {
   const { newMessage, chatId } = req.body;
   const userId = req.session.userId;
-  
+
   if (!newMessage) res.sendStatus(400);
 
   try {
@@ -209,4 +209,49 @@ const readMessages = async (req, res) => {
   }
 };
 
-export { getChats, newChat, postMessage, getMessages, readMessages };
+const findOrCreateChat = async (req, res) => {
+  const { personId } = req.body;
+  const userId = req.session.userId;
+
+  try {
+    const newOrFindedChat = await prisma.chat.findFirst({
+      where: {
+        OR: [
+          {
+            senderId: userId,
+            receiverId: personId,
+          },
+          {
+            senderId: personId,
+            receiverId: userId,
+          },
+        ],
+      },
+    });
+    console.log('newOrFindedChat', newOrFindedChat);
+    
+    if (newOrFindedChat) {
+      res.json(newOrFindedChat.id);
+    } else {
+      const newChat = await prisma.chat.create({
+        data: {
+          senderId: userId,
+          receiverId: personId,
+        },
+      });
+      console.log('newChat', newChat);
+      res.json(newChat.id);
+    }
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export {
+  getChats,
+  newChat,
+  postMessage,
+  getMessages,
+  readMessages,
+  findOrCreateChat,
+};

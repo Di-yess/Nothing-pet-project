@@ -39,6 +39,7 @@ const userSlice = createSlice({
     },
     // logout
     clearInfo(state) {
+      state.id = null;
       state.login = false;
       state.fullName = null;
       state.avatar = { link: null };

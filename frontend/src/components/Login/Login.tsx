@@ -29,25 +29,33 @@ export default function Login() {
         userLogin({ e, fullName, email, password, check, navigate, dispatch });
       }}
     >
+      <div className="loginName">Nothing</div>
       {check && (
         <input
           type="text"
           name="fullName"
           placeholder="full name"
           onChange={(e) => setFullName(e.target.value)}
+          required
         />
       )}
-      <input
-        type="text"
-        name="login"
-        placeholder="login"
-        onChange={(e) => setEmail(e.target.value)}
-      />
+      <div className="loginDiv">
+        <input
+          type="text"
+          name="login"
+          value={email}
+          // placeholder=""
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
+        <div className="loginText">Login</div>
+      </div>
       <input
         type="password"
         name="password"
         placeholder="password"
         onChange={(e) => setPassword(e.target.value)}
+        required
       />
       <button type="submit">{check ? 'Sign in' : 'Login'}</button>
       <div className="register" onClick={() => setCheck(!check)}>
