@@ -1,4 +1,5 @@
 import React from 'react';
+import { API } from '../../../../../../constants';
 import { user } from '../../../../../../types/chatsType';
 
 type Props = {
@@ -11,7 +12,7 @@ export default function PersonImg({ personChat }: Props) {
       <img
         src={
           personChat.avatar.link
-            ? `http://localhost:5005/avatars/${personChat.avatar.link}.jpg`
+            ? `${API}/avatars/${personChat.avatar.link}.jpg`
             : '../imgs/user.png'
         }
         alt="img"

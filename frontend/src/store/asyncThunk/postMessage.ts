@@ -1,5 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { API } from '../../constants';
+import { INewMessage } from '../../types/Interfaces';
 
 type Vars = {
   newMessage: string;
@@ -13,12 +15,14 @@ export const postMessage = createAsyncThunk(
     const { newMessage, setNewMessage, chatId } = vars;
     if (!newMessage.trim()) return;
     try {
-      const response = await axios.post('/chats/message', {
-        newMessage: newMessage.trim(),
-        chatId,
+      const { data } = await axios<INewMessage>({
+        url: API + '/chats/message',
+        method: 'post',
+        data: { newMessage: newMessage.trim(), chatId },
+        withCredentials: true,
       });
       setNewMessage(() => '');
-      return { chatId, data: { message: response.data } };
+      return { chatId, data: { message: data } };
     } catch (err) {
       console.log(err);
     }

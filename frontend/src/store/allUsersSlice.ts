@@ -11,11 +11,7 @@ const initialState: allUsers = {
 const allUsersSlice = createSlice({
   name: 'allUsers',
   initialState,
-  reducers: {
-    // addUsers(state, action: PayloadAction<allUsersType[]>) {
-    //   state.allUsers.push(...action.payload);
-    // },
-  },
+  reducers: {},
 
   extraReducers: (builder) => {
     builder.addCase(getUsers.pending, (state) => {
@@ -24,7 +20,7 @@ const allUsersSlice = createSlice({
     builder.addCase(
       getUsers.fulfilled,
       // разобраться
-      (state, action: any) => {
+      (state, action) => {
         state.allUsers.push(...action.payload);
         state.status = 'fulfilled';
       }

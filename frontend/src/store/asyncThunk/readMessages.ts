@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { API } from '../../constants';
 
 type Vars = {
   chatId: number;
@@ -10,7 +11,12 @@ export const readMessages = createAsyncThunk(
   'chats/readMessages',
   async ({ chatId, userId }: Vars) => {
     try {
-      await axios.put('/chats/message', { chatId });
+      await axios<string>({
+        url: API + '/chats/message',
+        method: 'put',
+        data: { chatId },
+        withCredentials: true,
+      });
       return { chatId, userId };
     } catch (err) {
       console.log(err);

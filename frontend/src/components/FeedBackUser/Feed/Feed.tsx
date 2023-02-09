@@ -3,6 +3,7 @@ import { feedType } from '../../../types/feedType';
 import { variants } from './functional';
 import './Feed.scss';
 import { useNavigate } from 'react-router-dom';
+import { API } from '../../../constants';
 
 export default function Feed({ feed, i }: { feed: feedType; i: number }) {
   const navigate = useNavigate();
@@ -12,7 +13,7 @@ export default function Feed({ feed, i }: { feed: feedType; i: number }) {
         <img
           src={
             feed.user.avatar.link
-              ? `http://localhost:5005/avatars/${feed.user.avatar.link}.jpg`
+              ? `${API}/avatars/${feed.user.avatar.link}.jpg`
               : 'imgs/user.png'
           }
           alt="feedImg"

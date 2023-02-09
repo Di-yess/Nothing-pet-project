@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { API } from '../../../../constants';
 import { initState } from '../../../../types/userInit';
 
 export default function ImgCard({ user }: { user: initState }) {
@@ -10,7 +11,7 @@ export default function ImgCard({ user }: { user: initState }) {
         <img
           src={
             user.avatar.link
-              ? `http://localhost:5005/avatars/${user.avatar.link}.jpg`
+              ? `${API}/avatars/${user.avatar.link}.jpg`
               : '../imgs/user.png'
           }
           alt="userIcon"

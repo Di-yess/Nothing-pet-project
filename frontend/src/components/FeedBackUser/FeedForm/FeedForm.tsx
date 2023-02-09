@@ -1,4 +1,5 @@
 import { motion as m } from 'framer-motion';
+import { API } from '../../../constants';
 import { useAppSelector } from '../../../types/Apphooks';
 import Quote from '../functions/Quote';
 import DeleteBtn from './DeleteBtn/DeleteBtn';
@@ -16,7 +17,7 @@ export default function FeedForm(props: feedFormProps) {
         <img
           src={
             user.avatar.link
-              ? `http://localhost:5005/avatars/${user.avatar.link}.jpg`
+              ? `${API}/avatars/${user.avatar.link}.jpg`
               : 'imgs/user.png'
           }
           alt="feedImg"

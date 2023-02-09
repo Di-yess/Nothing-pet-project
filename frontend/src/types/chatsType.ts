@@ -16,7 +16,7 @@ type chatType = {
 type user = {
   id: number;
   fullName: string;
-  avatar: { link: string };
+  avatar: { link: string | null };
 };
 
 type Message = {

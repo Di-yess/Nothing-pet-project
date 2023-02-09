@@ -14,7 +14,12 @@ const PORT = process.env.PORT || 5000;
 
 //middleware + confign
 config(app);
-app.use(cors());
+app.use(
+  cors({
+    credentials: true,
+    origin: ['http://localhost:3000'],
+  })
+);
 
 //use Route
 app.use('/', indexRouter);

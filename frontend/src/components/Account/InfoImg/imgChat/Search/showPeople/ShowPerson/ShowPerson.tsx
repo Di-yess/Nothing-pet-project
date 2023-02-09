@@ -1,3 +1,4 @@
+import { API } from '../../../../../../../constants';
 import { createChat } from '../../../../../../../store/asyncThunk/createChat';
 import {
   useAppDispatch,
@@ -25,7 +26,7 @@ export default function ShowPerson({ user }: { user: allUsersType }) {
         <img
           src={
             user.avatar.link
-              ? `http://localhost:5005/avatars/${user.avatar.link}.jpg`
+              ? `${API}/avatars/${user.avatar.link}.jpg`
               : '../imgs/user.png'
           }
           alt="userIcon"
