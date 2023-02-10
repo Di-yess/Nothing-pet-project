@@ -2,7 +2,7 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 const getChats = async (req, res) => {
-  const userId = req.session.userId;
+  const userId = req.session?.userId;
   try {
     const chats = await prisma.chat.findMany({
       where: {
@@ -229,7 +229,7 @@ const findOrCreateChat = async (req, res) => {
       },
     });
     console.log('newOrFindedChat', newOrFindedChat);
-    
+
     if (newOrFindedChat) {
       res.json(newOrFindedChat.id);
     } else {

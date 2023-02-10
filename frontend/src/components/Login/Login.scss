@@ -19,6 +19,7 @@ $link: rgb(41, 41, 164);
   height: 30vh;
   width: 255px;
   height: 255px * 1.37;
+  position: relative;
 
   @include flex();
   border-radius: 15px;
@@ -74,6 +75,14 @@ $link: rgb(41, 41, 164);
 
       transition: 0.15s all ease-in-out;
     }
+  }
+
+  .errorMessage {
+    position: absolute;
+    right: 4px;
+    top: 4px;
+    font-size: 15px;
+    color: #d99191;
   }
 
   input {

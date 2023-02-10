@@ -5,6 +5,8 @@ const prisma = new PrismaClient();
 
 const userLogin = async (req, res) => {
   const { email, password } = req.body;
+  if (!email || !password) res.sendStatus(400);
+
   try {
     // поиск пользователя
     const user = await prisma.user.findUnique({
@@ -34,7 +36,6 @@ const userLogin = async (req, res) => {
           req.session.save(() => {
             delete user.password;
             res.json(user);
-            //res.sendStatus(201);
           });
         } else {
           res.sendStatus(404);
@@ -53,6 +54,10 @@ const userLogin = async (req, res) => {
 
 const userRegister = async (req, res) => {
   const { fullName, email, password } = req.body;
+  // Проверка в обход форм
+  if (!fullName || !email || !password) res.sendStatus(400);
+  if (!/[^\s@]+@[^\s@]+\.[^\s@]+/.test(email)) res.sendStatus(400);
+  
   try {
     // Проверка на наличие такой же почты
     const checkEmail = await prisma.user.findFirst({

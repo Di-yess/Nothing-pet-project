@@ -38,3 +38,19 @@ $fontColor: rgb(232, 232, 232);
     font-family: $roboto-slab;
   }
 }
+
+@media only screen and (max-width: 800px) {
+  .about {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    .aboutHeader {
+      width: 80%;
+      text-align: center;
+    }
+    .aboutText {
+      width: 80%;
+      margin-top: 2vh;
+    }
+  }
+}

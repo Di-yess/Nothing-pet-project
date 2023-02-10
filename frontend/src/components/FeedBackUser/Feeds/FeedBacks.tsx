@@ -5,7 +5,7 @@ import Feed from '../Feed/Feed';
 export default function FeedBacks({ feeds }: { feeds: feedType[] }) {
   return (
     <div className="feedBacks">
-      <AnimatePresence >
+      <AnimatePresence mode="sync">
         {feeds.map((feed, i) => (
           <Feed feed={feed} i={i} key={feed.id} />
         ))}

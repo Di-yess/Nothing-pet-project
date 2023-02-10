@@ -1,18 +1,19 @@
 import { AnimatePresence, motion as m } from 'framer-motion';
 import { useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { useForm, SubmitHandler } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../types/Apphooks';
 import { userLogin } from './functions/userLogin';
 import './Login.scss';
 
+type FormValues = {
+  fullName: string;
+  email: string;
+  password: string;
+};
+
 export default function Login() {
   const [check, setCheck] = useState(false);
-
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [fullName, setFullName] = useState('');
-
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
@@ -20,9 +21,10 @@ export default function Login() {
     register,
     formState: { errors },
     handleSubmit,
-  } = useForm();
+  } = useForm<FormValues>({ mode: 'onTouched' });
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit: SubmitHandler<FormValues> = (data, e: any) => {
+    const { fullName, email, password } = data;
     userLogin({
       e,
       fullName,
@@ -45,22 +47,10 @@ export default function Login() {
         },
       }}
     >
-      <form
-        className="login"
-        onSubmit={handleSubmit(onSubmit)}
-        // onSubmit={(e) => {
-        //   userLogin({
-        //     e,
-        //     fullName,
-        //     email,
-        //     password,
-        //     check,
-        //     navigate,
-        //     dispatch,
-        //   });
-        // }}
-      >
+      <form className="login" onSubmit={handleSubmit(onSubmit)}>
         <div className="loginName">Nothing</div>
+        
+        {/* Name Input */}
         <AnimatePresence mode="sync">
           {check && (
             <m.div
@@ -72,32 +62,60 @@ export default function Login() {
               }}
               className="inputDiv"
             >
+              <div className="errorMessage">
+                {errors?.fullName?.message?.toString()}
+              </div>
               <input
-                type="text"
-                name="fullName"
-                onChange={(e) => setFullName(e.target.value)}
+                style={errors?.fullName && { border: '1px solid red' }}
                 required
+                {...register('fullName', {
+                  required: 'Your name please',
+                  minLength: 1,
+                })}
               />
               <div className="inputDivText">Full name</div>
             </m.div>
           )}
         </AnimatePresence>
+
+        {/* Email Input */}
         <div className="inputDiv">
+          {errors?.email && (
+            <div className="errorMessage">
+              {errors?.email?.message?.toString()}
+            </div>
+          )}
           <input
+            style={errors?.email && { border: '1px solid #f47373' }}
             type="text"
-            name="login"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
             required
+            {...register('email', {
+              required: 'Email required',
+              pattern: {
+                value: /[^\s@]+@[^\s@]+\.[^\s@]+/,
+                message: 'Invalid email',
+              },
+            })}
           />
           <div className="inputDivText">Login</div>
         </div>
+
+        {/* Password Input */}
         <div className="inputDiv">
+          <div className="errorMessage">
+            {errors?.password?.message?.toString()}
+          </div>
           <input
+            style={errors?.password && { border: '1px solid #f47373' }}
             type="password"
-            name="password"
-            onChange={(e) => setPassword(e.target.value)}
             required
+            {...register('password', {
+              required: 'Password is required',
+              minLength: {
+                value: 2,
+                message: 'min 2 characters',
+              },
+            })}
           />
           <div className="inputDivText">Password</div>
         </div>

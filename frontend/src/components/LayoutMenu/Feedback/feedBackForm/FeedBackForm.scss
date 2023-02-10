@@ -50,3 +50,23 @@ $fontColor: rgb(232, 232, 232);
     }
   }
 }
+
+@media only screen and (max-width: 800px) {
+  .feed {
+    width: auto;
+    margin: 0;
+    flex-direction: column;
+
+    .feedAbout {
+      position: relative;
+      .feedText {
+        width: 300px;
+        margin-top: 20vh;
+      }
+      .feedName {
+        position: absolute;
+        top: 40vh;
+      }
+    }
+  }
+}

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { NavigateFunction } from 'react-router-dom';
 import { API } from '../../../../constants';
 import { AppDispatch } from '../../../../store';
 import { clearChosenChat } from '../../../../store/chatSlice';
@@ -61,7 +62,10 @@ export async function edit(e: any, user: initState, dispatch: AppDispatch) {
   }
 }
 
-export async function logout(dispatch: AppDispatch) {
+export async function logout(
+  dispatch: AppDispatch,
+  navigate: NavigateFunction
+) {
   try {
     dispatch(clearInfo());
     dispatch(clearChats());
@@ -72,8 +76,8 @@ export async function logout(dispatch: AppDispatch) {
       method: 'get',
       withCredentials: true,
     });
+    navigate('/');
   } catch (err) {
-    console.log('Logout error');
     console.log(err);
   }
 }

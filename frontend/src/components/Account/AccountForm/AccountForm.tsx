@@ -1,5 +1,5 @@
 import { memo, useEffect, useState } from 'react';
-import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { getUserById } from '.';
 import { showChat } from '../../../store/chatSlice';
 import { useAppDispatch, useAppSelector } from '../../../types/Apphooks';
@@ -16,18 +16,19 @@ export default memo(function AccountForm({ user, accountId }: accountFormType) {
   const [userById, setUserById] = useState<initState>(user);
   const chat = useAppSelector((state) => state.chat.chat);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   console.log('Account form rerender');
 
   useEffect(() => {
     console.log('use effect getUserById');
     if (accountId) {
-      getUserById(accountId, setUserById);
+      getUserById(accountId, setUserById, navigate);
     }
-  }, [accountId]);
+  }, [accountId, navigate, user.login]);
 
   // Если логин и автор совпадают личный кабинет
-  if ((user.id === accountId && user.login) || (!accountId && user.login)) {
+  if ((user?.id === accountId && user.login) || (!accountId && user.login)) {
     return (
       <div className="account" id="account-view">
         <div className="accountInfo">
@@ -40,7 +41,7 @@ export default memo(function AccountForm({ user, accountId }: accountFormType) {
       </div>
     );
     // Если нашелся и тот, и тот
-  } else if (accountId && userById.id) {
+  } else if (accountId && userById?.id) {
     dispatch(showChat(false));
     return (
       <div className="account" id="account-view">
@@ -53,8 +54,6 @@ export default memo(function AccountForm({ user, accountId }: accountFormType) {
       </div>
     );
   } else {
-    return <Navigate to="/" />;
+    return <></>;
   }
 });
-
-/* <div className="feedBacks"></div> личный фидбеки */

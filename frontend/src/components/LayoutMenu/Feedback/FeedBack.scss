@@ -30,9 +30,26 @@ $fontColor: rgb(232, 232, 232);
 
   .arrowRight {
     right: 0px;
-    top:43%;
+    top: 43%;
     position: absolute;
     cursor: pointer;
     z-index: 1;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .feedBackForms {
+    .slider {
+      width: 350px;
+      flex-direction: column;
+    }
+    .arrowLeft {
+      top: 31vh;
+      left: -50px * 1.25;
+    }
+    .arrowRight {
+      right: -50px * 1.2;
+      top: 30vh;
+    }
   }
 }

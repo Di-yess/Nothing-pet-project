@@ -1,3 +1,9 @@
 .aboutSummary {
   padding: 9vh 0;
 }
+
+@media only screen and (max-width: 800px) {
+  .aboutSummary {
+    padding: 1vh 0;
+  }
+}
