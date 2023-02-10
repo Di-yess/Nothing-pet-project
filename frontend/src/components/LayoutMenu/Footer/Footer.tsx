@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import './Footer.scss';
 import Git from './Media/Git';
 import Telegram from './Media/Telegram';
@@ -9,10 +10,18 @@ export default function Footer() {
       <div className="media">
         <ul>
           <li>
-            <Git />
+            <a
+              href="https://github.com/Di-yess"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <Git />
+            </a>
           </li>
           <li>
-            <Telegram />
+            <a href="https://t.me/Di_yess" target="_blank" rel="noreferrer">
+              <Telegram />
+            </a>
           </li>
           <li>
             <Twitter />
@@ -28,9 +37,15 @@ export default function Footer() {
       </div>
       <div className="footerMenu">
         <ul>
-          <li>About us</li>
-          <li>Contacts</li>
-          <li>Sign in</li>
+          <li>
+            <Link to="/">About us</Link>
+          </li>
+          <li>
+            <Link to="/feedback">Tell us</Link>
+          </li>
+          <li>
+            <Link to="/login">Sign in</Link>
+          </li>
         </ul>
       </div>
     </div>

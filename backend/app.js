@@ -26,5 +26,6 @@ app.use('/', indexRouter);
 app.use('/user', userRouter);
 app.use('/feeds', feedsRouter);
 app.use('/chats', chatsRouter);
+app.use('*', (req, res) => res.status(404).json('nope'));
 
 app.listen(PORT, () => console.log(`port started on ${PORT}`));

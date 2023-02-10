@@ -1,5 +1,6 @@
 import { NavigateFunction } from 'react-router-dom';
 import { AppDispatch } from '../store';
+import { IUser } from './Interfaces';
 
 export interface loginProps {
   fullName: string;
@@ -14,5 +15,5 @@ export interface loginProps {
 export interface setDataProps {
   navigate: NavigateFunction;
   dispatch: AppDispatch;
-  data: any;
+  data: IUser;
 }

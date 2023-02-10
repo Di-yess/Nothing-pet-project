@@ -1,8 +1,10 @@
 import axios from 'axios';
+import { API } from '../../../../constants';
 import { AppDispatch } from '../../../../store';
 import { clearChosenChat } from '../../../../store/chatSlice';
 import { clearChats } from '../../../../store/chatsSlice';
 import { changeAvatar, clearInfo } from '../../../../store/userSlice';
+import { IUpdateUser } from '../../../../types/Interfaces';
 import { initState } from '../../../../types/userInit';
 
 export async function edit(e: any, user: initState, dispatch: AppDispatch) {
@@ -33,9 +35,14 @@ export async function edit(e: any, user: initState, dispatch: AppDispatch) {
           formData.append('avatar', imgFile.files[0], imgFile.name);
         }
       }
-      const { data } = await axios.put('/user', formData);
+      const { data } = await axios<IUpdateUser>({
+        url: API + '/user',
+        data: formData,
+        method: 'put',
+        withCredentials: true,
+      });
       // dispatch new data
-      console.log(data.avatar.link);
+      console.log('type of data update', data);
       dispatch(changeAvatar(data.avatar.link));
 
       document
@@ -59,8 +66,12 @@ export async function logout(dispatch: AppDispatch) {
     dispatch(clearInfo());
     dispatch(clearChats());
     dispatch(clearChosenChat());
-    
-    await axios.get('/logout');
+
+    await axios<string>({
+      url: API + '/logout',
+      method: 'get',
+      withCredentials: true,
+    });
   } catch (err) {
     console.log('Logout error');
     console.log(err);

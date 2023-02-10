@@ -1,5 +1,7 @@
 import axios from 'axios';
+import { API } from '../../../constants';
 import { setInfo, userStatus } from '../../../store/userSlice';
+import { IUser } from '../../../types/Interfaces';
 import { loginProps, setDataProps } from '../../../types/loginTypes';
 
 function setData({ navigate, dispatch, data }: setDataProps) {
@@ -14,22 +16,24 @@ export async function userLogin(userData: loginProps) {
   if (!check) {
     try {
       //fetch на логин
-      const response = await axios.post('/login', { email, password });
-      const { data } = response;
-      console.log(data);
+      const { data } = await axios<IUser>({
+        url: API + '/login',
+        method: 'post',
+        data: { email, password },
+        withCredentials: true,
+      });
       setData({ navigate, dispatch, data });
     } catch (err: any) {
       console.log(err.message);
     }
   } else {
     try {
-      // fetch на new account
-      const response = await axios.post('/register', {
-        fullName,
-        email,
-        password,
+      const { data } = await axios<IUser>({
+        url: API + '/register',
+        method: 'post',
+        data: { fullName, email, password },
+        withCredentials: true,
       });
-      const { data } = response;
       setData({ navigate, dispatch, data });
     } catch (err) {
       console.log(err);

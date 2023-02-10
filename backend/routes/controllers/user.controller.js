@@ -2,6 +2,7 @@ import { PrismaClient } from '@prisma/client';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import * as fs from 'fs/promises';
+import sharp from 'sharp';
 
 const prisma = new PrismaClient();
 const __filename = fileURLToPath(import.meta.url);
@@ -49,7 +50,12 @@ const updateUser = async (req, res) => {
     if (newAvatar) {
       const newName = Date.now() + newAvatar.originalname;
       const path = `${__dirname}/../../public/avatars/${newName}.jpg`;
-      await fs.writeFile(path, newAvatar.buffer);
+
+      // test sharp
+      sharp(newAvatar.buffer).resize({ width: 512 }).toFile(path);
+      // test sharp
+
+      //await fs.writeFile(path, newAvatar.buffer);
       await prisma.user.update({
         where: { id },
         data: {
@@ -94,7 +100,7 @@ const updateUser = async (req, res) => {
 const logoutUser = async (req, res) => {
   console.log('logout');
   req.session.destroy(() => {
-    res.clearCookie('LeopardsCookie');
+    res.clearCookie('user_sid');
     res.sendStatus(200);
   });
 };

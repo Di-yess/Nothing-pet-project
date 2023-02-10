@@ -1,20 +1,8 @@
-import axios from 'axios';
 import { AppDispatch } from '../../../../../../../../store';
 import { readMessages } from '../../../../../../../../store/asyncThunk/readMessages';
 import { chooseChat } from '../../../../../../../../store/chatSlice';
 import { chatType } from '../../../../../../../../types/chatsType';
 import { allUsersType } from '../../../../../../../../types/userInit';
-
-export async function createChat({ newPersonId }: { newPersonId: number }) {
-  try {
-    const response = await axios.post('/chats', {
-      newPersonId,
-    });
-    console.log(response);
-  } catch (err) {
-    console.log(err);
-  }
-}
 
 export function checkChat(
   chats: chatType[],

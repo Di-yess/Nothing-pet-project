@@ -66,7 +66,7 @@ const userSlice = createSlice({
     changeAdress(state, action: PayloadAction<string>) {
       state.adress = action.payload;
     },
-    changeAvatar(state, action: PayloadAction<string>) {
+    changeAvatar(state, action: PayloadAction<string | null>) {
       state.avatar.link = action.payload;
     },
   },

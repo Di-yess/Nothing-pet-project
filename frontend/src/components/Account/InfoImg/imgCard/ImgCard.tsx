@@ -32,9 +32,9 @@ export default function ImgCard({ user }: { user: initState }) {
         }}
         disabled
       />
-      <div className="userName">{user.fullName}</div>
-      <div className="userProfession">{user.profession || ' '}</div>
-      <div className="userLocation">{user.adress || ' '}</div>
+      <div className="userName">{user.fullName || 'Your name'}</div>
+      <div className="userProfession">{user.profession || 'Profession'}</div>
+      <div className="userLocation">{user.adress || 'Address'}</div>
     </div>
   );
 }

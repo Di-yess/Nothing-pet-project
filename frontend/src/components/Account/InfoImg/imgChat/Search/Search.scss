@@ -53,7 +53,7 @@
 
       display: flex;
       align-items: center;
-      justify-content: space-around;
+      justify-content: space-evenly;
 
       transition: 0.1s all ease-in-out;
       .showPersonImg {
@@ -66,6 +66,9 @@
           object-fit: cover;
           border-radius: 50%;
         }
+      }
+      .showPersonName {
+        width: 80px;
       }
 
       &:hover {

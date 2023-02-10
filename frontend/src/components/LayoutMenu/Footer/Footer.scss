@@ -39,6 +39,10 @@ $fontColor: rgb(232, 232, 232);
     }
     li {
       cursor: pointer;
+      a {
+        color: white;
+        text-decoration: none;
+      }
     }
   }
 
@@ -76,6 +80,11 @@ $fontColor: rgb(232, 232, 232);
 
       transition: 0.15s all ease-in-out;
       border-bottom: 1px solid transparent;
+
+      a {
+        color: white;
+        text-decoration: none;
+      }
     }
 
     li:hover {

@@ -125,7 +125,7 @@
     }
     button {
       position: absolute;
-      top: 3.8px;
+      top: 3.95px;
       right: 3%;
 
       cursor: pointer;
@@ -136,7 +136,7 @@
     }
 
     svg {
-      width: 19px;
+      width: 18.9px;
     }
   }
 }
@@ -144,44 +144,3 @@
 .lastMessage {
   padding-top: 7px;
 }
-
-
-
-
-// .sendMessageInput {
-//   width: 100%;
-//   margin: 0 auto;
-//   bottom: 5px;
-
-//   position: absolute;
-
-//   @include flex-center();
-
-//   input {
-//     padding: 2px 7px;
-//     width: 86%;
-//     font-size: 15px;
-//     border-radius: 5px;
-//     border: 1.5px solid rgb(200, 200, 200);
-
-//     &:focus {
-//       outline: none;
-//       border: 1.5px solid #307cd2;
-//     }
-//   }
-//   button {
-//     position: absolute;
-//     top: 4px;
-//     right: 7.4%;
-
-//     cursor: pointer;
-
-//     @include flex-center();
-//     border: none;
-//     background-color: transparent;
-//   }
-
-//   svg {
-//     width: 19px;
-//   }
-// }

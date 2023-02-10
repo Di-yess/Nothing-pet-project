@@ -1,5 +1,6 @@
-import { motion as m } from 'framer-motion';
+import { AnimatePresence, motion as m } from 'framer-motion';
 import { useState } from 'react';
+import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../types/Apphooks';
 import { userLogin } from './functions/userLogin';
@@ -15,8 +16,27 @@ export default function Login() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm();
+
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    userLogin({
+      e,
+      fullName,
+      email,
+      password,
+      check,
+      navigate,
+      dispatch,
+    });
+  };
+
   return (
-    <m.form
+    <m.div
+      className="loginPage"
       initial={{ opacity: 0 }}
       animate={{
         opacity: 1,
@@ -24,43 +44,70 @@ export default function Login() {
           duration: 0.75,
         },
       }}
-      className="login"
-      onSubmit={(e) => {
-        userLogin({ e, fullName, email, password, check, navigate, dispatch });
-      }}
     >
-      <div className="loginName">Nothing</div>
-      {check && (
-        <input
-          type="text"
-          name="fullName"
-          placeholder="full name"
-          onChange={(e) => setFullName(e.target.value)}
-          required
-        />
-      )}
-      <div className="loginDiv">
-        <input
-          type="text"
-          name="login"
-          value={email}
-          // placeholder=""
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <div className="loginText">Login</div>
-      </div>
-      <input
-        type="password"
-        name="password"
-        placeholder="password"
-        onChange={(e) => setPassword(e.target.value)}
-        required
-      />
-      <button type="submit">{check ? 'Sign in' : 'Login'}</button>
-      <div className="register" onClick={() => setCheck(!check)}>
-        {check ? 'Login' : 'Sign in'}
-      </div>
-    </m.form>
+      <form
+        className="login"
+        onSubmit={handleSubmit(onSubmit)}
+        // onSubmit={(e) => {
+        //   userLogin({
+        //     e,
+        //     fullName,
+        //     email,
+        //     password,
+        //     check,
+        //     navigate,
+        //     dispatch,
+        //   });
+        // }}
+      >
+        <div className="loginName">Nothing</div>
+        <AnimatePresence mode="sync">
+          {check && (
+            <m.div
+              initial={{ opacity: 0, x: -100 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 250 }}
+              transition={{
+                duration: 0.3,
+              }}
+              className="inputDiv"
+            >
+              <input
+                type="text"
+                name="fullName"
+                onChange={(e) => setFullName(e.target.value)}
+                required
+              />
+              <div className="inputDivText">Full name</div>
+            </m.div>
+          )}
+        </AnimatePresence>
+        <div className="inputDiv">
+          <input
+            type="text"
+            name="login"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <div className="inputDivText">Login</div>
+        </div>
+        <div className="inputDiv">
+          <input
+            type="password"
+            name="password"
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          <div className="inputDivText">Password</div>
+        </div>
+        <m.button whileTap={{ scale: 1.25 }} type="submit">
+          {check ? 'Sign up' : 'Login'}
+        </m.button>
+        <div className="register" onClick={() => setCheck(!check)}>
+          {check ? 'Login' : 'Sign up'}
+        </div>
+      </form>
+    </m.div>
   );
 }

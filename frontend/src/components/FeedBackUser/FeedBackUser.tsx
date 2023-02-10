@@ -33,21 +33,25 @@ export default function FeedBack() {
             />
           )}
         </AnimatePresence>
-        <m.button
-          whileTap={{ scale: 1.15 }}
-          onClick={(e) =>
-            actFeedForm({
-              feedText,
-              tellBtn,
-              setTellBtn,
-              setFeedText,
-              user,
-              dispatch,
-            })
-          }
-        >
-          {!tellBtn ? 'Tell us' : 'Send'}
-        </m.button>
+        {user.login ? (
+          <m.button
+            whileTap={{ scale: 1.15 }}
+            onClick={(e) =>
+              actFeedForm({
+                feedText,
+                tellBtn,
+                setTellBtn,
+                setFeedText,
+                user,
+                dispatch,
+              })
+            }
+          >
+            {!tellBtn ? 'Tell us' : 'Send'}
+          </m.button>
+        ) : (
+          <div style={{ margin: '5vh auto' }}></div>
+        )}
       </div>
     </div>
   );

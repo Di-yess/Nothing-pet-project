@@ -3,22 +3,26 @@ import axios from 'axios';
 import { putFeeds } from '../../../store/feedSlice';
 import { feedFormType } from './types';
 import { feedType } from '../../../types/feedType';
+import { API } from '../../../constants';
 
 export async function actFeedForm(props: feedFormType) {
   const main = document.querySelector('.feedBacks');
   const { setTellBtn, tellBtn, feedText, setFeedText, user, dispatch } = props;
+  // you can`t post unlogged
+  if (!user.login) return;
+
   if (tellBtn && feedText.trim().length >= 5) {
     setFeedText('');
     try {
-      // fetch
-      const response = await axios.post('/feeds', {
-        userId: user.id,
-        text: feedText,
+      const { data } = await axios<feedType>({
+        url: API + '/feeds',
+        method: 'post',
+        data: { userId: user.id, text: feedText },
+        withCredentials: true,
       });
-      const newFeed: feedType = response.data;
 
       // Добавление ?
-      dispatch(putFeeds([newFeed]));
+      dispatch(putFeeds([data]));
       // blur
       main?.classList.toggle('blur');
       // close form

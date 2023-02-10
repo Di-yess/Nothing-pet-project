@@ -8,6 +8,19 @@ interface IUser {
   avatar: { link: string | null };
 }
 
+interface IUpdateUser {
+  adress: string | null;
+  avatar: {
+    id: number;
+    link: string | null;
+    userId: number;
+  };
+  email: string | null;
+  fullName: string;
+  phone: string;
+  profession: string | null;
+}
+
 interface IAllUsers {
   id: number;
   fullName: string;
@@ -40,11 +53,19 @@ interface IMessage {
 }
 
 interface INewMessage {
-    id: number;
-    text: string;
-    read: boolean;
-    userId: number;
-    createdAt: Date;
+  id: number;
+  text: string;
+  read: boolean;
+  userId: number;
+  createdAt: Date;
 }
 
-export type { IFeed, IAllUsers, IUser, IChat, IMessage, INewMessage };
+export type {
+  IFeed,
+  IAllUsers,
+  IUser,
+  IUpdateUser,
+  IChat,
+  IMessage,
+  INewMessage,
+};
