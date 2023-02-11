@@ -22,8 +22,23 @@
 
   overflow: overlay;
   @include scroll();
+  position: relative;
 
   align-items: center;
   border-radius: 5px;
   //border: 1px solid black;
+
+  .groupChatIcon {
+    width: 26px;
+    right: 17px;
+    bottom: 7px;
+
+    position: absolute;
+    cursor: pointer;
+    transition: 0.15s all ease-in-out;
+
+    &:hover {
+      transform: scale(1.03);
+    }
+  }
 }

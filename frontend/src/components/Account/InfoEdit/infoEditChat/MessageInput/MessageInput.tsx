@@ -1,5 +1,6 @@
-import { memo, useState } from 'react';
+import { memo, useContext, useState } from 'react';
 import { postMessage } from '../../../../../store/asyncThunk/postMessage';
+import { GroupChatContext } from '../../../../../store/localContext/GroupChatContext';
 import { useAppDispatch, useAppSelector } from '../../../../../types/Apphooks';
 import Send from '../icons/Send';
 import EmojiList from './EmojiList/EmojiList';
@@ -8,6 +9,7 @@ import MemoInput from './MemoInput/MemoInput';
 
 export default memo(function MessageInput() {
   const dispatch = useAppDispatch();
+  const { createGroupChat } = useContext(GroupChatContext);
   const chatId = useAppSelector((state) => state.chat.chosenChat);
   const [showEmojie, setShowEmojie] = useState(false);
   const [newMessage, setNewMessage] = useState('');
@@ -16,7 +18,7 @@ export default memo(function MessageInput() {
 
   return (
     <form
-      className="sendMessageInput"
+      className={createGroupChat ? 'sendMessageInput blur' : 'sendMessageInput'}
       onSubmit={(e) => {
         e.preventDefault();
         if (chatId) {

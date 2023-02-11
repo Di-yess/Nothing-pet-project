@@ -1,0 +1,16 @@
+@import '../../../../.././mix.scss';
+
+.createGroupChat {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, 10%);
+  width: 80%;
+  height: 80%;
+  position: absolute;
+  top: 0px;
+  @include shadow();
+  @include flex();
+
+  background-color: white;
+  border-radius: 5px;
+}

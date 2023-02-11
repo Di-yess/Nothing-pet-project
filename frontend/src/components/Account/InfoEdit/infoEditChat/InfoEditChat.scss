@@ -22,6 +22,7 @@
     overflow: overlay;
     position: relative;
     @include scroll;
+    transition: 0.15s all ease-in-out;
 
     .writeFirst {
       //position: absolute;
@@ -102,6 +103,7 @@
     bottom: 5px;
 
     position: relative;
+    transition: 0.15s all ease-in-out;
 
     @include flex-center(flex-start);
     width: 86%;
