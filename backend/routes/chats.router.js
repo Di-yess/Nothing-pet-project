@@ -7,6 +7,7 @@ import {
   getMessages,
   readMessages,
   findOrCreateChat,
+  newGroupChat,
 } from './controllers/chats.controller.js';
 
 const router = express.Router();
@@ -16,6 +17,7 @@ router.get('/', checkUser, getChats);
 router.get('/chatmessages/:id', checkUser, getMessages);
 router.post('/', checkUser, newChat);
 router.post('/newChat', checkUser, findOrCreateChat);
+router.post('/newGroupChat', checkUser, newGroupChat);
 router.post('/message', checkUser, postMessage);
 router.put('/message', checkUser, readMessages);
 

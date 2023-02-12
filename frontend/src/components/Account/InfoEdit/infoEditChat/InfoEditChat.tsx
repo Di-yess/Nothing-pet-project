@@ -1,3 +1,4 @@
+import { AnimatePresence } from 'framer-motion';
 import { useContext } from 'react';
 import { GroupChatContext } from '../../../../store/localContext/GroupChatContext';
 import { useAppSelector } from '../../../../types/Apphooks';
@@ -23,10 +24,16 @@ export default function InfoEditChat() {
         <div className="infoEditChat">
           <ChatMessages messages={messages} userId={userId} />
           <MessageInput />
-          {createGroupChat && <CreateGroupChat />}
+          <AnimatePresence>
+            {createGroupChat && <CreateGroupChat />}
+          </AnimatePresence>
         </div>
       ) : (
-        <div className="infoEditChat">{createGroupChat && <CreateGroupChat />}</div>
+        <div className="infoEditChat">
+          <AnimatePresence>
+            {createGroupChat && <CreateGroupChat />}
+          </AnimatePresence>
+        </div>
       )}
     </>
   );

@@ -15,7 +15,11 @@ export default function Search() {
 
   return (
     <div className="search">
-      <InputSearch setShowPeople={setShowPeople} setShowUsers={setShowUsers} />
+      <InputSearch
+        setShowPeople={setShowPeople}
+        setShowUsers={setShowUsers}
+        groupSearch={false}
+      />
       <SearchIcon />
       {showPeople && <ShowPeople showUsers={showUsers} />}
     </div>

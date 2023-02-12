@@ -17,7 +17,7 @@ export default function FeedBack() {
 
   useEffect(() => {
     if (!feeds.length) dispatch(getFeeds());
-  }, [dispatch]);
+  }, [dispatch, feeds.length]);
 
   return (
     <div className="feedMain">

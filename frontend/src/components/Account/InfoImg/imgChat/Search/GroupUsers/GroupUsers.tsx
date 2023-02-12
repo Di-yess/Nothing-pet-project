@@ -1,48 +1,34 @@
-import { useState } from 'react';
-import { API } from '../../../../../../constants';
+import useAddGroupUsers from '../../../../../../hooks/useAddGroupUsers';
+import { useAppSelector } from '../../../../../../types/Apphooks';
 import { allUsersType } from '../../../../../../types/userInit';
+import GroupUser from './GroupUser/GroupUser';
+type Props = {
+  showPeople: boolean;
+  showUsers: allUsersType[];
+};
 
-export default function GroupUsers({ users }: { users: allUsersType[] }) {
-  const [groupUsers, setGroupUsers] = useState(
-    [...users].map((user) => ({ ...user, chosen: false }))
+export default function GroupUsers({ showPeople, showUsers }: Props) {
+  const loggedUserId = useAppSelector((state) => state.user.id);
+  const groupUsers = useAppSelector((state) => state.groupChat.users);
+  const allChatUsers = useAppSelector((state) => state.chats.chats).map(
+    (chat) => (chat.senderId === loggedUserId ? chat.receiver : chat.sender)
   );
-  
-  // добавить количество отображенных(мб сделать все-таки слайс?*)
-  // мб да, сделать все-таки слайс
+
+  useAddGroupUsers(allChatUsers);
 
   return (
-    <div className="groupUsers">
-      {groupUsers &&
-        groupUsers.map((user) => (
-          <div
-            className={user.chosen ? 'groupUser chosenUser' : 'groupUser'}
-            onClick={() => {
-              console.log('onclick', groupUsers);
-              setGroupUsers((prev) =>
-                prev.map((prevUser) =>
-                  prevUser.id === user.id
-                    ? { ...prevUser, chosen: !prevUser.chosen }
-                    : { ...prevUser }
-                )
-              );
-            }}
-            key={user.id}
-          >
-            <div className="groupUserImg">
-              <img
-                src={
-                  user.avatar.link
-                    ? `${API}/avatars/${user.avatar.link}.jpg`
-                    : '../imgs/user.png'
-                }
-                alt="groupUser"
-              />
-            </div>
-            <div className="groupUserName">
-              <div>{user.fullName}</div>
-            </div>
-          </div>
-        ))}
-    </div>
+    <>
+      {!showPeople ? (
+        <div className="groupUsers">
+          {groupUsers &&
+            groupUsers.map((user) => <GroupUser user={user} key={user.id} />)}
+        </div>
+      ) : (
+        <div className="groupUsers">
+          {showUsers &&
+            showUsers.map((user) => <GroupUser searchUser={user} key={user.id} />)}
+        </div>
+      )}
+    </>
   );
 }

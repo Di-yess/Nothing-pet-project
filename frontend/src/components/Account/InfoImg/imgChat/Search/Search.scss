@@ -102,14 +102,14 @@
 
 .groupSearch {
   width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   position: relative;
 
   .groupSearchHeader {
-    margin-top: 1vh;
+    margin-top: 1.5vh;
     padding: 0px 5px;
     width: 75px;
     text-align: center;
@@ -127,20 +127,24 @@
   }
 
   .groupUsers {
-    width: 80%;
-    height: 80%;
+    width: 70%;
+    height: 62%;
+    margin-top: 1vh;
     overflow: overlay;
-    border: 1px solid black;
+    //border: 1px solid black;
     border-radius: 5px;
+    @include shadow();
     @include scroll();
 
     .groupUser {
-      margin: 5px auto;
+      margin: 7px auto;
+      width: 90%;
       text-align: center;
       @include flex();
       cursor: pointer;
       justify-content: space-evenly;
       transition: 0.15s all ease-in-out;
+      border-radius: 7px;
 
       &:hover {
         background-color: rgba(89, 148, 214, 0.231372549);
@@ -157,7 +161,7 @@
         height: 50px;
       }
     }
-    
+
     .chosenUser {
       background-color: rgba(89, 148, 214, 0.231372549);
     }
@@ -174,7 +178,7 @@
     //padding-left: 5px;
     padding: 1px 5px;
     height: 25px;
-    width: 60%;
+    width: 54%;
     margin: 5px auto;
     font-size: 15.7px;
 
@@ -185,5 +189,19 @@
       border: 2px solid #b2b2b2;
       outline: none;
     }
+  }
+
+  button {
+    padding: 3px 7px;
+    margin-top: 2.3vh;
+
+    font-size: 17px;
+    font-weight: 500;
+    cursor: pointer;
+
+    background-color: #307cd2;
+    color: white;
+    border-radius: 5px;
+    border: none;
   }
 }

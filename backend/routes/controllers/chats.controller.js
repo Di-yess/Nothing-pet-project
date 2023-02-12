@@ -228,7 +228,6 @@ const findOrCreateChat = async (req, res) => {
         ],
       },
     });
-    console.log('newOrFindedChat', newOrFindedChat);
 
     if (newOrFindedChat) {
       res.json(newOrFindedChat.id);
@@ -247,6 +246,11 @@ const findOrCreateChat = async (req, res) => {
   }
 };
 
+const newGroupChat = async (req, res) => {
+  console.log(req.body);
+  res.sendStatus(200);
+};
+
 export {
   getChats,
   newChat,
@@ -254,4 +258,5 @@ export {
   getMessages,
   readMessages,
   findOrCreateChat,
+  newGroupChat,
 };

@@ -60,6 +60,16 @@ interface INewMessage {
   createdAt: Date;
 }
 
+interface IGroupChatUser extends IAllUsers {
+  chosen: boolean;
+}
+
+interface IGroupChat {
+  users: IGroupChatUser[];
+  status: string | null;
+  error: string | null;
+}
+
 export type {
   IFeed,
   IAllUsers,
@@ -68,4 +78,6 @@ export type {
   IChat,
   IMessage,
   INewMessage,
+  IGroupChat,
+  IGroupChatUser,
 };
