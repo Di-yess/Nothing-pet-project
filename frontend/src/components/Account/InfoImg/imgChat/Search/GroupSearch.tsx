@@ -18,21 +18,31 @@ export default function GroupSearch() {
   );
   const { setCreateGroupChat } = useContext(GroupChatContext);
 
-  console.log('newChatUsers', newChatUsers);
+  // console.log('newChatUsers', newChatUsers);
   const [showPeople, setShowPeople] = useState(false);
   const [showUsers, setShowUsers] = useState(allUsers);
+  const [chatName, setChatName] = useState('');
 
   return (
     <form
       className="groupSearch"
       onSubmit={(e) => {
         e.preventDefault();
-        dispatch(createGroupChat(newChatUsers));
+        // need a chat name
+        if (!chatName.trim()) return;
+        dispatch(createGroupChat({ newChatUsers, chatName }));
         if (setCreateGroupChat) setCreateGroupChat(() => false);
-        console.log('it works', e.target);
       }}
     >
-      <input className="groupSearchHeader" placeholder="Chat name" />
+      <input
+        className="groupSearchHeader"
+        placeholder="Chat name"
+        value={chatName}
+        onChange={(e) => {
+          setChatName(() => e.target.value);
+        }}
+        required
+      />
       <InputSearch
         setShowPeople={setShowPeople}
         setShowUsers={setShowUsers}
@@ -44,6 +54,4 @@ export default function GroupSearch() {
   );
 }
 
-// Передать всех юзеров чата ;
 // Получить ответ о создании чата и добавить его в редакс ;
-// Очистить прежние значения groupChat в редакс.

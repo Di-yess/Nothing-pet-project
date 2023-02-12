@@ -1,0 +1,48 @@
+@mixin shadow() {
+  -webkit-box-shadow: 0px 3px 6px 3px rgba(34, 60, 80, 0.14);
+  -moz-box-shadow: 0px 3px 6px 3px rgba(34, 60, 80, 0.14);
+  box-shadow: 0px 3px 6px 3px rgba(34, 60, 80, 0.14);
+}
+
+.groupChatItem {
+  width: 88.5%;
+  margin: 13.5px auto;
+  height: 85px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  position: relative;
+  cursor: pointer;
+
+  border-radius: 5px;
+  @include shadow();
+
+  .groupChatName {
+    width: 62px;
+  }
+
+  .groupChatPeople {
+    display: -webkit-inline-box;
+    width: 60%;
+    position: relative;
+
+    & > .groupChatItemImg:not(:first-child) {
+      margin-left: -1.5vh;
+    }
+  }
+
+  .groupChatItemImg {
+    width: 48px;
+    height: 48px;
+    // position: absolute;
+
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      outline: 3px solid white;
+    }
+  }
+}

@@ -8,12 +8,14 @@ import {
   readMessages,
   findOrCreateChat,
   newGroupChat,
+  getGroupChats,
 } from './controllers/chats.controller.js';
 
 const router = express.Router();
 
 // /chats
 router.get('/', checkUser, getChats);
+router.get('/groupchats', checkUser, getGroupChats);
 router.get('/chatmessages/:id', checkUser, getMessages);
 router.post('/', checkUser, newChat);
 router.post('/newChat', checkUser, findOrCreateChat);

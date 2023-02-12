@@ -70,6 +70,42 @@ interface IGroupChat {
   error: string | null;
 }
 
+interface IGroupChatUsers {
+  user: IAllUsers;
+}
+
+interface IMessageGroup {
+  message: {
+    id: number;
+    text: string;
+    userId: number;
+    createdAt: Date;
+    user: {
+      id: number;
+      fullName: string;
+      avatar: { link: string | null };
+    };
+  };
+}
+
+interface IGroupChatInfo {
+  id: string;
+  name: string;
+  ownerId: number;
+  users: IGroupChatUsers[];
+  messages: IMessageGroup[];
+}
+
+interface IGetGroupChats {
+  groupChat: IGroupChatInfo;
+}
+
+interface IGroupChatsSlice {
+  chats: IGetGroupChats[];
+  status: string | null;
+  error: string | null;
+}
+
 export type {
   IFeed,
   IAllUsers,
@@ -80,4 +116,7 @@ export type {
   INewMessage,
   IGroupChat,
   IGroupChatUser,
+  IGroupChatInfo,
+  IGetGroupChats,
+  IGroupChatsSlice,
 };

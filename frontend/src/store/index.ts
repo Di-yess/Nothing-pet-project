@@ -4,6 +4,7 @@ import chatSlice from './chatSlice';
 import chatsSlice from './chatsSlice';
 import feedSlice from './feedSlice';
 import groupChatSlice from './groupChatSlice';
+import groupChatsSlice from './groupChatsSlice';
 import userSlice from './userSlice';
 
 const rootReducer = combineReducers({
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   chat: chatSlice,
   chats: chatsSlice,
   groupChat: groupChatSlice,
+  groupChats: groupChatsSlice,
 });
 
 export const store = configureStore({

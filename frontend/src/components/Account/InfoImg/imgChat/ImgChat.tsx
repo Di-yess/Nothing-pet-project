@@ -3,12 +3,14 @@ import { useContext } from 'react';
 import { GroupChatContext } from '../../../../store/localContext/GroupChatContext';
 import { useAppSelector } from '../../../../types/Apphooks';
 import GroupChatIcon from './GroupChatIcon/GroupChatIcon';
+import GroupChatItem from './GroupChatItem/GroupChatItem';
 import './ImgChat.scss';
 import Person from './person/Person';
 import Search from './Search/Search';
 
 export default function ImgChat() {
   const chats = useAppSelector((state) => state.chats.chats);
+  const groupChats = useAppSelector((state) => state.groupChats.chats);
   const chosenChat = useAppSelector((state) => state.chat.chosenChat);
   const { setCreateGroupChat } = useContext(GroupChatContext);
 
@@ -21,23 +23,37 @@ export default function ImgChat() {
       <div className="person-wrapper">
         <Search />
         {chats && chats.map((chat) => <Person chat={chat} key={chat.id} />)}
-        <div
-          onClick={() => {
-            if (setCreateGroupChat) {
-              if (chosenChat) {
-                document
-                  .querySelector('.chatMessages')
-                  ?.classList.toggle('blur');
-                document
-                  .querySelector('.sendMessageInput')
-                  ?.classList.toggle('blur');
-              }
-              setCreateGroupChat((prev) => !prev);
+        {groupChats &&
+          groupChats.map(({ groupChat }) => (
+            <GroupChatItem groupChat={groupChat} key={groupChat.id} />
+          ))}
+      </div>
+      <div
+        onClick={() => {
+          if (setCreateGroupChat) {
+            if (chosenChat) {
+              document.querySelector('.chatMessages')?.classList.toggle('blur');
+              document
+                .querySelector('.sendMessageInput')
+                ?.classList.toggle('blur');
             }
-          }}
-        >
-          <GroupChatIcon />
-        </div>
+            setCreateGroupChat((prev) => !prev);
+          }
+        }}
+        style={{
+          position: 'absolute',
+          bottom: 10,
+          right: 10,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          width: '43px',
+          height: '43px',
+          borderRadius: '10px',
+          background: ' rgba(255, 255, 255, 0.711) ',
+        }}
+      >
+        <GroupChatIcon />
       </div>
     </m.div>
   );

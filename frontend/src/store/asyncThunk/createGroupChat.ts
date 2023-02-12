@@ -1,24 +1,31 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { API } from '../../constants';
-import { IChat, IGroupChatUser } from '../../types/Interfaces';
+import { IGroupChatInfo, IGroupChatUser } from '../../types/Interfaces';
+import { getGroupChats } from './getGroupChats';
+
+type Props = {
+  newChatUsers: IGroupChatUser[];
+  chatName: string;
+};
 
 export const createGroupChat = createAsyncThunk(
   'groupChat/createChat',
-  async (newChatUsers: IGroupChatUser[], { dispatch, rejectWithValue }) => {
+  async ({ newChatUsers, chatName }: Props, { dispatch, rejectWithValue }) => {
     try {
       // наверное, не <IChat>
-      // плюс добавить имя чата
-      const { data } = await axios<IChat>({
+      const { data } = await axios<IGroupChatInfo>({
         url: API + '/chats/newGroupChat',
         method: 'post',
-        data: { newChatUsers },
+        data: { newChatUsers, chatName },
         withCredentials: true,
       });
-      console.log(data);
-      // dispatch() добавить новый чат в slice с чатами
-      // Либо нет? Подумать, куда пихать групповые чаты
-      return newChatUsers;
+      // Возвращается групповой чат с юзерами и сообщениями, куда?
+      console.log('new group chat', data);
+      // повтоный фетч после создания чата
+      dispatch(getGroupChats());
+
+      return true;
     } catch (err: any) {
       return rejectWithValue(err.message);
     }

@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getChats } from '../../../store/asyncThunk/getChats';
+import { getGroupChats } from '../../../store/asyncThunk/getGroupChats';
 import { useAppDispatch, useAppSelector } from '../../../types/Apphooks';
 import { initState } from '../../../types/userInit';
 import './InfoEdit.scss';
@@ -18,6 +19,7 @@ export default function InfoEdit({ user }: { user: initState }) {
   useEffect(() => {
     if (chats.length === 0) {
       dispatch(getChats());
+      dispatch(getGroupChats());
     }
   }, [dispatch, chats.length]);
 
