@@ -1,9 +1,6 @@
 import React from 'react';
-import {
-  useAppDispatch,
-  useAppSelector,
-} from '../../../../../../types/Apphooks';
-import { readMessages } from '../../../../../../store/asyncThunk/readMessages';
+import { useAppDispatch, useAppSelector } from 'types/Apphooks';
+import { readMessages } from 'store/asyncThunk/readMessages';
 
 type Props = {
   newMessage: string;
@@ -20,7 +17,8 @@ export default function MemoInput({ newMessage, setNewMessage }: Props) {
       placeholder="Type message"
       value={newMessage}
       onClick={() => {
-        if (chatId && userId) dispatch(readMessages({ chatId, userId }));
+        if (chatId && userId)
+          dispatch(readMessages({ chatId: Number(chatId), userId }));
       }}
       onChange={(e) => setNewMessage(() => e.target.value)}
     />

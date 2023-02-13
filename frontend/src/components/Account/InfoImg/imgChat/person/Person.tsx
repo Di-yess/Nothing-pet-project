@@ -1,8 +1,8 @@
 import { memo } from 'react';
-import { readMessages } from '../../../../../store/asyncThunk/readMessages';
-import { chooseChat } from '../../../../../store/chatSlice';
-import { useAppDispatch, useAppSelector } from '../../../../../types/Apphooks';
-import { chatType } from '../../../../../types/chatsType';
+import { readMessages } from 'store/asyncThunk/readMessages';
+import { chooseChat } from 'store/chatSlice';
+import { useAppDispatch, useAppSelector } from 'types/Apphooks';
+import { chatType } from 'types/chatsType';
 import LastMessage from './LastMessage/LastMessage';
 import MessageTime from './MessageTime/MessageTime';
 import './Person.scss';

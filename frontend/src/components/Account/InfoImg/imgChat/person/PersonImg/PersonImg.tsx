@@ -1,6 +1,6 @@
 import React from 'react';
 import { API } from '../../../../../../constants';
-import { user } from '../../../../../../types/chatsType';
+import { user } from 'types/chatsType';
 
 type Props = {
   personChat: user;

@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../../../types/Apphooks';
+import { useAppDispatch, useAppSelector } from 'types/Apphooks';
 import './AccountBtns.scss';
 import { edit, logout } from './functions/edit';
 

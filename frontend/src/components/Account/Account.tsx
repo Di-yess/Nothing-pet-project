@@ -1,7 +1,7 @@
 import { memo, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { GroupChatContext } from '../../store/localContext/GroupChatContext';
-import { useAppSelector } from '../../types/Apphooks';
+import { GroupChatContext } from 'store/localContext/GroupChatContext';
+import { useAppSelector } from 'types/Apphooks';
 import './Account.scss';
 import AccountForm from './AccountForm/AccountForm';
 import useSmooth from './functional/useSmooth';

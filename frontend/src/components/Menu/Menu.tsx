@@ -1,7 +1,7 @@
 import { motion as m } from 'framer-motion';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useAppSelector } from '../../types/Apphooks';
+import { useAppSelector } from 'types/Apphooks';
 import Footer from '../LayoutMenu/Footer/Footer';
 import Arrow from './const/Arrow';
 import { variants } from './const/variants';

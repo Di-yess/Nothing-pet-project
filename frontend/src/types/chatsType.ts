@@ -31,7 +31,7 @@ type Message = {
 
 type chatChecker = {
   chat: boolean;
-  chosenChat: null | number;
+  chosenChat: null | number | string ;
 };
 
 type newMessage = {

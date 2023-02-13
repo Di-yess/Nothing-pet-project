@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { findOrCreateChat } from '../../../store/asyncThunk/findOrCreateChat';
-import { useAppDispatch, useAppSelector } from '../../../types/Apphooks';
-import { initState } from '../../../types/userInit';
+import { findOrCreateChat } from 'store/asyncThunk/findOrCreateChat';
+import { useAppDispatch, useAppSelector } from 'types/Apphooks';
+import { initState } from 'types/userInit';
 import LoginFirst from './LoginFirst/LoginFirst';
 
 export default function SendBtn({ user }: { user: initState }) {

@@ -119,4 +119,5 @@ export type {
   IGroupChatInfo,
   IGetGroupChats,
   IGroupChatsSlice,
+  IMessageGroup,
 };

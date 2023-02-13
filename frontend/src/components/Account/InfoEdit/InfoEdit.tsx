@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { getChats } from '../../../store/asyncThunk/getChats';
-import { getGroupChats } from '../../../store/asyncThunk/getGroupChats';
-import { useAppDispatch, useAppSelector } from '../../../types/Apphooks';
-import { initState } from '../../../types/userInit';
+import { getChats } from 'store/asyncThunk/getChats';
+import { getGroupChats } from 'store/asyncThunk/getGroupChats';
+import { useAppDispatch, useAppSelector } from 'types/Apphooks';
+import { initState } from 'types/userInit';
 import './InfoEdit.scss';
 import InfoEditCard from './infoEditCard/InfoEditCard';
 import InfoEditChat from './infoEditChat/InfoEditChat';

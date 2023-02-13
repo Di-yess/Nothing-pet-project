@@ -6,7 +6,7 @@ import { INewMessage } from '../../types/Interfaces';
 type Vars = {
   newMessage: string;
   setNewMessage: React.Dispatch<React.SetStateAction<string>>;
-  chatId: number;
+  chatId: number | string;
 };
 
 export const postMessage = createAsyncThunk(
@@ -18,11 +18,11 @@ export const postMessage = createAsyncThunk(
       const { data } = await axios<INewMessage>({
         url: API + '/chats/message',
         method: 'post',
-        data: { newMessage: newMessage.trim(), chatId },
+        data: { newMessage: newMessage.trim(), chatId: Number(chatId) },
         withCredentials: true,
       });
       setNewMessage(() => '');
-      return { chatId, data: { message: data } };
+      return { chatId: Number(chatId), data: { message: data } };
     } catch (err) {
       console.log(err);
     }

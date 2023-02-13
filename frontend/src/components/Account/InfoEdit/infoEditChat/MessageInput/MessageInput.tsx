@@ -1,7 +1,7 @@
 import { memo, useContext, useState } from 'react';
-import { postMessage } from '../../../../../store/asyncThunk/postMessage';
-import { GroupChatContext } from '../../../../../store/localContext/GroupChatContext';
-import { useAppDispatch, useAppSelector } from '../../../../../types/Apphooks';
+import { postMessage } from 'store/asyncThunk/postMessage';
+import { GroupChatContext } from 'store/localContext/GroupChatContext';
+import { useAppDispatch, useAppSelector } from 'types/Apphooks';
 import Send from '../icons/Send';
 import EmojiList from './EmojiList/EmojiList';
 import './EmojiList/EmojiList.scss';

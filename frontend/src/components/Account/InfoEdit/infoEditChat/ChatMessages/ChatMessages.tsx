@@ -1,13 +1,14 @@
 import { memo, useContext, useRef } from 'react';
-import { GroupChatContext } from '../../../../../store/localContext/GroupChatContext';
+import { GroupChatContext } from 'store/localContext/GroupChatContext';
 
-import { Message } from '../../../../../types/chatsType';
+import { Message } from 'types/chatsType';
+import { IMessageGroup } from 'types/Interfaces';
 import usePolling from './Hooks/usePolling';
 import useScrollLast from './Hooks/useScrollLast';
 import TextMessage from './TextMessage/TextMessage';
 
 type Props = {
-  messages: Message[] | null;
+  messages: Message[] | IMessageGroup[] | null;
   userId: number | null;
 };
 

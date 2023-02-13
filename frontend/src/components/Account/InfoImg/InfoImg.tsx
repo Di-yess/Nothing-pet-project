@@ -1,5 +1,5 @@
-import { useAppSelector } from '../../../types/Apphooks';
-import { initState } from '../../../types/userInit';
+import { useAppSelector } from 'types/Apphooks';
+import { initState } from 'types/userInit';
 import ImgCard from './imgCard/ImgCard';
 import ImgChat from './imgChat/ImgChat';
 import useSearch from './imgChat/Search/functional/useSearch';

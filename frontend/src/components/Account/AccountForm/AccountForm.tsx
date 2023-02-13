@@ -1,9 +1,9 @@
 import { memo, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getUserById } from '.';
-import { showChat } from '../../../store/chatSlice';
-import { useAppDispatch, useAppSelector } from '../../../types/Apphooks';
-import { initState } from '../../../types/userInit';
+import { showChat } from 'store/chatSlice';
+import { useAppDispatch, useAppSelector } from 'types/Apphooks';
+import { initState } from 'types/userInit';
 import AccountBtns from '../AccountBtns/AccountBtns';
 import SendBtn from '../AccountBtns/SendBtn';
 import DeleteAccount from '../DeleteAccount/DeleteAccount';

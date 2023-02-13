@@ -1,7 +1,7 @@
 import { AnimatePresence, motion as m } from 'framer-motion';
 import { useEffect, useState } from 'react';
-import { getFeeds } from '../../store/asyncThunk/getFeeds';
-import { useAppDispatch, useAppSelector } from '../../types/Apphooks';
+import { getFeeds } from 'store/asyncThunk/getFeeds';
+import { useAppDispatch, useAppSelector } from 'types/Apphooks';
 import './FeedBackUser.scss';
 import FeedForm from './FeedForm/FeedForm';
 import FeedBacks from './Feeds/FeedBacks';

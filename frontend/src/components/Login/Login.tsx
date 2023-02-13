@@ -2,7 +2,7 @@ import { AnimatePresence, motion as m } from 'framer-motion';
 import { useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import { useAppDispatch } from '../../types/Apphooks';
+import { useAppDispatch } from 'types/Apphooks';
 import { userLogin } from './functions/userLogin';
 import './Login.scss';
 

@@ -1,6 +1,5 @@
-import React from 'react';
+import { IAllUsers } from 'types/Interfaces';
 import { API } from '../../../../../../constants';
-import { IAllUsers } from '../../../../../../types/Interfaces';
 
 type Props = {
   user: IAllUsers;

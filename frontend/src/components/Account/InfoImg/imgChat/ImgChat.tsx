@@ -1,7 +1,7 @@
 import { motion as m } from 'framer-motion';
 import { useContext } from 'react';
-import { GroupChatContext } from '../../../../store/localContext/GroupChatContext';
-import { useAppSelector } from '../../../../types/Apphooks';
+import { GroupChatContext } from 'store/localContext/GroupChatContext';
+import { useAppSelector } from 'types/Apphooks';
 import GroupChatIcon from './GroupChatIcon/GroupChatIcon';
 import GroupChatItem from './GroupChatItem/GroupChatItem';
 import './ImgChat.scss';

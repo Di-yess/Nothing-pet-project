@@ -1,4 +1,4 @@
-import { chatType } from '../../../../../../types/chatsType';
+import { chatType } from 'types/chatsType';
 
 type Props = {
   chat: chatType;

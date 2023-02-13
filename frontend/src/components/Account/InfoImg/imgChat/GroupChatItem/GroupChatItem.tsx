@@ -1,4 +1,6 @@
-import { IGroupChatInfo } from '../../../../../types/Interfaces';
+import { chooseChat } from 'store/chatSlice';
+import { useAppDispatch, useAppSelector } from 'types/Apphooks';
+import { IGroupChatInfo } from 'types/Interfaces';
 import './GroupChatItem.scss';
 import GroupChatItemImg from './GroupChatItemImg/GroupChatItemImg';
 
@@ -7,9 +9,20 @@ type Props = {
 };
 
 export default function GroupChatItem({ groupChat }: Props) {
-  console.log(groupChat);
+  const chosenChat = useAppSelector((state) => state.chat.chosenChat);
+  const dispatch = useAppDispatch();
+
   return (
-    <div className="groupChatItem">
+    <div
+      className={
+        chosenChat === groupChat.id
+          ? 'groupChatItem chosenChat'
+          : 'groupChatItem'
+      }
+      onClick={() => {
+        dispatch(chooseChat(groupChat.id));
+      }}
+    >
       <div className="groupChatName">{groupChat.name}</div>
       <div className="groupChatPeople">
         {groupChat.users.length > 0 &&

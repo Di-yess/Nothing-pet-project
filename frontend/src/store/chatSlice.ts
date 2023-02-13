@@ -14,7 +14,7 @@ const chatSlice = createSlice({
     showChat(state, action: PayloadAction<boolean>) {
       state.chat = action.payload;
     },
-    chooseChat(state, action: PayloadAction<number>) {
+    chooseChat(state, action: PayloadAction<number | string>) {
       state.chosenChat = action.payload;
     },
     clearChosenChat(state) {

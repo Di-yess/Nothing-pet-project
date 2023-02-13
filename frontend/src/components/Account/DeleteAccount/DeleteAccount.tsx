@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { useAppDispatch } from '../../../types/Apphooks';
+import { useAppDispatch } from 'types/Apphooks';
 import './DeleteAccount.scss';
 import { deleteAccount } from './functions/deleteAccunt';
 

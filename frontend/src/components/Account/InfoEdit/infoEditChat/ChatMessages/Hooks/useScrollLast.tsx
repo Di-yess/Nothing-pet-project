@@ -1,9 +1,10 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Message } from '../../../../../../types/chatsType';
+import { IMessageGroup } from '../../../../../../types/Interfaces';
 
 export default function useScrollLast(
   lastMessageRef: React.MutableRefObject<HTMLDivElement | null>,
-  messages: Message[] | null,
+  messages: Message[] | IMessageGroup[] | null,
   countMessageRef: React.MutableRefObject<number | null>
 ) {
   const [scrollPos, setScrollPos] = useState<number>(400);

@@ -38,13 +38,24 @@
     display: flex;
     justify-content: flex-start;
     position: relative;
-    & > div {
+    .chatMessage {
       background-color: #ececec;
     }
 
     &:has(.sender) {
       .messageTime {
         right: 10px;
+      }
+    }
+
+    .chatMessageAvatar {
+      width: 40px;
+      height: 40px;
+      img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        border-radius: 50%;
       }
     }
     .chatMessage {
@@ -80,7 +91,7 @@
 
   .sender {
     justify-content: flex-end;
-    & > div {
+    .chatMessage {
       text-align: start;
       background-color: #c0deff;
     }
@@ -93,6 +104,11 @@
   .receiver {
     .messageTime {
       left: 14px;
+    }
+  }
+  .receiver:has(.chatMessageAvatar) {
+    .messageTime {
+      left: 51px;
     }
   }
 
