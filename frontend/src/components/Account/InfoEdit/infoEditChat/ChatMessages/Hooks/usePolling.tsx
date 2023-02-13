@@ -4,6 +4,7 @@ import {
   useAppSelector,
 } from '../../../../../../types/Apphooks';
 import { getChats } from '../../../../../../store/asyncThunk/getChats';
+import { getGroupChats } from 'store/asyncThunk/getGroupChats';
 
 export default function usePolling(
   countMessageRef: React.MutableRefObject<number | null>,
@@ -17,6 +18,7 @@ export default function usePolling(
       const interval = window.setInterval(() => {
         console.log('interval');
         dispatch(getChats());
+        dispatch(getGroupChats());
       }, 1500);
       return () => clearInterval(interval);
     }

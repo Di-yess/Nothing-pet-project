@@ -1,9 +1,12 @@
 import express from 'express';
 import { checkUser } from '../middleware/checkUser.js';
+import { userInChat } from '../middleware/userInChat.js';
+import { userInGroupChat } from '../middleware/userInGroupChat.js';
 import {
   getChats,
   newChat,
   postMessage,
+  postGroupMessage,
   getMessages,
   readMessages,
   findOrCreateChat,
@@ -14,13 +17,15 @@ import {
 const router = express.Router();
 
 // /chats
-router.get('/', checkUser, getChats);
-router.get('/groupchats', checkUser, getGroupChats);
-router.get('/chatmessages/:id', checkUser, getMessages);
-router.post('/', checkUser, newChat);
-router.post('/newChat', checkUser, findOrCreateChat);
-router.post('/newGroupChat', checkUser, newGroupChat);
-router.post('/message', checkUser, postMessage);
-router.put('/message', checkUser, readMessages);
+router
+  .get('/', checkUser, getChats)
+  .get('/groupchats', checkUser, getGroupChats)
+  .get('/chatmessages/:id', checkUser, getMessages)
+  .post('/', checkUser, newChat)
+  .post('/newChat', checkUser, findOrCreateChat)
+  .post('/newGroupChat', checkUser, newGroupChat)
+  .post('/message', checkUser, userInChat, postMessage)
+  .post('/groupmessage', checkUser, userInGroupChat, postGroupMessage)
+  .put('/message', checkUser, readMessages);
 
 export default router;

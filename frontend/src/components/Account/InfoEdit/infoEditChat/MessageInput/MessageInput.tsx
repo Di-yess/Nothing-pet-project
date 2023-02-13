@@ -1,4 +1,5 @@
 import { memo, useContext, useState } from 'react';
+import { postGroupMessage } from 'store/asyncThunk/postGroupMessage';
 import { postMessage } from 'store/asyncThunk/postMessage';
 import { GroupChatContext } from 'store/localContext/GroupChatContext';
 import { useAppDispatch, useAppSelector } from 'types/Apphooks';
@@ -7,21 +8,26 @@ import EmojiList from './EmojiList/EmojiList';
 import './EmojiList/EmojiList.scss';
 import MemoInput from './MemoInput/MemoInput';
 
-export default memo(function MessageInput() {
+type Props = {
+  groupChat?: boolean;
+};
+
+export default memo(function MessageInput({ groupChat }: Props) {
   const dispatch = useAppDispatch();
   const { createGroupChat } = useContext(GroupChatContext);
   const chatId = useAppSelector((state) => state.chat.chosenChat);
   const [showEmojie, setShowEmojie] = useState(false);
   const [newMessage, setNewMessage] = useState('');
 
-  // console.log('messageInput');
+  console.log('groupChat', groupChat);
 
   return (
     <form
       className={createGroupChat ? 'sendMessageInput blur' : 'sendMessageInput'}
       onSubmit={(e) => {
         e.preventDefault();
-        if (chatId) {
+        // post message to person
+        if (chatId && !groupChat) {
           dispatch(
             postMessage({
               newMessage,
@@ -30,10 +36,25 @@ export default memo(function MessageInput() {
             })
           );
         }
+
+        // post group message
+        if (chatId && groupChat) {
+          dispatch(
+            postGroupMessage({
+              newMessage,
+              setNewMessage,
+              chatId: chatId.toString(),
+            })
+          );
+        }
       }}
     >
       {' '}
-      <MemoInput newMessage={newMessage} setNewMessage={setNewMessage} />
+      <MemoInput
+        newMessage={newMessage}
+        setNewMessage={setNewMessage}
+        groupChat={groupChat}
+      />
       <button type="submit">
         <Send />
       </button>

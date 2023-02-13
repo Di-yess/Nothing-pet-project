@@ -10,7 +10,7 @@ export type MessageWithUser = {
   text: string;
   userId: number;
   createdAt: Date;
-  User: {
+  user: {
     id: number;
     fullName: string;
     avatar: { link: string | null };
@@ -18,5 +18,5 @@ export type MessageWithUser = {
 };
 
 export function isMessageWithUser(object: any): object is MessageWithUser {
-  return 'User' in object;
+  return 'user' in object;
 }

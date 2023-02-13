@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { API } from '../../constants';
-import { IMessage } from '../../types/Interfaces';
+import { IMessage } from 'types/Interfaces';
 
 export const updateChat = createAsyncThunk(
   'chats/updateChat',

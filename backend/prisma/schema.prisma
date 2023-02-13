@@ -52,7 +52,7 @@ model Message {
   userId     Int
   read       Boolean               @default(false)
   createdAt  DateTime              @default(now())
-  User       User                  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user       User                  @relation(fields: [userId], references: [id], onDelete: Cascade)
   chats      ChatAndMessage[]
   groupChats GroupChatAndMessage[]
 }

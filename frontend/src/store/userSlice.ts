@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { getUser } from './asyncThunk/getUser';
-import { infoUser, initState } from '../types/userInit';
+import { infoUser, initState } from 'types/userInit';
 
 const initialState: initState = {
   id: null,

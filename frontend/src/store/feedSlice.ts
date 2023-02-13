@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { feedInit, feedType } from '../types/feedType';
+import { feedInit, feedType } from 'types/feedType';
 import { getFeeds } from './asyncThunk/getFeeds';
 
 const initialState: feedInit = {

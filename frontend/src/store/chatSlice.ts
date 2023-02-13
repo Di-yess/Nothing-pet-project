@@ -1,6 +1,6 @@
 import { findOrCreateChat } from './asyncThunk/findOrCreateChat';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { chatChecker } from '../types/chatsType';
+import { chatChecker } from 'types/chatsType';
 
 const initialState: chatChecker = {
   chat: false,

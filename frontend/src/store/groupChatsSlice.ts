@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { IGroupChatsSlice } from '../types/Interfaces';
+import { IGroupChatsSlice } from 'types/Interfaces';
 import { getGroupChats } from './asyncThunk/getGroupChats';
+import { postGroupMessage } from './asyncThunk/postGroupMessage';
 
 const initialState: IGroupChatsSlice = {
   chats: [],
@@ -20,6 +21,7 @@ const groupChatsSlice = createSlice({
 
   // add group chats
   extraReducers: (builder) => {
+    // get groupChats
     builder.addCase(getGroupChats.fulfilled, (state, action) => {
       state.chats = action.payload;
       state.status = 'fulfilled';
@@ -31,6 +33,20 @@ const groupChatsSlice = createSlice({
         state.error = action.payload;
       }
     );
+
+    // postGroupMessage
+    builder.addCase(postGroupMessage.fulfilled, (state, action) => {
+      if (action.payload) {
+        const { chatId, data } = action.payload;
+        console.log('INewGroupMessage slice', action.payload);
+
+        const groupChat = state.chats
+          .find(({ groupChat }) => groupChat.id === chatId)
+          ?.groupChat.messages.push(data);
+
+        console.log('INewGroupMessage message added', groupChat);
+      }
+    });
   },
 });
 

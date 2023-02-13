@@ -38,12 +38,11 @@ export default function InfoEditChat() {
       ) : typeof chatId === 'string' ? (
         // group chat
         <div className="infoEditChat">
-          {/* <GroupChat messages={groupMessages} /> */}
           <ChatMessages messages={groupMessages} userId={userId} />
           <AnimatePresence>
             {createGroupChat && <CreateGroupChat />}
           </AnimatePresence>
-          <MessageInput />
+          <MessageInput groupChat={true} />
         </div>
       ) : (
         // окно для создания группового чата

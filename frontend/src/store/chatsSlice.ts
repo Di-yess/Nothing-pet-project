@@ -1,10 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import {
-  chatsType,
-  chatType,
-  newMessage,
-  newMessages
-} from '../types/chatsType';
+import { chatsType, chatType, newMessage, newMessages } from 'types/chatsType';
 import { createChat } from './asyncThunk/createChat';
 import { getChats } from './asyncThunk/getChats';
 import { postMessage } from './asyncThunk/postMessage';

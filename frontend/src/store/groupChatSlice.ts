@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { IGroupChat, IGroupChatUser } from '../types/Interfaces';
+import { IGroupChat, IGroupChatUser } from 'types/Interfaces';
 import { createGroupChat } from './asyncThunk/createGroupChat';
 
 const initialState: IGroupChat = {

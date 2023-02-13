@@ -39,7 +39,7 @@ export default function TextMessage({ message, userId }: Props) {
             <div className="chatMessageAvatar">
               <img
                 src={
-                  `${API}/avatars/${message.User.avatar.link}.jpg` ||
+                  `${API}/avatars/${message.user.avatar.link}.jpg` ||
                   '../imgs/user.png'
                 }
                 alt=""

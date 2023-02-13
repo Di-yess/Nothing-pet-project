@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { API } from '../../constants';
-import { IFeed } from '../../types/Interfaces';
+import { IFeed } from 'types/Interfaces';
 
 export const getFeeds = createAsyncThunk(
   'feeds/getFeeds',

@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { API } from '../../constants';
-import { IAllUsers, IUser } from '../../types/Interfaces';
+import { IAllUsers, IUser } from 'types/Interfaces';
 import { setInfo } from '../userSlice';
 
 export const getUser = createAsyncThunk(

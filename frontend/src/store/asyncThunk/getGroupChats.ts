@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { API } from '../../constants';
-import { IGetGroupChats } from '../../types/Interfaces';
+import { IGetGroupChats } from 'types/Interfaces';
 
 export const getGroupChats = createAsyncThunk(
   'groupChats/getGroupChats',

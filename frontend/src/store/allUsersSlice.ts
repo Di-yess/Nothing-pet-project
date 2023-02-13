@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { allUsers } from '../types/userInit';
+import { allUsers } from 'types/userInit';
 import { getUsers } from './asyncThunk/getUser';
 
 const initialState: allUsers = {

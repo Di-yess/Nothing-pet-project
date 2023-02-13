@@ -60,6 +60,14 @@ interface INewMessage {
   createdAt: Date;
 }
 
+interface INewGroupMessage extends INewMessage {
+  user: {
+    id: number;
+    fullName: string;
+    avatar: { link: string | null };
+  };
+}
+
 interface IGroupChatUser extends IAllUsers {
   chosen: boolean;
 }
@@ -75,17 +83,7 @@ interface IGroupChatUsers {
 }
 
 interface IMessageGroup {
-  message: {
-    id: number;
-    text: string;
-    userId: number;
-    createdAt: Date;
-    user: {
-      id: number;
-      fullName: string;
-      avatar: { link: string | null };
-    };
-  };
+  message: INewGroupMessage;
 }
 
 interface IGroupChatInfo {
@@ -120,4 +118,5 @@ export type {
   IGetGroupChats,
   IGroupChatsSlice,
   IMessageGroup,
+  INewGroupMessage,
 };

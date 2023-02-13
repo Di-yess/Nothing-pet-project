@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { API } from '../../constants';
-import { INewMessage } from '../../types/Interfaces';
+import { INewMessage } from 'types/Interfaces';
 
 type Vars = {
   newMessage: string;

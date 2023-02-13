@@ -120,8 +120,7 @@ const postMessage = async (req, res) => {
   const { newMessage, chatId } = req.body;
   const userId = req.session.userId;
 
-  if (!newMessage) res.sendStatus(400);
-
+  // message for personal chat
   try {
     const message = await prisma.message.create({
       data: {
@@ -249,14 +248,12 @@ const findOrCreateChat = async (req, res) => {
 const newGroupChat = async (req, res) => {
   const userId = req.session.userId;
   const { newChatUsers, chatName } = req.body;
-  // ?.map((user) => ({ userId: user.id }));
-  console.log(newChatUsers);
+
   const usersId = newChatUsers.map((user) => ({
     userId: user.id,
   }));
   // добавить админа в собственный чат
   usersId.push({ userId });
-  console.log(usersId);
   // попытка создать пустой чат
   if (newChatUsers.length === 0) res.sendStatus(400);
 
@@ -296,7 +293,7 @@ const newGroupChat = async (req, res) => {
                 text: true,
                 userId: true,
                 createdAt: true,
-                User: {
+                user: {
                   select: {
                     id: true,
                     fullName: true,
@@ -341,9 +338,10 @@ const getGroupChats = async (req, res) => {
                   select: {
                     id: true,
                     text: true,
+                    read: true,
                     userId: true,
                     createdAt: true,
-                    User: {
+                    user: {
                       select: {
                         id: true,
                         fullName: true,
@@ -376,6 +374,48 @@ const getGroupChats = async (req, res) => {
   }
 };
 
+const postGroupMessage = async (req, res) => {
+  const { newMessage, chatId } = req.body;
+  const userId = req.session.userId;
+
+  try {
+    const message = await prisma.message.create({
+      data: {
+        text: newMessage,
+        userId,
+      },
+      select: {
+        id: true,
+        text: true,
+        read: true,
+        userId: true,
+        createdAt: true,
+        user: {
+          select: {
+            id: true,
+            fullName: true,
+            avatar: { select: { link: true } },
+          },
+        },
+      },
+    });
+
+    await prisma.groupChatAndMessage.create({
+      data: {
+        groupChatId: chatId,
+        messageId: message.id,
+      },
+    });
+
+    console.log('newgroupMessage', message);
+
+    res.json(message);
+  } catch (err) {
+    console.log(err);
+    res.sendStatus(500);
+  }
+};
+
 export {
   getChats,
   newChat,
@@ -385,4 +425,5 @@ export {
   findOrCreateChat,
   newGroupChat,
   getGroupChats,
+  postGroupMessage,
 };

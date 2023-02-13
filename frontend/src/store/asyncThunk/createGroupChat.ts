@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { API } from '../../constants';
-import { IGroupChatInfo, IGroupChatUser } from '../../types/Interfaces';
+import { IGroupChatInfo, IGroupChatUser } from 'types/Interfaces';
 import { getGroupChats } from './getGroupChats';
 
 type Props = {
