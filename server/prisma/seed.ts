@@ -16,7 +16,7 @@ async function main() {
 
   const feedBacks = [];
   for (let i = 0; i < 9; i++) {
-    feedBacks.push({ text: faker.word.noun(), userId: 1 });
+    feedBacks.push({ text: faker.word.noun().toString(), userId: 1 });
   }
 
   for (let i = 0; i < users.length; i++) {
