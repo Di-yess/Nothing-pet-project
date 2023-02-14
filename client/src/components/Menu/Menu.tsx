@@ -40,6 +40,11 @@ export default function Menu({ children }: { children: React.ReactNode }) {
             </div>
           )}
         </div>
+        <div className="mobileRightMenu">
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
         <div className="explore">
           <div className="exploreText">Explore nothing</div>
           <Arrow />

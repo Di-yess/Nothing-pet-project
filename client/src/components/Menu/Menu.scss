@@ -41,6 +41,21 @@ $fontColor: rgb(255, 255, 255);
     // align-items: center;
   }
 
+  .mobileRightMenu {
+    margin-top: 6.4vh;
+    font-size: 3vh;
+    color: white;
+    display: none;
+
+    & > div {
+      margin-bottom: 4px;
+      width: 25px;
+      height: 4px;
+      border-radius: 5px;
+      background-color: white;
+    }
+  }
+
   .liRightMenu {
     margin-right: 25px;
     height: 35px;
@@ -91,5 +106,21 @@ $fontColor: rgb(255, 255, 255);
 
     border-radius: 10px;
     border: 1px solid black;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .menu {
+    .topMenu {
+      justify-content: space-around;
+    }
+    .rightMenu {
+      display: none;
+    }
+
+    .mobileRightMenu {
+      display: flex;
+      flex-direction: column;
+    }
   }
 }
