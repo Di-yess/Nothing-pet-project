@@ -1,12 +1,12 @@
 import axios from 'axios';
 import { NavigateFunction } from 'react-router-dom';
+import { AppDispatch } from 'store';
 import { API } from '../../../../constants';
-import { AppDispatch } from '../../../../store';
-import { clearChosenChat } from '../../../../store/chatSlice';
-import { clearChats } from '../../../../store/chatsSlice';
-import { changeAvatar, clearInfo } from '../../../../store/userSlice';
-import { IUpdateUser } from '../../../../types/Interfaces';
-import { initState } from '../../../../types/userInit';
+import { clearChosenChat } from 'store/chatSlice';
+import { clearChats } from 'store/chatsSlice';
+import { changeAvatar, clearInfo } from 'store/userSlice';
+import { IUpdateUser } from 'types/Interfaces';
+import { initState } from 'types/userInit';
 
 export async function edit(e: any, user: initState, dispatch: AppDispatch) {
   const imgFile = document.querySelector<HTMLInputElement>('#inputImg');
@@ -23,6 +23,8 @@ export async function edit(e: any, user: initState, dispatch: AppDispatch) {
       imgFile.classList.toggle('cursor');
     }
     e.target.innerText = 'Accept';
+    // camera
+    document.querySelector('.cameraIcon')?.classList.toggle('cameraOpacity');
   } else {
     const { fullName, email, phone, profession, adress } = user;
     try {
@@ -56,6 +58,8 @@ export async function edit(e: any, user: initState, dispatch: AppDispatch) {
         imgFile.classList.toggle('cursor');
       }
       e.target.innerText = 'Edit';
+      // camera
+      document.querySelector('.cameraIcon')?.classList.toggle('cameraOpacity');
     } catch (err) {
       console.log(err);
     }

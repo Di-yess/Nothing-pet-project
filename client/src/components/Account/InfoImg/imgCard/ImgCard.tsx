@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import { initState } from 'types/userInit';
 import { API } from '../../../../constants';
-import { initState } from '../../../../types/userInit';
+import CameraIcon from './Camera/CameraIcon';
 
 export default function ImgCard({ user }: { user: initState }) {
   const [newImg, setNewImg] = useState<File>();
@@ -32,6 +33,7 @@ export default function ImgCard({ user }: { user: initState }) {
         }}
         disabled
       />
+      <CameraIcon />
       <div className="userName">{user.fullName || 'Your name'}</div>
       <div className="userProfession">{user.profession || 'Profession'}</div>
       <div className="userLocation">{user.adress || 'Address'}</div>

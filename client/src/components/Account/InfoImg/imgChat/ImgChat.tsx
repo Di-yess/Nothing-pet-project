@@ -2,6 +2,7 @@ import { motion as m } from 'framer-motion';
 import { useContext } from 'react';
 import { GroupChatContext } from 'store/localContext/GroupChatContext';
 import { useAppSelector } from 'types/Apphooks';
+import { chatSort } from 'utils/chatSort';
 import GroupChatIcon from './GroupChatIcon/GroupChatIcon';
 import GroupChatItem from './GroupChatItem/GroupChatItem';
 import './ImgChat.scss';
@@ -22,7 +23,10 @@ export default function ImgChat() {
     >
       <div className="person-wrapper">
         <Search />
-        {chats && chats.map((chat) => <Person chat={chat} key={chat.id} />)}
+        {chats &&
+          [...chats]
+            .sort((chatPrev, chatNext) => chatSort(chatPrev, chatNext))
+            .map((chat) => <Person chat={chat} key={chat.id} />)}
         {groupChats &&
           groupChats.map(({ groupChat }) => (
             <GroupChatItem groupChat={groupChat} key={groupChat.id} />

@@ -39,17 +39,18 @@ const userLogin: Controller = async (req, res) => {
             res.json(userWithoutPassword);
           });
         } else {
-          res.sendStatus(404);
+          res.status(404).json({ error: 'Password is incorrect' });
         }
       } catch (err) {
         console.log(err);
       }
       // Если юзера нет перекинуть на стр регистрации
     } else {
-      res.sendStatus(401);
+      res.status(401).json({ error: 'User not found' });
     }
   } catch (err) {
     console.log(err);
+    res.sendStatus(500);
   }
 };
 

@@ -4,6 +4,12 @@
   box-shadow: -1px 2px 11px 3px rgba(34, 60, 80, 0.2);
 }
 
+@mixin flex() {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .infoImg {
   width: 240px;
   height: 235px;
@@ -74,6 +80,23 @@
   object-fit: cover;
 
   border-radius: 50%;
+}
+
+.cameraIcon {
+  padding: 5px;
+  border-radius: 50%;
+  position: absolute;
+  @include flex();
+  cursor: pointer;
+  opacity: 0;
+
+  svg {
+    width: 30px;
+  }
+}
+
+.cameraOpacity {
+  opacity: 1;
 }
 
 // const UploadAndDisplayImage = () => {
