@@ -1,3 +1,4 @@
+import { userLoginThunk } from './asyncThunk/userLoginThunk';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { getUser } from './asyncThunk/getUser';
 import { infoUser, initState } from 'types/userInit';
@@ -20,23 +21,6 @@ const userSlice = createSlice({
   initialState,
 
   reducers: {
-    userStatus(state, action: PayloadAction<boolean>) {
-      state.login = action.payload;
-      state.status = 'fulfilled';
-    },
-    // setInfo
-    setInfo(state, action: PayloadAction<infoUser>) {
-      const { id, fullName, avatar, phone, profession, email, adress } =
-        action.payload;
-      //state = { ...state, ...action.payload };
-      state.id = id;
-      state.adress = adress;
-      state.avatar = avatar;
-      state.fullName = fullName;
-      state.phone = phone;
-      state.profession = profession;
-      state.email = email;
-    },
     // logout
     clearInfo(state) {
       state.id = null;
@@ -75,10 +59,27 @@ const userSlice = createSlice({
     builder.addCase(getUser.pending, (state) => {
       state.status = 'loading';
     });
-    builder.addCase(getUser.fulfilled, (state) => {
-      state.login = true;
-      state.status = 'fulfilled';
-    });
+
+    // get User
+    builder.addCase(
+      getUser.fulfilled,
+      (state, action: PayloadAction<infoUser>) => {
+        const { id, fullName, avatar, phone, profession, email, adress } =
+          action.payload;
+        state.login = true;
+        state.status = 'fulfilled';
+        state.error = null;
+
+        state.id = id;
+        state.adress = adress;
+        state.avatar = avatar;
+        state.fullName = fullName;
+        state.phone = phone;
+        state.profession = profession;
+        state.email = email;
+      }
+    );
+
     builder.addCase(
       getUser.rejected,
       (state, action: PayloadAction<string | any>) => {
@@ -86,13 +87,41 @@ const userSlice = createSlice({
         state.status = 'rejected';
       }
     );
+    // user login/sign up
+    builder.addCase(
+      userLoginThunk.fulfilled,
+      (state, action: PayloadAction<infoUser>) => {
+        const { id, fullName, avatar, phone, profession, email, adress } =
+          action.payload;
+        state.login = true;
+        state.status = 'fulfilled';
+        state.error = null;
+
+        state.id = id;
+        state.adress = adress;
+        state.avatar = avatar;
+        state.fullName = fullName;
+        state.phone = phone;
+        state.profession = profession;
+        state.email = email;
+      }
+    );
+
+    builder.addCase(userLoginThunk.pending, (state) => {
+      state.status = 'loading';
+    });
+
+    builder.addCase(userLoginThunk.rejected, (state, action) => {
+      if (action.payload) {
+        state.status = 'rejected';
+        state.error = action.payload.toString();
+      }
+    });
   },
 });
 
 export default userSlice.reducer;
 export const {
-  userStatus,
-  setInfo,
   changeName,
   changeEmail,
   changePhone,

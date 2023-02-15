@@ -27,7 +27,7 @@ const getUser: Controller = async (req, res) => {
       });
       res.json(user);
     } else {
-      res.sendStatus(401);
+      res.status(401).json({ error: 'User is not logged in' });
     }
   } catch (err) {
     console.log(err);
@@ -165,11 +165,10 @@ const getAllUsers: Controller = async (req, res) => {
 };
 
 export {
-    getUser,
-    updateUser,
-    logoutUser,
-    deleteUser,
-    getUserById,
-    getAllUsers,
+  getUser,
+  updateUser,
+  logoutUser,
+  deleteUser,
+  getUserById,
+  getAllUsers,
 };
-

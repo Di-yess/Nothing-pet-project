@@ -22,7 +22,7 @@ export interface IUser {
   profession: string | null;
   adress: string | null;
   password: string;
-  avatar: { link: string | null } | null;
+  avatar: { link: string | null };
 }
 
 export interface ISession {

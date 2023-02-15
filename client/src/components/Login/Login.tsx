@@ -1,9 +1,10 @@
 import { AnimatePresence, motion as m } from 'framer-motion';
 import { useState } from 'react';
-import { useForm, SubmitHandler } from 'react-hook-form';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import { useAppDispatch } from 'types/Apphooks';
-import { userLogin } from './functions/userLogin';
+import { userLoginThunk } from 'store/asyncThunk/userLoginThunk';
+import { useAppDispatch, useAppSelector } from 'types/Apphooks';
+import Loading from './Loading/Loading';
 import './Login.scss';
 
 type FormValues = {
@@ -16,6 +17,7 @@ export default function Login() {
   const [check, setCheck] = useState(false);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const { status, error } = useAppSelector((state) => state.user);
 
   const {
     register,
@@ -23,17 +25,18 @@ export default function Login() {
     handleSubmit,
   } = useForm<FormValues>({ mode: 'onTouched' });
 
-  const onSubmit: SubmitHandler<FormValues> = (data, e: any) => {
+  const onSubmit: SubmitHandler<FormValues> = (data, event) => {
     const { fullName, email, password } = data;
-    userLogin({
-      e,
-      fullName,
-      email,
-      password,
-      check,
-      navigate,
-      dispatch,
-    });
+    event?.preventDefault();
+    dispatch(
+      userLoginThunk({
+        fullName,
+        email,
+        password,
+        check,
+        navigate,
+      })
+    );
   };
 
   return (
@@ -49,7 +52,7 @@ export default function Login() {
     >
       <form className="login" onSubmit={handleSubmit(onSubmit)}>
         <div className="loginName">Nothing</div>
-        
+
         {/* Name Input */}
         <AnimatePresence mode="sync">
           {check && (
@@ -124,6 +127,13 @@ export default function Login() {
         </m.button>
         <div className="register" onClick={() => setCheck(!check)}>
           {check ? 'Login' : 'Sign up'}
+        </div>
+
+        <div className="loginError">
+          {status === 'loading' && <Loading />}
+          {error && error !== 'User is not logged in' && (
+            <p style={{ color: '#f47373' }}>{error}</p>
+          )}
         </div>
       </form>
     </m.div>

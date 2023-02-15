@@ -10,7 +10,7 @@ const userLogin: Controller = async (req, res) => {
 
   try {
     // поиск пользователя
-    const user: IUser | null = await prisma.user.findUnique({
+    const user = await prisma.user.findUnique({
       where: { email },
       select: {
         id: true,
@@ -40,13 +40,15 @@ const userLogin: Controller = async (req, res) => {
           });
         } else {
           res.status(404).json({ error: 'Password is incorrect' });
+          // throw new Error('Password is incorrect');
         }
       } catch (err) {
         console.log(err);
+        res.sendStatus(500);
       }
       // Если юзера нет перекинуть на стр регистрации
     } else {
-      res.status(401).json({ error: 'User not found' });
+      res.status(401).json({ error: 'Email was not found' });
     }
   } catch (err) {
     console.log(err);
@@ -106,10 +108,11 @@ const userRegister: Controller = async (req, res) => {
         });
       }
     } else {
-      res.sendStatus(404);
+      res.status(404).json({ error: 'Email already exists' });
     }
   } catch (err) {
     console.log(err);
+    res.sendStatus(500);
   }
 };
 

@@ -8,8 +8,6 @@ export interface loginProps {
   password: string;
   check: boolean;
   navigate: NavigateFunction;
-  e: React.FormEvent<HTMLFormElement>;
-  dispatch: AppDispatch;
 }
 
 export interface setDataProps {

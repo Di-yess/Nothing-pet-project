@@ -126,3 +126,10 @@ $link: rgb(41, 41, 164);
     }
   }
 }
+
+.loginError {
+  position: absolute;
+
+  @include flex();
+  bottom: 1vh;
+}

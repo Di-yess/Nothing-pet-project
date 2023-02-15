@@ -1,22 +1,24 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { API } from '../../constants';
 import { IAllUsers, IUser } from 'types/Interfaces';
-import { setInfo } from '../userSlice';
+import { API } from '../../constants';
 
 export const getUser = createAsyncThunk(
   'user/getUser',
-  async (_, { dispatch, rejectWithValue }) => {
+  async (_, { rejectWithValue }) => {
     try {
       const { data } = await axios<IUser>({
         url: API + '/user',
         method: 'get',
         withCredentials: true,
       });
-      dispatch(setInfo(data));
-      return true;
+      return data;
     } catch (err: any) {
-      return rejectWithValue(err.message);
+      console.log(err);
+      if (err.message === 'Network Error') {
+        return rejectWithValue(err.message);
+      }
+      return rejectWithValue(err.response.data.error);
     }
   }
 );
@@ -32,7 +34,7 @@ export const getUsers = createAsyncThunk(
       });
       return data;
     } catch (err: any) {
-      return rejectWithValue(err.message);
+      return rejectWithValue(err.response.data.error);
     }
   }
 );
