@@ -14,3 +14,10 @@
   background-color: white;
   border-radius: 5px;
 }
+
+@media only screen and (max-width: 500px) {
+  .createGroupChat {
+    left: 67%;
+    width: 230px;
+  }
+}

@@ -1,5 +1,5 @@
 import { motion as m } from 'framer-motion';
-import React from 'react';
+import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { useAppSelector } from 'types/Apphooks';
 import Footer from '../LayoutMenu/Footer/Footer';
@@ -9,6 +9,9 @@ import './Menu.scss';
 
 export default function Menu({ children }: { children: React.ReactNode }) {
   const login = useAppSelector((state) => state.user.login);
+  const ref = useRef<HTMLDivElement | null>(null);
+  const rightMenuRef = useRef<HTMLDivElement | null>(null);
+
   return (
     <m.div
       className="menu"
@@ -22,7 +25,7 @@ export default function Menu({ children }: { children: React.ReactNode }) {
         <div className="iconMenu">
           <Link to="/">Nothing</Link>
         </div>
-        <div className="rightMenu">
+        <div className="rightMenu" ref={rightMenuRef}>
           <div className="liRightMenu">
             <Link to="/">About us</Link>
           </div>
@@ -40,7 +43,14 @@ export default function Menu({ children }: { children: React.ReactNode }) {
             </div>
           )}
         </div>
-        <div className="mobileRightMenu">
+        <div
+          ref={ref}
+          className="mobileRightMenu"
+          onClick={() => {
+            ref.current?.classList.toggle('actionMenu');
+            rightMenuRef.current?.classList.toggle('showMenu');
+          }}
+        >
           <div></div>
           <div></div>
           <div></div>

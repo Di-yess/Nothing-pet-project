@@ -162,3 +162,14 @@
 .lastMessage {
   padding-top: 7px;
 }
+
+@media only screen and (max-width: 800px) {
+  .check {
+    height: 500px;
+  }
+  .infoEditChat {
+    .sendMessageInput input {
+      width: 80%;
+    }
+  }
+}

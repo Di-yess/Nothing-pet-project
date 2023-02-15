@@ -80,3 +80,18 @@
 .blur {
   filter: blur(2px);
 }
+
+@media only screen and (max-width: 500px) {
+  .feedMain {
+    svg {
+      width: 40px;
+    }
+    .feedBacks {
+      padding-bottom: 1.5vh;
+      height: 510px;
+      overflow: overlay;
+
+      border-radius: 15px;
+    }
+  }
+}

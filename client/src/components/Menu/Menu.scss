@@ -49,8 +49,8 @@ $fontColor: rgb(255, 255, 255);
 
     & > div {
       margin-bottom: 4px;
-      width: 25px;
-      height: 4px;
+      width: 25px * 1.2;
+      height: 4px * 1.25;
       border-radius: 5px;
       background-color: white;
     }
@@ -111,21 +111,79 @@ $fontColor: rgb(255, 255, 255);
 
 @media only screen and (max-width: 500px) {
   .menu {
+    height: 85vh;
+
     .topMenu {
       justify-content: space-around;
     }
+
+    .iconMenu {
+      margin-top: 1vh;
+    }
+
     .rightMenu {
-      display: flex;
-      position: absolute;
+      width: 100%;
       right: 0;
-      top: 10vh;
+      top: 25vh;
+
+      transition: 0.3s all ease-in-out;
+
+      & > *:not(:last-child) {
+        margin-bottom: 1.2vh;
+      }
+
+      .liRightMenu {
+        margin-right: 0;
+        text-align: center;
+        a {
+          font-size: 33px;
+        }
+
+        &:hover {
+          border-bottom: 2px solid transparent;
+        }
+      }
+
+      height: 0;
       opacity: 0;
+      overflow: hidden;
+      // z-index: -99;
+
+      position: absolute;
+      display: flex;
       flex-direction: column;
+    }
+
+    .showMenu {
+      height: 300px;
+      opacity: 1;
+      // z-index: 10;
     }
 
     .mobileRightMenu {
       display: flex;
       flex-direction: column;
+
+      margin-right: 0.5vh;
+      div {
+        transition: 0.15s all ease-in-out;
+      }
     }
+  }
+}
+
+.actionMenu {
+  div:nth-child(1) {
+    transform: translateY(8.5px) rotate(45deg);
+    // transform: rotate(45deg);
+  }
+
+  div:nth-child(2) {
+    opacity: 0;
+  }
+
+  div:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+    // transform: rotate(-45deg);
   }
 }

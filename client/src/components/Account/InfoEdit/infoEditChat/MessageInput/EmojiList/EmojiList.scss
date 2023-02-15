@@ -35,3 +35,12 @@
     }
   }
 }
+
+@media only screen and (max-width: 800px) {
+  .emoji{
+    .chooseEmoji{
+      right:-1vh;
+    }
+  }
+}
+

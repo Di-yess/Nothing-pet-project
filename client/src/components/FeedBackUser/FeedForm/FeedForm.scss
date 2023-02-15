@@ -85,7 +85,7 @@
 
     cursor: pointer;
     position: absolute;
-    
+
     svg {
       color: rgba(143, 143, 143, 0.458);
       width: 25px;
@@ -94,4 +94,23 @@
 
   background-color: white;
   border-radius: 5px;
+}
+
+@media only screen and (max-width: 500px) {
+  .feedForm {
+    width: 350px;
+    height: 215px;
+    left: 0;
+
+    textarea{
+      font-size: 20px;
+    }
+
+    .feedFormImg {
+      top:-75px;
+
+      width: 110px;
+      height: 110px;
+    }
+  }
 }

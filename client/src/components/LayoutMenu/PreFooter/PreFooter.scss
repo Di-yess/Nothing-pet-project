@@ -58,7 +58,7 @@ $fontSize: 27px;
 
 @media only screen and (max-width: 800px) {
   .preFooter {
-    margin: 6.5vh auto 4.9vh;
+    margin: 3vh auto 4vh;
     padding-left: 0;
     width: fit-content;
 
@@ -70,6 +70,7 @@ $fontSize: 27px;
     }
 
     .preFooterText {
+      margin-right: 0;
       font-size: 35px;
       font-family: $roboto-slab;
       font-weight: 300;

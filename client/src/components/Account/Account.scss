@@ -21,8 +21,31 @@
 
 @media only screen and (max-width: 800px) {
   .account {
+    padding-bottom: 7vh;
     .accountInfo {
-      grid-template-columns: 242.9px;
+      .infoImg {
+        width: 240px * 1.15;
+        height: 235px * 1.1;
+      }
+
+      display: flex;
+      flex-direction: column;
+    }
+
+    .infoEdit {
+      margin-top: 3.5vh;
+      width: 237px;
+      // height: 206px;
+      padding: 15px 20px;
+      & > .info:not(:last-child) {
+        margin-bottom: 7px;
+        // font-size: 17px;
+      }
+      .info {
+        input {
+          width: 60%;
+        }
+      }
     }
   }
 }

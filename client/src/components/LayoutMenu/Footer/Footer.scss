@@ -103,35 +103,51 @@ $fontColor: rgb(232, 232, 232);
 
 @media only screen and (max-width: 800px) {
   .footer {
-    flex-direction: column;
-    justify-content: center;
+    // flex-direction: column;
+    justify-content: space-between;
     height: 186px;
+    align-items: normal;
 
     .media {
-      margin-bottom: 2vh;
+      margin: 5vh 10vh 4vh 12vh;
+      ul {
+        & > *:not(:last-child) {
+          margin-right: 1.7vh;
+        }
+
+        svg {
+          width: 34px;
+        }
+      }
     }
 
     .logo {
+      position: absolute;
+      bottom: 0;
+      right: 50%;
       .logoName {
         display: none;
       }
 
       .nothingTodo {
-        padding-bottom: 1vh;
-        // width: 50%;
+        // padding-bottom: 1vh;
+        width: 40vh;
         line-height: 115%;
         text-align: center;
       }
     }
 
     .footerMenu {
+      margin-top: 2.5vh;
+      margin-right: 4vh;
       ul {
         display: flex;
+        flex-direction: column;
         & > *:not(:last-child) {
           margin-right: 11px;
         }
         li {
-          font-size: 25px;
+          font-size: 20.5px;
         }
       }
     }

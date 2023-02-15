@@ -1,6 +1,6 @@
-import bcrypt from 'bcrypt';
 import { PrismaClient } from '@prisma/client';
-import { Controller, IUser } from '../types';
+import bcrypt from 'bcrypt';
+import { Controller } from '../types';
 
 const prisma = new PrismaClient();
 
