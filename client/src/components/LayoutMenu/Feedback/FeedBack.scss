@@ -44,11 +44,13 @@ $fontColor: rgb(232, 232, 232);
       flex-direction: column;
     }
     .arrowLeft {
+      display: none;
       top: 31vh;
-      left: -50px * 1.25;
+      // left: -50px * 1.25;
     }
     .arrowRight {
-      right: -50px * 1.2;
+      display: none;
+      // right: -50px ;
       top: 30vh;
     }
   }

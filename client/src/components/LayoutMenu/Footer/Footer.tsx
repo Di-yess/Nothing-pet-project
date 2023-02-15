@@ -29,7 +29,7 @@ export default function Footer() {
         </ul>
       </div>
       <div className="logo">
-        Nothing
+        <div className="logoName">Nothing</div>
         <div className="nothingTodo">
           *Nothing has nothing to do with{' '}
           <a href="https://intl.nothing.tech/">Nothing Company</a>

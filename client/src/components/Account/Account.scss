@@ -19,6 +19,10 @@
   }
 }
 
-//gap:100px;
-// grid-template-rows: 250px;
-//grid-auto-rows: 100px;
+@media only screen and (max-width: 800px) {
+  .account {
+    .accountInfo {
+      grid-template-columns: 242.9px;
+    }
+  }
+}

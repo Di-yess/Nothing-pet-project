@@ -34,7 +34,7 @@
 
 .feedBacks {
   width: 70%;
-  //   max-height: 750px;
+  max-width: 1000px; //   max-height: 750px;
   @include flex();
   @include scroll();
   //   overflow: overlay;

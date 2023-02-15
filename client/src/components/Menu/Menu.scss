@@ -115,7 +115,12 @@ $fontColor: rgb(255, 255, 255);
       justify-content: space-around;
     }
     .rightMenu {
-      display: none;
+      display: flex;
+      position: absolute;
+      right: 0;
+      top: 10vh;
+      opacity: 0;
+      flex-direction: column;
     }
 
     .mobileRightMenu {
