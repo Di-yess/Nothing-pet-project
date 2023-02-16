@@ -5,11 +5,12 @@
   "type": "commonjs",
   "main": "index.js",
   "prisma": {
-    "seed": "node prisma/seed.js"
+    "seed": "ts-node prisma/seed.ts"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npx tsc",
+    "prep" : "npm install && npx prisma db push && npx prisma db seed",
     "start": "npm run build && node dist/index.js"
   },
   "keywords": [],
