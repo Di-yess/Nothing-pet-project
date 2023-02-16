@@ -37,7 +37,7 @@ $link: rgb(41, 41, 164);
 
   .register {
     margin-top: 0;
-    font-size: 15.5px;
+    font-size: 16px;
 
     cursor: pointer;
     color: white;
@@ -200,9 +200,9 @@ $link: rgb(41, 41, 164);
 
       .inputDivText {
         position: absolute;
-        top: 2px;
+        top: 3px;
         left: 9px;
-        font-size: 16px;
+        font-size: 18px;
         color: rgb(131, 131, 131);
 
         transition: 0.15s all ease-in-out;
@@ -212,8 +212,8 @@ $link: rgb(41, 41, 164);
     .errorMessage {
       position: absolute;
       right: 4px;
-      top: 4px;
-      font-size: 15px;
+      top: 5px;
+      font-size: 17px;
       color: #d99191;
     }
 
@@ -224,7 +224,7 @@ $link: rgb(41, 41, 164);
       padding-left: 10px;
 
       // text-align: center;
-      font-size: 16px;
+      font-size: 18px;
       color: #000000;
 
       border-radius: 7.2px;
@@ -241,8 +241,8 @@ $link: rgb(41, 41, 164);
 
     button {
       margin-top: 10px;
-      padding: 3px 10px;
-      font-size: 17px;
+      padding: 3px 15px;
+      font-size: 18px;
       font-weight: 500;
 
       cursor: pointer;
