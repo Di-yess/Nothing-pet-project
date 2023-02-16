@@ -2,4 +2,4 @@
 ### 1. server : fill the env-exmaple. npm install, npx prisma db push, npx prisma db seed, npm start; 
 ### 2. client : npm install, npm start
 
-![login_page](readme-asssets/login.png)
+![login_page](readme-asssets/login.PNG)
