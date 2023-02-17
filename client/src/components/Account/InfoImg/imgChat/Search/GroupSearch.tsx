@@ -18,7 +18,6 @@ export default function GroupSearch() {
   );
   const { setCreateGroupChat } = useContext(GroupChatContext);
 
-  // console.log('newChatUsers', newChatUsers);
   const [showPeople, setShowPeople] = useState(false);
   const [showUsers, setShowUsers] = useState(allUsers);
   const [chatName, setChatName] = useState('');

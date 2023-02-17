@@ -26,7 +26,6 @@ export default memo(function Person({ chat }: { chat: chatType }) {
     }
     dispatch(chooseChat(chat.id));
   }
-  // console.log('Person.tsx');
 
   return (
     <div

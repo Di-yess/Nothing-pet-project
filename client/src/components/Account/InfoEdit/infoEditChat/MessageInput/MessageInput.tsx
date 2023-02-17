@@ -19,8 +19,6 @@ export default memo(function MessageInput({ groupChat }: Props) {
   const [showEmojie, setShowEmojie] = useState(false);
   const [newMessage, setNewMessage] = useState('');
 
-  console.log('groupChat', groupChat);
-
   return (
     <form
       className={createGroupChat ? 'sendMessageInput blur' : 'sendMessageInput'}

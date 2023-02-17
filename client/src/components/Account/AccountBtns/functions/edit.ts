@@ -45,7 +45,6 @@ export async function edit(e: any, user: initState, dispatch: AppDispatch) {
         withCredentials: true,
       });
       // dispatch new data
-      console.log('type of data update', data);
       dispatch(changeAvatar(data.avatar.link));
 
       document

@@ -11,8 +11,6 @@ export default memo(function Account() {
   const user = useAppSelector((state) => state.user);
   const accountId = useParams().id;
 
-  console.log('accountId', accountId);
-
   useSmooth();
 
   return (

@@ -42,7 +42,6 @@ export async function actFeedForm(props: feedFormType) {
 function addWarning() {
   if (!document.querySelector('#warning')) {
     const textArea = document.querySelector('.feedForm');
-    console.log(textArea);
     const warning = document.createElement('p');
     warning.innerText = '*Need at least 5 symbols';
     warning.setAttribute('id', 'warning');

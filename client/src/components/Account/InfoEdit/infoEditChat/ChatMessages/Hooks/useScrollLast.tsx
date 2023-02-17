@@ -30,7 +30,6 @@ export default function useScrollLast(
     if (!firstScroll.current) {
       scrollToBottom();
       firstScroll.current = true;
-      console.log('firstScroll.current', firstScroll.current);
     }
 
     // Скролл только тогда, когда прилетело новое сообщение
@@ -42,17 +41,10 @@ export default function useScrollLast(
     ) {
       scrollToBottom();
       countMessageRef.current = messages.length;
-      console.log(
-        'change number of messageRef in useScroll',
-        countMessageRef.current
-      );
     }
 
     return () => {
       document.removeEventListener('scroll', () => {
-        // setScrollPos(window.scrollY);
-        // firstScroll.current = false;
-        //console.log('firstScroll.current', firstScroll.current);
       });
     };
   }, [messages, countMessageRef, lastMessageRef, scrollPos, scrollToBottom]);

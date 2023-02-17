@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { INewGroupMessage } from 'types/Interfaces';
 import { API } from '../../constants';
-import { INewGroupMessage, INewMessage } from 'types/Interfaces';
 
 type Vars = {
   newMessage: string;
@@ -21,7 +21,6 @@ export const postGroupMessage = createAsyncThunk(
         data: { newMessage: newMessage.trim(), chatId: chatId },
         withCredentials: true,
       });
-      console.log('INewGroupMessage thunk', data);
       setNewMessage(() => '');
       return { chatId, data: { message: data } };
     } catch (err) {
@@ -29,6 +28,3 @@ export const postGroupMessage = createAsyncThunk(
     }
   }
 );
-
-// обрабоать на бэке создание новго сообщения
-// изменить тип получаемого сообщения и добавить в нужный групп-чат

@@ -18,24 +18,11 @@ function App() {
     useAppSelector((state) => state.user.error) === 'Network Error';
 
   useEffect(() => {
-    console.log('use effect app');
     dispatch(getUser());
   }, [dispatch]);
 
   return (
     <>
-      {/* <AnimatePresence mode="wait">
-        <Routes key={location.pathname} location={location}>
-          <Route path="/login" element={<Login />} />
-          <Route path="/" element={<Layout />}>
-            <Route index element={<LayoutMenu />} />
-            <Route path="feedback" element={<FeedBack />} />
-            <Route path="account" element={<Account />} />
-            <Route path="account/:id" element={<Account />} />
-          </Route>
-          <Route path="*" element={<Error />} />
-        </Routes>
-      </AnimatePresence> */}
       {serverStatus ? (
         <Routes>
           <Route path="*" element={<Error />} />

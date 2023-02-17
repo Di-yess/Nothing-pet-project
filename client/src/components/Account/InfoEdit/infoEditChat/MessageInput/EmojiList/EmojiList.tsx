@@ -32,7 +32,6 @@ export default memo(function EmojiList({
   setShowEmojie,
   setNewMessage,
 }: Props) {
-  console.log('emoji list');
   return (
     <div className="emojiList">
       {emojis &&

@@ -1,4 +1,3 @@
-import GroupChatMenu from 'components/Account/InfoImg/imgChat/GroupChatItem/GroupChatMenu/GroupChatMenu';
 import { AnimatePresence } from 'framer-motion';
 import { useContext } from 'react';
 import { GroupChatContext } from 'store/localContext/GroupChatContext';
@@ -22,8 +21,6 @@ export default function InfoEditChat() {
   const messages = chat?.messages || null;
   const groupMessages = groupChat?.groupChat.messages || null;
   const { createGroupChat } = useContext(GroupChatContext);
-
-  // console.log('Infoeditchat', groupChat);
 
   return (
     <>

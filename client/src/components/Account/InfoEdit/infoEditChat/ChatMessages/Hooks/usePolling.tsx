@@ -16,7 +16,6 @@ export default function usePolling(
   useEffect(() => {
     if (chatId) {
       const interval = window.setInterval(() => {
-        console.log('interval');
         dispatch(getChats());
         dispatch(getGroupChats());
       }, 1500);

@@ -38,13 +38,10 @@ const groupChatsSlice = createSlice({
     builder.addCase(postGroupMessage.fulfilled, (state, action) => {
       if (action.payload) {
         const { chatId, data } = action.payload;
-        console.log('INewGroupMessage slice', action.payload);
 
-        const groupChat = state.chats
+        state.chats
           .find(({ groupChat }) => groupChat.id === chatId)
           ?.groupChat.messages.push(data);
-
-        console.log('INewGroupMessage message added', groupChat);
       }
     });
   },

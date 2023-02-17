@@ -1,5 +1,4 @@
 export default function CameraIcon() {
-  console.log('camerIcon');
   return (
     <div className="cameraIcon">
       <svg

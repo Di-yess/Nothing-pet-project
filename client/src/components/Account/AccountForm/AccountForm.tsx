@@ -18,10 +18,7 @@ export default memo(function AccountForm({ user, accountId }: accountFormType) {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  console.log('Account form rerender');
-
   useEffect(() => {
-    console.log('use effect getUserById');
     if (accountId) {
       getUserById(accountId, setUserById, navigate);
     }

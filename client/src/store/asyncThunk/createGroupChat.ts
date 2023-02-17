@@ -14,15 +14,13 @@ export const createGroupChat = createAsyncThunk(
   async ({ newChatUsers, chatName }: Props, { dispatch, rejectWithValue }) => {
     try {
       // наверное, не <IChat>
-      const { data } = await axios<IGroupChatInfo>({
+      await axios<IGroupChatInfo>({
         url: API + '/chats/newGroupChat',
         method: 'post',
         data: { newChatUsers, chatName },
         withCredentials: true,
       });
-      // Возвращается групповой чат с юзерами и сообщениями, куда?
-      console.log('new group chat', data);
-      // повтоный фетч после создания чата
+      
       dispatch(getGroupChats());
 
       return true;

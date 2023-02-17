@@ -47,7 +47,6 @@ const chatsSlice = createSlice({
     builder.addCase(
       postMessage.fulfilled,
       (state, action: PayloadAction<newMessage | undefined>) => {
-        console.log(action.payload);
 
         if (action.payload) {
           const { chatId, data } = action.payload;
@@ -80,7 +79,6 @@ const chatsSlice = createSlice({
     builder.addCase(
       createChat.rejected,
       (state, action: PayloadAction<string | any>) => {
-        console.log(action.payload);
       }
     );
 
