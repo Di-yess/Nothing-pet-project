@@ -30,8 +30,7 @@ const groupChatSlice = createSlice({
       state.status = 'loading';
     });
 
-    builder.addCase(createGroupChat.fulfilled, (state, action) => {
-      console.log(action.payload);
+    builder.addCase(createGroupChat.fulfilled, (state) => {
       state.status = 'success';
       state.users = [];
     });
