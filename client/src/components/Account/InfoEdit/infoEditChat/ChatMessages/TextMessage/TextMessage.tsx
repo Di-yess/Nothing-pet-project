@@ -35,7 +35,7 @@ export default function TextMessage({ message, userId }: Props) {
           }
           key={message.id}
         >
-          {!(userId === message.userId) && (
+          {userId !== message.userId && (
             <div className="chatMessageAvatar">
               <img
                 src={
@@ -48,7 +48,8 @@ export default function TextMessage({ message, userId }: Props) {
           )}
           <div className="chatMessage">{message.text}</div>
           <div className="messageTime">
-            {message.createdAt.toLocaleString().slice(10, -8).replace('T', ' ')}
+            {message.createdAt.toLocaleString().slice(10, -8).replace('T', ' ')}{' '}
+            {message.userId !== userId ? message.user.fullName : ''}
           </div>
         </div>
       )}
