@@ -1,4 +1,4 @@
-## Would be very grateful for you star. Thank you ^^
+## Nothing-pet-project
 ### Ok, lest get familiar with the project
 
 ### 1. First. We have main page with logo and menu.
@@ -22,6 +22,9 @@
 ### 7. My favorites - error pages.
 ![error](readme-assets/Error.png)
 
+
+
 ### 1. server : fill the env-exmaple, **npm run prep**. To run server - **npm start**; 
 ### 2. client : **npm install, npm start**
 
+Would be very grateful for you star. Thank you ^^
