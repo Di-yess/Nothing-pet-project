@@ -28,5 +28,5 @@
 #### 1. <ins>server</ins> : fill the env-exmaple. **npm run prep**. To run server - **npm start**; 
 #### 2. <ins>client</ins> : **npm i, npm start**
 
-That`s it.
+** That`s it.
 Would be very grateful for you star. Thank you and have a nice day.
