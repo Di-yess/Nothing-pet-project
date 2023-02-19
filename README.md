@@ -27,6 +27,7 @@
 
 #### 1. <ins>server</ins> : fill the env-exmaple. **npm run prep**. To run server - **npm start**; 
 #### 2. <ins>client</ins> : **npm i, npm start**
+#### <a href="https://www.figma.com/file/Xh6W6EKjS7jomADC9y7vEn/Nothing?node-id=0%3A1&t=hkef3alDCOjs7ce1-0">PROJECT IN FIGMA </a>
 
 ** That`s it.
 Would be very grateful for you star. Thank you and have a nice day.
