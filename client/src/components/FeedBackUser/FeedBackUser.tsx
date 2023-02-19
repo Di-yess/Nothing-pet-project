@@ -1,3 +1,4 @@
+import LoadingRound from 'components/Login/LoadingRound/LoadingRound';
 import { AnimatePresence, motion as m } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { getFeeds } from 'store/asyncThunk/getFeeds';
@@ -10,6 +11,7 @@ import Quote from './functions/Quote';
 
 export default function FeedBack() {
   const feeds = useAppSelector((state) => state.feeds.feeds);
+  const status = useAppSelector((state) => state.feeds.status);
   const user = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
   const [tellBtn, setTellBtn] = useState(false);
@@ -23,6 +25,7 @@ export default function FeedBack() {
     <div className="feedMain">
       <Quote />
       <FeedBacks feeds={feeds} />
+      {status === 'loading' && <LoadingRound />}
       <div className="btnTellUs">
         <AnimatePresence>
           {tellBtn && (

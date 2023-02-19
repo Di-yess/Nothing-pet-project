@@ -6,6 +6,7 @@ import { userLoginThunk } from 'store/asyncThunk/userLoginThunk';
 import { useAppDispatch, useAppSelector } from 'types/Apphooks';
 import Loading from './Loading/Loading';
 import './Login.scss';
+import Restriction from './Restriction/Restriction';
 
 type FormValues = {
   fullName: string;
@@ -50,6 +51,7 @@ export default function Login() {
         },
       }}
     >
+      <Restriction />
       <form className="login" onSubmit={handleSubmit(onSubmit)}>
         <div className="loginName">Nothing</div>
 
