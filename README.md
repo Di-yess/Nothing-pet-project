@@ -23,8 +23,10 @@
 ![error](readme-assets/Error.png)
 
 
+### How to start: 
 
-### 1. server : fill the env-exmaple, **npm run prep**. To run server - **npm start**; 
-### 2. client : **npm install, npm start**
+#### 1. server : fill the env-exmaple. **npm run prep**. To run server - **npm start**; 
+#### 2. client : **npm install, npm start**
 
-Would be very grateful for you star. Thank you ^^
+That`s it.
+Would be very grateful for you start. Thank you and have a nice day.
