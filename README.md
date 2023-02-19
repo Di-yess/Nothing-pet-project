@@ -2,4 +2,4 @@
 ### 1. server : fill the env-exmaple, **npm run prep**. To run server - **npm start**; 
 ### 2. client : **npm install, npm start**
 
-![login_page](readme-assets/login.png)
+![login_page](readme-assets/Login.png)
