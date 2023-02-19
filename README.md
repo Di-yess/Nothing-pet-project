@@ -1,4 +1,4 @@
-## Nothing-pet-project
+## NOTHING
 ### Ok, lest get familiar with the project
 
 ### 1. First. We have main page with logo and menu.
