@@ -1,5 +1,5 @@
 # NOTHING - PROJECT
-## Ok, lest <ins>get familiar.</ins>
+## Ok, let's <ins>get familiar with.</ins>
 
 ### 1. First. We have main page with logo and menu.
 ![main_page](readme-assets/nothing.png)
