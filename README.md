@@ -23,7 +23,7 @@
 ![error](readme-assets/Error.png)
 
 
-### How to start: 
+### <ins>How to start:</ins> 
 
 #### 1. server : fill the env-exmaple. **npm run prep**. To run server - **npm start**; 
 #### 2. client : **npm install, npm start**
