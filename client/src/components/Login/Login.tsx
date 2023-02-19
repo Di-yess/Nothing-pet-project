@@ -132,6 +132,7 @@ export default function Login() {
         </div>
 
         <div className="loginError">
+          {/* <Loading /> */}
           {status === 'loading' && <Loading />}
           {error && error !== 'User is not logged in' && (
             <p style={{ color: '#f47373' }}>{error}</p>
