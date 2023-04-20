@@ -17,7 +17,7 @@
 ![chat](readme-assets/Chat.png)
 
 ### 6. Login page.
-![chat](readme-assets/Login.png)
+![chat](readme-assets/login.png)
 
 ### 7. My favorites - error pages.
 ![error](readme-assets/Error.png)
